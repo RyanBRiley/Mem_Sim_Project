@@ -3,5 +3,5 @@ Memory Simulation Project ECEN 4593
 Contributors:
 -------------
 
-Brian Campuzano
+Brian Campuzano <br>
 Ryan Riley
