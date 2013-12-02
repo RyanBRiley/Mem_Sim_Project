@@ -21,6 +21,13 @@
  {
      class MemoryModule
      {
+		/** \brief These are the default values for a new memory module (L1 Cache) */
+		#define DEFAULT_BLOCK_SIZE			32
+		#define DEFAULT_MEMORY_SIZE			8192
+		#define DEFAULT_ASSOCIATIVITY		1
+		#define DEFAULT_HIT_PENALTY			1
+		#define DEFAULT_MISS_PENALTY		1
+	 
         public:
 
             /** \brief Default contructor.
@@ -29,7 +36,7 @@
              *
              * \param void
              *
-             * \return new empty memory module
+             * \return new default memory module
              */
             MemoryModule(void);
 
@@ -44,13 +51,12 @@
              * \param associativity: Number of memory entries per block?
              * \param hitPenalty: Time to access memory entry if hit occurs
              * \param missPenalty: Time to check memory entry if miss occurs
-             * \param transferPenalty: Time to transfer memory entry from next memory module
              *
              * \return new fully partially intialized memory module
              *
              */
             MemoryModule(uint32 blockSize, uint64 memorySize, uint64 associativity, uint32 hitPenalty,
-                         uint32 missPenalty, uint32 transferPenalty);
+                         uint32 missPenalty);
 
             /** \brief Full constructor, sets all member variables
              *
@@ -76,12 +82,26 @@
 
             /** \brief Sets the pointer to the next memory module
              *
+			 * \param transferPenalty: Time to transfer memory entry from next memory module
              * \param nextMemoryModule: Pointer to next memory module
              * \param busWidthToNextMemoryModule: Bus width between current memory module and next memory module
              *
+			 * \return boolean value based on success of operation
              */
-            bool setNextMemoryModulePointer(MemoryModule * nextMemoryModule, uint32 busWidthToNextMemoryModule);
-
+            bool setNextMemoryModulePointer(uint32 transferPenalty, MemoryModule * nextMemoryModule, uint32 busWidthToNextMemoryModule);
+			
+			/** \brief Checks memory module for memory entry
+             *
+             * \param referenceType: Decoded reference type
+             * \param address: Decoded memory address
+             *
+			 * This is the main function used to check if an address is contained in memory. If nextMemoryModule
+			 * is null, module assumes it is main memory and just sends the hit delay. If nextMemoryModule is not
+			 * null AND the memory address is not contained in the module's memory entries, it calls 
+			 * nextMemoryModule->checkMemoryEntry(). This function utilizes the printTrace function.
+			 * 
+			 * \return boolean value based on success of operation
+             */
             bool checkMemoryEntry(uint8 referenceType, uint64 address);
 
         private:
@@ -117,6 +137,12 @@
             	uint8 * dirtyBits;
             	uint64 ** memoryEntries;
             } memoryEntries;
+			
+			/** \brief Intializes memoryEntries based on module's blockSize, memorySize, and associativity.
+             *
+			 * \return boolean value based on success of operation
+             */
+			bool initalizeMemoryEntries(void);
      };
  }
 

@@ -7,15 +7,70 @@
  * This file implements the interface described in MemoryModule.h
  */
  
-MemoryModule::MemoryModule(void);
+#include "StdTypes.h"
  
-MemoryModule::MemoryModule(uint32 blockSize, uint64 memorySize, uint64 associativity, uint32 hitPenalty,
-                         uint32 missPenalty, uint32 transferPenalty);
+namespace Valhalla
+{
+	MemoryModule::MemoryModule(void)
+	{
+		blockSize = DEFAULT_BLOCK_SIZE;
+		memorySize = DEFAULT_MEMORY_SIZE;
+		associativity = DEFAULT_ASSOCIATIVITY;
+		hitPenalty = DEFAULT_HIT_PENALTY;
+		missPenalty = DEFAULT_MISS_PENALTY;
+		transferPenalty = 0;
+		nextMemoryModule = NULL;
+		busWidthToNextMemoryModule = 0;
+		if(!initalizeMemoryEntries())
+		{
+			//TODO: Error stuff here.
+		}
+	}
+	 
+	MemoryModule::MemoryModule(uint32 blockSize, uint64 memorySize, uint64 associativity, uint32 hitPenalty,
+							 uint32 missPenalty)
+	{
+		blockSize = blockSize;
+		memorySize = memorySize;
+		associativity = associativity;
+		hitPenalty = hitPenalty;
+		missPenalty = missPenalty;
+		transferPenalty = 0;
+		nextMemoryModule = NULL;
+		busWidthToNextMemoryModule = 0;
+		if(!initalizeMemoryEntries())
+		{
+			//TODO: Error stuff here.
+		}
+	}
 
-MemoryModule::MemoryModule(uint32 blockSize, uint64 memorySize, uint64 associativity, uint32 hitPenalty,
-                         uint32 missPenalty, uint32 transferPenalty, MemoryModule * nextMemoryModule,
-                         uint32 busWidthToNextMemoryModule);
-						 
-bool MemoryModule::setNextMemoryModulePointer(MemoryModule * nextMemoryModule, uint32 busWidthToNextMemoryModule);
+	MemoryModule::MemoryModule(uint32 blockSize, uint64 memorySize, uint64 associativity, uint32 hitPenalty,
+							 uint32 missPenalty, uint32 transferPenalty, MemoryModule * nextMemoryModule,
+							 uint32 busWidthToNextMemoryModule)
+	{
+		blockSize = blockSize;
+		memorySize = memorySize;
+		associativity = associativity;
+		hitPenalty = hitPenalty;
+		missPenalty = missPenalty;
+		transferPenalty = transferPenalty;
+		nextMemoryModule = nextMemoryModule;
+		busWidthToNextMemoryModule = busWidthToNextMemoryModule;
+		if(!initalizeMemoryEntries())
+		{
+			//TODO: Error stuff here.
+		}
+	}
+							 
+	bool MemoryModule::setNextMemoryModulePointer(uint32 transferPenalty, MemoryModule * nextMemoryModule, uint32 busWidthToNextMemoryModule)
+	{
+		transferPenalty = transferPenalty;
+		nextMemoryModule = nextMemoryModule;
+		busWidthToNextMemoryModule = busWidthToNextMemoryModule;
+	}
 
-bool MemoryModule::checkMemoryEntry(uint8 referenceType, uint64 address);
+	bool MemoryModule::checkMemoryEntry(uint8 referenceType, uint64 address)
+	{
+		return false;
+	}
+}
