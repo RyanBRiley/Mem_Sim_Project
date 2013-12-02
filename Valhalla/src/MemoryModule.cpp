@@ -71,6 +71,22 @@ namespace Valhalla
 
 	bool MemoryModule::checkMemoryEntry(uint8 referenceType, uint64 address)
 	{
-		return false;
+		if(nextMemoryModule == NULL)
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	
+	bool MemoryModule::initalizeMemoryEntries(void)
+	{
+		uint32 rows = (memorySize/blockSize)/associativity;
+		memory.validArray = new bool[rows];
+		memory.dirtyBits = new uint8[rows];
+		for(uint32 i = 0; i < rows; i++)
+		{
+			memory.memoryEntries[i] = new uint64[blockSize*associativity];
+		}
 	}
 }

@@ -103,7 +103,7 @@
 			 * \return boolean value based on success of operation
              */
             bool checkMemoryEntry(uint8 referenceType, uint64 address);
-
+			
         private:
 
             /** \brief Bytes of data in a memory entry */
@@ -131,12 +131,12 @@
             uint32 busWidthToNextMemoryModule;
 
             /*! \brief Struct for Holding Memory Entries */
-            struct MemoryEntries
+            struct memory
             {
             	bool * validArray;
             	uint8 * dirtyBits;
             	uint64 ** memoryEntries;
-            } memoryEntries;
+            } memory;
 			
 			/** \brief Intializes memoryEntries based on module's blockSize, memorySize, and associativity.
              *
