@@ -55,8 +55,8 @@
              * \return new fully partially intialized memory module
              *
              */
-            MemoryModule(uint32 blockSize, uint64 memorySize, uint64 associativity, uint32 hitPenalty,
-                         uint32 missPenalty);
+            MemoryModule(uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
+                         uint32 newMissPenalty);
 
             /** \brief Full constructor, sets all member variables
              *
@@ -76,9 +76,9 @@
              * \return new fully intialized memory module
              *
              */
-            MemoryModule(uint32 blockSize, uint64 memorySize, uint64 associativity, uint32 hitPenalty,
-                         uint32 missPenalty, uint32 transferPenalty, MemoryModule * nextMemoryModule,
-                         uint32 busWidthToNextMemoryModule);
+            MemoryModule(uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
+                         uint32 newMissPenalty, uint32 newTransferPenalty, MemoryModule * newNextMemoryModule,
+                         uint32 newBusWidthToNextMemoryModule);
 
             /** \brief Sets the pointer to the next memory module
              *
@@ -88,7 +88,8 @@
              *
 			 * \return boolean value based on success of operation
              */
-            bool setNextMemoryModulePointer(uint32 transferPenalty, MemoryModule * nextMemoryModule, uint32 busWidthToNextMemoryModule);
+            bool setNextMemoryModulePointer(uint32 newTransferPenalty, MemoryModule * newNextMemoryModule,
+                                            uint32 newBusWidthToNextMemoryModule);
 			
 			/** \brief Checks memory module for memory entry
              *
