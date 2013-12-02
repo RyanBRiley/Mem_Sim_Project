@@ -80,9 +80,9 @@
              * \param busWidthToNextMemoryModule: Bus width between current memory module and next memory module
              *
              */
-            setNextMemoryModulePointer(MemoryModule * nextMemoryModule, uint32 busWidthToNextMemoryModule);
+            bool setNextMemoryModulePointer(MemoryModule * nextMemoryModule, uint32 busWidthToNextMemoryModule);
 
-            checkMemoryEntry(uint8 referenceType, uint64 address);
+            bool checkMemoryEntry(uint8 referenceType, uint64 address);
 
         private:
 
