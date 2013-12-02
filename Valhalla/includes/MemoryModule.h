@@ -102,7 +102,7 @@
 			 * 
 			 * \return boolean value based on success of operation
              */
-            bool checkMemoryEntry(uint8 referenceType, uint64 address);
+            bool checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize);
 			
         private:
 

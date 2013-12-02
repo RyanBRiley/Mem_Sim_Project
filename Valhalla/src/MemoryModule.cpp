@@ -69,7 +69,7 @@ namespace Valhalla
 		busWidthToNextMemoryModule = busWidthToNextMemoryModule;
 	}
 
-	bool MemoryModule::checkMemoryEntry(uint8 referenceType, uint64 address)
+	bool MemoryModule::checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize)
 	{
 		if(nextMemoryModule == NULL)
 		{
