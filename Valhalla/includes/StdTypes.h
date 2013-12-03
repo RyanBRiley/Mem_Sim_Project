@@ -8,16 +8,18 @@
  * in the memory simulation project.
  */
 
+#include <stdint.h>
+
 #ifndef _STDTYPES_H_
 #define _STDTYPES_H_
 
-typedef unsigned char uint8;
-typedef signed char int8;
-typedef unsigned short uint16;
-typedef signed short int16;
-typedef unsigned int uint32;
-typedef signed int int32;
-typedef unsigned long long uint64;
-typedef signed long long int64;
+typedef uint_fast8_t uint8;
+typedef int_fast8_t int8;
+typedef uint_fast16_t uint16;
+typedef int_fast16_t int16;
+typedef uint_fast32_t uint32;
+typedef int_fast32_t int32;
+typedef uint_fast64_t uint64;
+typedef int_fast64_t int64;
 
- #endif // _MEMORY_SIMULATOR_H_
+ #endif // _STDTYPES_H_

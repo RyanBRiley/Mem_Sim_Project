@@ -21,12 +21,14 @@
  {
      class MemoryModule
      {
-		/** \brief These are the default values for a new memory module (L1 Cache) */
-		#define DEFAULT_BLOCK_SIZE			32
-		#define DEFAULT_MEMORY_SIZE			8192
-		#define DEFAULT_ASSOCIATIVITY		1
-		#define DEFAULT_HIT_PENALTY			1
-		#define DEFAULT_MISS_PENALTY		1
+		
+       /*! \brief Struct for holding a memory entry */
+       struct MemoryEntry
+       {
+         bool validBit;
+         uint32 tag;
+         uint64 data;
+       };
 	 
         public:
 
@@ -43,7 +45,7 @@
             /** \brief Partial constructor, sets most member variables
              *
              * Contructs new memory modules, fills most memeber variables.
-             * Builds memory entry table based on parameters, sets all dirty
+-             * Builds memory entry table based on parameters, sets all dirty
              * and valid bits.
              *
              * \param blockSize: Bytes of data in a memory entry
@@ -131,13 +133,14 @@
             /** \brief Bus width between current memory module and next memory module */
             uint32 busWidthToNextMemoryModule;
 
-            /*! \brief Struct for Holding Memory Entries */
-            struct memory
-            {
-            	bool * validArray;
-            	uint8 * dirtyBits;
-            	uint64 ** memoryEntries;
-            } memory;
+            /*! \brief 2D array for memory entries */
+            MemoryEntry ** memoryEntries;
+
+            /** \brief Number of hits for memory module */
+            uint64 hitCount;
+
+            /** \brief Number of misses for memory module */
+            uint64 missCount;
 			
 			/** \brief Intializes memoryEntries based on module's blockSize, memorySize, and associativity.
              *

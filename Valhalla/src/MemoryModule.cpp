@@ -8,8 +8,10 @@
  */
 
 #include <stddef.h>
+#include <iostream>
  
 #include "StdTypes.h"
+#include "DefaultParameters.h"
 #include "MemoryModule.h"
 
 using namespace std;
@@ -18,14 +20,16 @@ namespace Valhalla
 {
   MemoryModule::MemoryModule(void)
   {
-    blockSize = DEFAULT_BLOCK_SIZE;
-    memorySize = DEFAULT_MEMORY_SIZE;
-    associativity = DEFAULT_ASSOCIATIVITY;
-    hitPenalty = DEFAULT_HIT_PENALTY;
-    missPenalty = DEFAULT_MISS_PENALTY;
+    blockSize = DEFAULT_L1_BLOCK_SIZE;
+    memorySize = DEFAULT_L1_MEMORY_SIZE;
+    associativity = DEFAULT_L1_ASSOCIATIVITY;
+    hitPenalty = DEFAULT_L1_HIT_PENALTY;
+    missPenalty = DEFAULT_L1_MISS_PENALTY;
     transferPenalty = 0;
     nextMemoryModule = NULL;
     busWidthToNextMemoryModule = 0;
+    hitCount = 0;
+    missCount = 0;
     if(!initalizeMemoryEntries())
       {
         cerr << "MemoryModule: Failed to initialize memory entries." << endl;
@@ -43,6 +47,8 @@ namespace Valhalla
     transferPenalty = 0;
     nextMemoryModule = NULL;
     busWidthToNextMemoryModule = 0;
+    hitCount = 0;
+    missCount = 0;
     if(!initalizeMemoryEntries())
       {
         cerr << "MemoryModule: Failed to initialize memory entries." << endl;
@@ -61,6 +67,8 @@ namespace Valhalla
     transferPenalty = newTransferPenalty;
     nextMemoryModule = newNextMemoryModule;
     busWidthToNextMemoryModule = newBusWidthToNextMemoryModule;
+    hitCount = 0;
+    missCount = 0;
     if(!initalizeMemoryEntries())
       {
         cerr << "MemoryModule: Failed to initialize memory entries." << endl;
@@ -104,12 +112,12 @@ namespace Valhalla
         return false;
       }
     
-    memory.validArray = new bool[rows];
-    memory.dirtyBits = new uint8[rows];
+    memoryEntries = new MemoryEntry*[rows];
     for(uint32 i = 0; i < rows; i++)
       {
-        memory.memoryEntries[i] = new uint64[blockSize*associativity];
+        memoryEntries[i] = new MemoryEntry[associativity];
       }
+    
     return true;
   }
 }
