@@ -26,7 +26,7 @@
        struct MemoryEntry
        {
          bool validBit;
-         uint32 tag;
+         uint64 tag;
        };
 
         public:
@@ -114,6 +114,15 @@
 
             /** \brief Number of rows in memoryEntries */
             uint64 rows;
+
+            /** \brief Bitmask for tag field of the address */
+            uint64 tagBitMask;
+            
+            /** \brief Bitmask for the index field of the address */
+            uint64 indexBitMask;
+
+            /** \brief Tag shift amount */
+            uint16 tagShiftAmount;
 
 			/** \brief Intializes memoryEntries based on module's blockSize, memorySize, and associativity.
              *

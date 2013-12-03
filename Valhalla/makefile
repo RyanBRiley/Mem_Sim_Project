@@ -17,5 +17,8 @@ $(EXECUTABLE): $(OBJECTS)
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
 
+.PHONY: clean
+
 clean:
-	rm -rf $(SRC)/*o Memory_Simulator
+	rm -f $(SRC)/*.o *~ core $(INC_DIR)/*~ 
+

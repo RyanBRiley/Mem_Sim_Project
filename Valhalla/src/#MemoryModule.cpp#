@@ -169,7 +169,7 @@ namespace Valhalla
     else 
       {
         DEBUG_MODULE_COUT("Memory Entries not NULL");
-        //intMemoryEntries();
+        //printMemoryEntries();
       }
 #endif //MEMORY_MODULE_DEBUG
   }
