@@ -28,10 +28,7 @@ namespace Valhalla
     nextMemoryModule = NULL;
     hitCount = 0;
     missCount = 0;
-    if(!initalizeMemoryEntries())
-      {
-        cerr << "MemoryModule: Failed to initialize memory entries." << endl;
-      }
+    memoryEntries = NULL;
   }
 
   MemoryModule::MemoryModule(uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
