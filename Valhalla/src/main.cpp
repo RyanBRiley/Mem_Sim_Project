@@ -1,26 +1,35 @@
 #include <iostream>
 
+#include "StdTypes.h"
+#include "MemoryModule.h"
+
 using namespace std;
 
 int main(int argc, char ** argv)
 {
   cout << "Creating Main Memory." << endl;
-  uint64 mainMemoryAccessTime = (DEFAULT_SEND_ADDRES_TIME + DEFAULT_READY_TIME + DEFAULT_CHUNK_SEND_TIME*(DEFAULT_L2_BLOCK_SIZE/DEFAULT_ADDRESS_WIDTH));
-  MemoryModule * mainMemory = new MemoryModule(1, 1, 1, mainMemoryAccessTime, 0);
-  
+  MemoryModule * mainMemory = new MemoryModule();
+
   cout << "Creating L2 Cache." << endl;
-  MemoryModule * l2Cache = new MemoryModule(DEFAULT_L2_BLOCK_SIZE,
-                                            DEFAULT_L2_MEMORY_SIZE,
-                                            DEFAULT_L2_ASSOCIATIVTY,
-                                            DEFAULT_L2_HIT_PENALTY,
-                                            DEFAULT_L2_MISS_PENALTY,
-                                            DEFAULT_L2_TRANSFER_TIME,
-                                            mainMemory,
-                                            DEFAULT_L2_TRANSFER_WIDTH);
+  MemoryModule * l2Cache = new MemoryModule(L2_BLOCK_SIZE,
+                                            L2_MEMORY_SIZE,
+                                            L2_ASSOCIATIVITY,
+                                            L2_HIT_PENALTY,
+                                            (L2_MISS_PENALTY + MAIN_MEMORY_SEND_ADDRESS_TIME + MAIN_MEMORY_READY_TIME),
+                                            MAIN_MEMORY_CHUNK_SEND_TIME,
+                                            MAIN_MEMORY_ADDRESS_WIDTH,
+                                            mainMemory);
 
   cout << "Creating L1 Cache." << endl;
-  MemoryModule * l1Cache = new MemoryModule(
-  
+ MemoryModule * l1Cache = new MemoryModule(L1_BLOCK_SIZE,
+                                           L1_MEMORY_SIZE,
+                                           L1_ASSOCIATIVITY,
+                                           L1_HIT_PENALTY,
+                                           L1_MISS_PENALTY,
+                                           L2_TRANSFER_TIME,
+                                           L2_TRANSFER_WIDTH,
+                                           l2Cache);
+
   cout << "Test Complete." << endl;
   return 0;
 }

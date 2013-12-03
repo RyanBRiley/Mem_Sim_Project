@@ -9,44 +9,23 @@
 
 #include <stddef.h>
 #include <iostream>
- 
+
 #include "StdTypes.h"
 #include "DefaultParameters.h"
 #include "MemoryModule.h"
 
 using namespace std;
- 
+
 namespace Valhalla
 {
   MemoryModule::MemoryModule(void)
   {
-    blockSize = DEFAULT_L1_BLOCK_SIZE;
-    memorySize = DEFAULT_L1_MEMORY_SIZE;
-    associativity = DEFAULT_L1_ASSOCIATIVITY;
-    hitPenalty = DEFAULT_L1_HIT_PENALTY;
-    missPenalty = DEFAULT_L1_MISS_PENALTY;
+    blockSize = 0;
+    memorySize = 0;
+    associativity = 0;
+    hitPenalty = 0;
     transferPenalty = 0;
     nextMemoryModule = NULL;
-    busWidthToNextMemoryModule = 0;
-    hitCount = 0;
-    missCount = 0;
-    if(!initalizeMemoryEntries())
-      {
-        cerr << "MemoryModule: Failed to initialize memory entries." << endl;
-      }
-  }
-         
-  MemoryModule::MemoryModule(uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
-                             uint32 newMissPenalty)
-  {
-    blockSize = newBlockSize;
-    memorySize = newMemorySize;
-    associativity = newAssociativity;
-    hitPenalty = newHitPenalty;
-    missPenalty = newMissPenalty;
-    transferPenalty = 0;
-    nextMemoryModule = NULL;
-    busWidthToNextMemoryModule = 0;
     hitCount = 0;
     missCount = 0;
     if(!initalizeMemoryEntries())
@@ -56,17 +35,15 @@ namespace Valhalla
   }
 
   MemoryModule::MemoryModule(uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
-                             uint32 newMissPenalty, uint32 newTransferPenalty, MemoryModule * newNextMemoryModule,
-                             uint32 newBusWidthToNextMemoryModule)
+                         uint32 newMissPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
+                         MemoryModule * newNextMemoryModule)
   {
     blockSize = newBlockSize;
     memorySize = newMemorySize;
     associativity = newAssociativity;
     hitPenalty = newHitPenalty;
-    missPenalty = newMissPenalty;
-    transferPenalty = newTransferPenalty;
+    transferPenalty = newMissPenalty + newTransferPenalty(newBlockSize/newBusWidthToNextMemoryModule);
     nextMemoryModule = newNextMemoryModule;
-    busWidthToNextMemoryModule = newBusWidthToNextMemoryModule;
     hitCount = 0;
     missCount = 0;
     if(!initalizeMemoryEntries())
@@ -74,50 +51,49 @@ namespace Valhalla
         cerr << "MemoryModule: Failed to initialize memory entries." << endl;
       }
   }
-                                                         
-  bool MemoryModule::setNextMemoryModulePointer(uint32 newTransferPenalty, MemoryModule * newNextMemoryModule,
-                                                uint32 newBusWidthToNextMemoryModule)
+
+  bool MemoryModule::setNextMemoryModulePointer(uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
+                                                MemoryModule * newNextMemoryModule)
   {
     if(newNextMemoryModule == NULL)
       {
         return false;
       }
-    transferPenalty = newTransferPenalty;
+    transferPenalty = missPenalty + newTransferPenalty(blockSize/newBusWidthToNextMemoryModule);;
     nextMemoryModule = newNextMemoryModule;
-    busWidthToNextMemoryModule = newBusWidthToNextMemoryModule;
     return true;
   }
 
-  bool MemoryModule::checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize)
+  uint64 MemoryModule::checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize)
   {
     if(nextMemoryModule == NULL)
       {
         return false;
       }
-                
+
     return true;
   }
-        
+
   bool MemoryModule::initalizeMemoryEntries(void)
   {
     if(blockSize == 0 || associativity == 0)
       {
-        cerr << "initalizeMemoryEntries: blockSize or associativity equals 0." << endl; 
+        cerr << "initalizeMemoryEntries: blockSize or associativity equals 0." << endl;
         return false;
       }
     uint32 rows = (memorySize/blockSize)/associativity;
     if(rows == 0)
       {
-        cerr << "initalizeMemoryEntries: memory rows equals 0." << endl; 
+        cerr << "initalizeMemoryEntries: memory rows equals 0." << endl;
         return false;
       }
-    
+
     memoryEntries = new MemoryEntry*[rows];
     for(uint32 i = 0; i < rows; i++)
       {
         memoryEntries[i] = new MemoryEntry[associativity];
       }
-    
+
     return true;
   }
 }

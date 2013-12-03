@@ -21,7 +21,7 @@
  {
      class MemoryModule
      {
-		
+
        /*! \brief Struct for holding a memory entry */
        struct MemoryEntry
        {
@@ -29,7 +29,7 @@
          uint32 tag;
          uint64 data;
        };
-	 
+
         public:
 
             /** \brief Default contructor.
@@ -41,24 +41,6 @@
              * \return new default memory module
              */
             MemoryModule(void);
-
-            /** \brief Partial constructor, sets most member variables
-             *
-             * Contructs new memory modules, fills most memeber variables.
--             * Builds memory entry table based on parameters, sets all dirty
-             * and valid bits.
-             *
-             * \param blockSize: Bytes of data in a memory entry
-             * \param memorySize: Number of memory entries in memory module
-             * \param associativity: Number of memory entries per block?
-             * \param hitPenalty: Time to access memory entry if hit occurs
-             * \param missPenalty: Time to check memory entry if miss occurs
-             *
-             * \return new fully partially intialized memory module
-             *
-             */
-            MemoryModule(uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
-                         uint32 newMissPenalty);
 
             /** \brief Full constructor, sets all member variables
              *
@@ -79,8 +61,8 @@
              *
              */
             MemoryModule(uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
-                         uint32 newMissPenalty, uint32 newTransferPenalty, MemoryModule * newNextMemoryModule,
-                         uint32 newBusWidthToNextMemoryModule);
+                         uint32 newMissPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
+                         MemoryModule * newNextMemoryModule);
 
             /** \brief Sets the pointer to the next memory module
              *
@@ -90,9 +72,9 @@
              *
 			 * \return boolean value based on success of operation
              */
-            bool setNextMemoryModulePointer(uint32 newTransferPenalty, MemoryModule * newNextMemoryModule,
-                                            uint32 newBusWidthToNextMemoryModule);
-			
+            bool setNextMemoryModulePointer(uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
+                                            MemoryModule * newNextMemoryModule);
+
 			/** \brief Checks memory module for memory entry
              *
              * \param referenceType: Decoded reference type
@@ -100,13 +82,13 @@
              *
 			 * This is the main function used to check if an address is contained in memory. If nextMemoryModule
 			 * is null, module assumes it is main memory and just sends the hit delay. If nextMemoryModule is not
-			 * null AND the memory address is not contained in the module's memory entries, it calls 
+			 * null AND the memory address is not contained in the module's memory entries, it calls
 			 * nextMemoryModule->checkMemoryEntry(). This function utilizes the printTrace function.
-			 * 
-			 * \return boolean value based on success of operation
+			 *
+			 * \return uint64 time for memory lookup
              */
-            bool checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize);
-			
+            uint64 checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize);
+
         private:
 
             /** \brief Bytes of data in a memory entry */
@@ -121,17 +103,11 @@
             /** \brief Time to access memory entry if hit occurs */
             uint32 hitPenalty;
 
-            /** \brief Time to check memory entry if miss occurs */
-            uint32 missPenalty;
-
             /** \brief Time to transfer memory entry from next memory module */
             uint32 transferPenalty;
 
             /** \brief Pointer to next memory module */
             MemoryModule * nextMemoryModule;
-
-            /** \brief Bus width between current memory module and next memory module */
-            uint32 busWidthToNextMemoryModule;
 
             /*! \brief 2D array for memory entries */
             MemoryEntry ** memoryEntries;
@@ -141,7 +117,7 @@
 
             /** \brief Number of misses for memory module */
             uint64 missCount;
-			
+
 			/** \brief Intializes memoryEntries based on module's blockSize, memorySize, and associativity.
              *
 			 * \return boolean value based on success of operation
