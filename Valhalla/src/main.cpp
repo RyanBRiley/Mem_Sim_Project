@@ -2,13 +2,16 @@
 
 #include "StdTypes.h"
 #include "MemoryModule.h"
+#include "DefaultParameters.h"
 
 using namespace std;
+using namespace Valhalla;
 
 int main(int argc, char ** argv)
 {
   cout << "Creating Main Memory." << endl;
   MemoryModule * mainMemory = new MemoryModule();
+  mainMemory->printMemoryModuleSetup();
 
   cout << "Creating L2 Cache." << endl;
   MemoryModule * l2Cache = new MemoryModule(L2_BLOCK_SIZE,
@@ -19,16 +22,18 @@ int main(int argc, char ** argv)
                                             MAIN_MEMORY_CHUNK_SEND_TIME,
                                             MAIN_MEMORY_ADDRESS_WIDTH,
                                             mainMemory);
+  l2Cache->printMemoryModuleSetup();
 
   cout << "Creating L1 Cache." << endl;
- MemoryModule * l1Cache = new MemoryModule(L1_BLOCK_SIZE,
-                                           L1_MEMORY_SIZE,
-                                           L1_ASSOCIATIVITY,
-                                           L1_HIT_PENALTY,
-                                           L1_MISS_PENALTY,
-                                           L2_TRANSFER_TIME,
-                                           L2_TRANSFER_WIDTH,
-                                           l2Cache);
+  MemoryModule * l1Cache = new MemoryModule(L1_BLOCK_SIZE,
+                                            L1_MEMORY_SIZE,
+                                            L1_ASSOCIATIVITY,
+                                            L1_HIT_PENALTY,
+                                            L1_MISS_PENALTY,
+                                            L2_TRANSFER_TIME,
+                                            L2_TRANSFER_WIDTH,
+                                            l2Cache);
+  l1Cache->printMemoryModuleSetup();
 
   cout << "Test Complete." << endl;
   return 0;

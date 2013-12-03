@@ -16,6 +16,13 @@
 
 using namespace std;
 
+#define MEMORY_MODULE_DEBUG 1
+#ifdef MEMORY_MODULE_DEBUG
+#define DEBUG_MODULE_COUT(m) cout << m << endl
+#else
+#define DEBUG_MODULE_COUT(m)
+#endif //MEMORY_MODULE_DEBUG
+
 namespace Valhalla
 {
   MemoryModule::MemoryModule(void)
@@ -32,14 +39,14 @@ namespace Valhalla
   }
 
   MemoryModule::MemoryModule(uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
-                         uint32 newMissPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
-                         MemoryModule * newNextMemoryModule)
+                             uint32 newMissPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
+                             MemoryModule * newNextMemoryModule)
   {
     blockSize = newBlockSize;
     memorySize = newMemorySize;
     associativity = newAssociativity;
     hitPenalty = newHitPenalty;
-    transferPenalty = newMissPenalty + newTransferPenalty(newBlockSize/newBusWidthToNextMemoryModule);
+    transferPenalty = newMissPenalty + newTransferPenalty*(newBlockSize/newBusWidthToNextMemoryModule);
     nextMemoryModule = newNextMemoryModule;
     hitCount = 0;
     missCount = 0;
@@ -49,26 +56,34 @@ namespace Valhalla
       }
   }
 
-  bool MemoryModule::setNextMemoryModulePointer(uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
-                                                MemoryModule * newNextMemoryModule)
-  {
-    if(newNextMemoryModule == NULL)
-      {
-        return false;
-      }
-    transferPenalty = missPenalty + newTransferPenalty(blockSize/newBusWidthToNextMemoryModule);;
-    nextMemoryModule = newNextMemoryModule;
-    return true;
-  }
-
   uint64 MemoryModule::checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize)
   {
+    uint64 rv = 0;
     if(nextMemoryModule == NULL)
       {
-        return false;
+        //Main memory, increment hit counter return 0
+        hitCount++;
+        return 0;
       }
+    for(uint32 i = 0; i < byteSize; i += blockSize)
+      {
+        if(checkForCacheHit(address + i))
+          {
+            hitCount++;
+            rv += hitPenalty;
+          }
+        else
+          {
+            missCount++;
+            rv += transferPenalty + nextMemoryModule->checkMemoryEntry(opcode, address, blockSize);
+          }
+      }
+    return rv;
+  }
 
-    return true;
+  bool MemoryModule::checkForCacheHit(uint64 address)
+  {
+    return false;
   }
 
   bool MemoryModule::initalizeMemoryEntries(void)
@@ -78,7 +93,7 @@ namespace Valhalla
         cerr << "initalizeMemoryEntries: blockSize or associativity equals 0." << endl;
         return false;
       }
-    uint32 rows = (memorySize/blockSize)/associativity;
+    rows = (memorySize/blockSize)/associativity;
     if(rows == 0)
       {
         cerr << "initalizeMemoryEntries: memory rows equals 0." << endl;
@@ -86,11 +101,60 @@ namespace Valhalla
       }
 
     memoryEntries = new MemoryEntry*[rows];
-    for(uint32 i = 0; i < rows; i++)
+    for(uint64 i = 0; i < rows; i++)
       {
         memoryEntries[i] = new MemoryEntry[associativity];
+        for(uint64 j = 0; j < associativity; j++)
+          {
+            memoryEntries[i][j].validBit = false;
+            memoryEntries[i][j].tag = 0;
+          }
       }
 
     return true;
+  }
+  
+  void MemoryModule::printMemoryModuleSetup(void)
+  {
+#ifdef MEMORY_MODULE_DEBUG
+    DEBUG_MODULE_COUT("Block Size: " << blockSize);
+    DEBUG_MODULE_COUT("Memory Size: " << memorySize);
+    DEBUG_MODULE_COUT("Associativity: " << associativity);
+    DEBUG_MODULE_COUT("Hit Penalty: " << hitPenalty);
+    DEBUG_MODULE_COUT("Transfer Penalty: " << transferPenalty);
+    DEBUG_MODULE_COUT("Hit Count: " << hitCount);
+    DEBUG_MODULE_COUT("Miss Count: " << missCount);
+    DEBUG_MODULE_COUT("Hit Penalty: " << hitPenalty);
+    if(nextMemoryModule == NULL)
+      {
+        DEBUG_MODULE_COUT("Next Memory Module Doesn't Exist");
+      }
+    else
+      {
+        DEBUG_MODULE_COUT("Next Memory Module Exists");
+      }
+    if(memoryEntries == NULL)
+      {
+        DEBUG_MODULE_COUT("Memory Entries are NULL");
+      }
+    else 
+      {
+        DEBUG_MODULE_COUT("Memory Entries not NULL");
+        printMemoryEntries();
+      }
+#endif //MEMORY_MODULE_DEBUG
+  }
+
+  void MemoryModule::printMemoryEntries(void)
+  {
+#ifdef MEMORY_MODULE_DEBUG
+    for(uint64 i = 0; i < rows; i++)
+      {
+        for(uint64 j = 0; j < associativity; j++)
+          {
+            DEBUG_MODULE_COUT("(" << i << "," << j<< ") Valid: " << memoryEntries[i][j].validBit << ", Tag: " << memoryEntries[i][j].tag);
+          }
+      }
+#endif //MEMORY_MODULE_DEBUG
   }
 }

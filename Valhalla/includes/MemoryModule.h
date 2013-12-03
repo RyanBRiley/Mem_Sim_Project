@@ -27,7 +27,6 @@
        {
          bool validBit;
          uint32 tag;
-         uint64 data;
        };
 
         public:
@@ -64,17 +63,6 @@
                          uint32 newMissPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
                          MemoryModule * newNextMemoryModule);
 
-            /** \brief Sets the pointer to the next memory module
-             *
-			 * \param transferPenalty: Time to transfer memory entry from next memory module
-             * \param nextMemoryModule: Pointer to next memory module
-             * \param busWidthToNextMemoryModule: Bus width between current memory module and next memory module
-             *
-			 * \return boolean value based on success of operation
-             */
-            bool setNextMemoryModulePointer(uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
-                                            MemoryModule * newNextMemoryModule);
-
 			/** \brief Checks memory module for memory entry
              *
              * \param referenceType: Decoded reference type
@@ -88,6 +76,12 @@
 			 * \return uint64 time for memory lookup
              */
             uint64 checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize);
+
+            /** \brief debug print function for setup of memory module */
+            void printMemoryModuleSetup(void);
+
+            /** \brief debug print function for memory module */
+            void printMemoryEntries(void);
 
         private:
 
@@ -118,11 +112,22 @@
             /** \brief Number of misses for memory module */
             uint64 missCount;
 
+            /** \brief Number of rows in memoryEntries */
+            uint64 rows;
+
 			/** \brief Intializes memoryEntries based on module's blockSize, memorySize, and associativity.
              *
 			 * \return boolean value based on success of operation
              */
 			bool initalizeMemoryEntries(void);
+            
+            /** \brief Checks memoryEntries for an address hit
+             *
+             * \param address: Address to check for
+             * 
+             * \return boolean if address was a hit or not
+             */
+            bool checkForCacheHit(uint64 address);
      };
  }
 
