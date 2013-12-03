@@ -1,0 +1,5 @@
+#Source Object Files
+*.o
+
+#temporary files
+*~
