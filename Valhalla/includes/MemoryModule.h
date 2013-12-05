@@ -12,132 +12,136 @@
  * penalty.
  */
 
- #ifndef _MEMORY_MODULE_H_
- #define _MEMORY_MODULE_H_
+#ifndef _MEMORY_MODULE_H_
+#define _MEMORY_MODULE_H_
 
- #include "StdTypes.h"
+#include <list>
 
- namespace Valhalla
- {
-     class MemoryModule
-     {
+#include "StdTypes.h"
 
-       /*! \brief Struct for holding a memory entry */
-       struct MemoryEntry
-       {
-         bool validBit;
-         uint64 tag;
-       };
+namespace Valhalla
+{
+  class MemoryModule
+  {
 
-        public:
+    /*! \brief Struct for holding a memory entry */
+    struct MemoryEntry
+    {
+      bool validBit;
+      uint64 tag;
+    };
 
-            /** \brief Default contructor.
-             *
-             *  Sets all variables to 0, and all pointers to NULL.
-             *
-             * \param void
-             *
-             * \return new default memory module
-             */
-            MemoryModule(void);
+    typedef std::list<MemoryEntry> MemoryList;
 
-            /** \brief Full constructor, sets all member variables
-             *
-             * Contructs new memory modules, fills all memeber variables.
-             * Builds memory entry table based on parameters, sets all dirty
-             * and valid bits.
-             *
-             * \param blockSize: Bytes of data in a memory entry
-             * \param memorySize: Number of memory entries in memory module
-             * \param associativity: Number of memory entries per block?
-             * \param hitPenalty: Time to access memory entry if hit occurs
-             * \param missPenalty: Time to check memory entry if miss occurs
-             * \param transferPenalty: Time to transfer memory entry from next memory module
-             * \param nextMemoryModule: Pointer to next memory module
-             * \param busWidthToNextMemoryModule: Bus width between current memory module and next memory module
-             *
-             * \return new fully intialized memory module
-             *
-             */
-            MemoryModule(uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
-                         uint32 newMissPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
-                         MemoryModule * newNextMemoryModule);
+  public:
 
-			/** \brief Checks memory module for memory entry
-             *
-             * \param referenceType: Decoded reference type
-             * \param address: Decoded memory address
-             *
-			 * This is the main function used to check if an address is contained in memory. If nextMemoryModule
-			 * is null, module assumes it is main memory and just sends the hit delay. If nextMemoryModule is not
-			 * null AND the memory address is not contained in the module's memory entries, it calls
-			 * nextMemoryModule->checkMemoryEntry(). This function utilizes the printTrace function.
-			 *
-			 * \return uint64 time for memory lookup
-             */
-            uint64 checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize);
+    /** \brief Default contructor.
+     *
+     *  Sets all variables to 0, and all pointers to NULL.
+     *
+     * \param void
+     *
+     * \return new default memory module
+     */
+    MemoryModule(void);
 
-            /** \brief debug print function for setup of memory module */
-            void printMemoryModuleSetup(void);
+    /** \brief Full constructor, sets all member variables
+     *
+     * Contructs new memory modules, fills all memeber variables.
+     * Builds memory entry table based on parameters, sets all dirty
+     * and valid bits.
+     *
+     * \param blockSize: Bytes of data in a memory entry
+     * \param memorySize: Number of memory entries in memory module
+     * \param associativity: Number of memory entries per block?
+     * \param hitPenalty: Time to access memory entry if hit occurs
+     * \param missPenalty: Time to check memory entry if miss occurs
+     * \param transferPenalty: Time to transfer memory entry from next memory module
+     * \param nextMemoryModule: Pointer to next memory module
+     * \param busWidthToNextMemoryModule: Bus width between current memory module and next memory module
+     *
+     * \return new fully intialized memory module
+     *
+     */
+    MemoryModule(uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
+                 uint32 newMissPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
+                 MemoryModule * newNextMemoryModule);
 
-            /** \brief debug print function for memory module */
-            void printMemoryEntries(void);
+    /** \brief Checks memory module for memory entry
+     *
+     * \param referenceType: Decoded reference type
+     * \param address: Decoded memory address
+     *
+     * This is the main function used to check if an address is contained in memory. If nextMemoryModule
+     * is null, module assumes it is main memory and just sends the hit delay. If nextMemoryModule is not
+     * null AND the memory address is not contained in the module's memory entries, it calls
+     * nextMemoryModule->checkMemoryEntry(). This function utilizes the printTrace function.
+     *
+     * \return uint64 time for memory lookup
+     */
+    uint64 checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize);
 
-        private:
+    /** \brief debug print function for setup of memory module */
+    void printMemoryModuleSetup(void);
 
-            /** \brief Bytes of data in a memory entry */
-            uint32 blockSize;
+    /** \brief debug print function for memory module */
+    void printMemoryEntries(void);
 
-            /** \brief Number of memory entries in memory module */
-            uint64 memorySize;
+  private:
 
-            /** \brief Number of memory entries per block?*/
-            uint64 associativity;
+    /** \brief Bytes of data in a memory entry */
+    uint32 blockSize;
 
-            /** \brief Time to access memory entry if hit occurs */
-            uint32 hitPenalty;
+    /** \brief Number of memory entries in memory module */
+    uint64 memorySize;
 
-            /** \brief Time to transfer memory entry from next memory module */
-            uint32 transferPenalty;
+    /** \brief Number of memory entries per block?*/
+    uint64 associativity;
 
-            /** \brief Pointer to next memory module */
-            MemoryModule * nextMemoryModule;
+    /** \brief Time to access memory entry if hit occurs */
+    uint32 hitPenalty;
 
-            /*! \brief 2D array for memory entries */
-            MemoryEntry ** memoryEntries;
+    /** \brief Time to transfer memory entry from next memory module */
+    uint32 transferPenalty;
 
-            /** \brief Number of hits for memory module */
-            uint64 hitCount;
+    /** \brief Pointer to next memory module */
+    MemoryModule * nextMemoryModule;
 
-            /** \brief Number of misses for memory module */
-            uint64 missCount;
+    /*! \brief array of lists for memory entries */
+    MemoryList * memoryEntries;
 
-            /** \brief Number of rows in memoryEntries */
-            uint64 rows;
+    /** \brief Number of hits for memory module */
+    uint64 hitCount;
 
-            /** \brief Bitmask for tag field of the address */
-            uint64 tagBitMask;
+    /** \brief Number of misses for memory module */
+    uint64 missCount;
+
+    /** \brief Number of rows in memoryEntries */
+    uint64 rows;
+
+    /** \brief Bitmask for tag field of the address */
+    uint64 tagBitMask;
             
-            /** \brief Bitmask for the index field of the address */
-            uint64 indexBitMask;
+    /** \brief Bitmask for the index field of the address */
+    uint64 indexBitMask;
 
-            /** \brief Tag shift amount */
-            uint16 tagShiftAmount;
+    /** \brief Tag shift amount */
+    uint16 tagShiftAmount;
 
-			/** \brief Intializes memoryEntries based on module's blockSize, memorySize, and associativity.
-             *
-			 * \return boolean value based on success of operation
-             */
-			bool initalizeMemoryEntries(void);
+    /** \brief Intializes memoryEntries based on module's blockSize, memorySize, and associativity.
+     *
+     * \return boolean value based on success of operation
+     */
+    bool initalizeMemoryEntries(void);
             
-            /** \brief Checks memoryEntries for an address hit
-             *
-             * \param address: Address to check for
-             * 
-             * \return boolean if address was a hit or not
-             */
-            bool checkForCacheHit(uint64 address);
-     };
- }
+    /** \brief Checks memoryEntries for an address hit
+     *
+     * \param address: Address to check for
+     * 
+     * \return boolean if address was a hit or not
+     */
+    bool checkForCacheHit(uint64 address);
+  };
+}
 
- #endif // _MEMORY_MODULE_H_
+#endif // _MEMORY_MODULE_H_

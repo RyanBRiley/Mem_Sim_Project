@@ -9,6 +9,7 @@
 
 #include <stddef.h>
 #include <iostream>
+#include <list>
 
 #include "StdTypes.h"
 #include "DefaultParameters.h"
@@ -99,17 +100,24 @@ namespace Valhalla
   {
     uint64 index = address & indexBitMask;
     uint64 tag = (address & tagBitMask) >> tagShiftAmount;
-    for(uint64 i = 0; i < associativity; i++)
+    for(MemoryList::iterator it = memoryEntries[index].begin(); it != memoryEntries[index].end(); it++)
       {
-        if((memoryEntries[index][i].valid == true) && (memoryEntries[index][i] == tag))
+        if((it->validBit == true) && (it->tag == tag))
           {
             //cache hit, LRU bump
+            //unsure if this will create a copy...
+            MemoryEntry hit = MemoryEntry((*it));
+            memoryEntries[index].push_front(hit);
+            memoryEntries[index].erase(it);
             return true;
           }
       }
     //cache miss write it to cache via LRU
-    memoryEntries[index][0].valid = true;
-    memoryEntries[index][0].tag = tag;
+    MemoryEntry missed = MemoryEntry();
+    missed.validBit = true;
+    missed.tag = tag;
+    memoryEntries[index].pop_back();
+    memoryEntries[index].push_front(missed);
     return false;
   }
 
@@ -126,14 +134,16 @@ namespace Valhalla
         cerr << "initalizeMemoryEntries: memory rows equals 0." << endl;
         return false;
       }
-    memoryEntries = new MemoryEntry*[rows];
+    MemoryEntry temp;
+    memoryEntries = new MemoryList[rows];
     for(uint64 i = 0; i < rows; i++)
       {
-        memoryEntries[i] = new MemoryEntry[associativity];
         for(uint64 j = 0; j < associativity; j++)
           {
-            memoryEntries[i][j].validBit = false;
-            memoryEntries[i][j].tag = 0;
+            temp = MemoryEntry();
+            temp.validBit = false;
+            temp.tag = 0;
+            memoryEntries[i].push_back(temp);
           }
       }
 
@@ -169,7 +179,7 @@ namespace Valhalla
     else 
       {
         DEBUG_MODULE_COUT("Memory Entries not NULL");
-        //intMemoryEntries();
+        //printMemoryEntries();
       }
 #endif //MEMORY_MODULE_DEBUG
   }
@@ -177,11 +187,14 @@ namespace Valhalla
   void MemoryModule::printMemoryEntries(void)
   {
 #ifdef MEMORY_MODULE_DEBUG
+    uint64 j;
     for(uint64 i = 0; i < rows; i++)
       {
-        for(uint64 j = 0; j < associativity; j++)
+        j = 0;
+        for(MemoryList::const_iterator it = memoryEntries[i].begin(); it != memoryEntries[i].end(); it++)
           {
-            DEBUG_MODULE_COUT("(" << i << "," << j<< ") Valid: " << memoryEntries[i][j].validBit << ", Tag: " << memoryEntries[i][j].tag);
+            DEBUG_MODULE_COUT("(" << i << "," << j<< ") Valid: " << it->validBit << ", Tag: " << it->tag);
+            j++;
           }
       }
 #endif //MEMORY_MODULE_DEBUG
