@@ -7,3 +7,6 @@
 
 #Code Blocks Project file
 *.cbp
+
+#text files for ouput testing.
+*.txt

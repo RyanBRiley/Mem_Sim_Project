@@ -11,7 +11,7 @@ int main(int argc, char ** argv)
 {
   cout << "Creating Main Memory." << endl;
   MemoryModule * mainMemory = new MemoryModule();
-  mainMemory->printMemoryModuleSetup();
+  //mainMemory->printMemoryModuleSetup();
 
   cout << "Creating L2 Cache." << endl;
   MemoryModule * l2Cache = new MemoryModule(L2_BLOCK_SIZE,
@@ -22,7 +22,7 @@ int main(int argc, char ** argv)
                                             MAIN_MEMORY_CHUNK_SEND_TIME,
                                             MAIN_MEMORY_ADDRESS_WIDTH,
                                             mainMemory);
-  l2Cache->printMemoryModuleSetup();
+  //l2Cache->printMemoryModuleSetup();
 
   cout << "Creating L1 Cache." << endl;
   MemoryModule * l1Cache = new MemoryModule(L1_BLOCK_SIZE,
@@ -33,8 +33,23 @@ int main(int argc, char ** argv)
                                             L2_TRANSFER_TIME,
                                             L2_TRANSFER_WIDTH,
                                             l2Cache);
-  l1Cache->printMemoryModuleSetup();
 
+  //l1Cache->printMemoryModuleSetup();  
+
+  uint64 time = l1Cache->checkMemoryEntry(0, 65537, 32);
+  cout << "Time for memory lookup 1: " << time << endl;
+  time = l1Cache->checkMemoryEntry(0, 257, 32);
+  cout << "Time for memory lookup 2: " << time << endl;
+
+  time = l1Cache->checkMemoryEntry(0, 65537, 32);
+  cout << "Time for memory lookup 3: " << time << endl;
+  time = l1Cache->checkMemoryEntry(0, 257, 32);
+  cout << "Time for memory lookup 4: " << time << endl;
+  
+  l1Cache->printMemoryEntries();
+  l2Cache->printMemoryEntries();
+
+  
   cout << "Test Complete." << endl;
   return 0;
 }
