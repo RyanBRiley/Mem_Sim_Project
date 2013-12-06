@@ -90,6 +90,13 @@ namespace Valhalla
         hitCount++;
         return 0;
       }
+    //take care of address that do not line up with blocks
+    uint64 remainder = address % blockSize;
+    if(remainder != 0)
+      {
+        address -= remainder;
+        byteSize += remainder;
+      }
     uint64 rv = 0;
     uint64 index = 0;
     uint64 tag = 0;
@@ -110,6 +117,7 @@ namespace Valhalla
               {
                 DEBUG_MODULE_COUT("    checkMemoryEntry: cache hit");
                 //cache hit, LRU bump
+                //copy MemoryEntry and push it to the front, then delete old entry
                 //unsure if this will create a copy...
                 MemoryEntry hit = MemoryEntry((*it));
                 if(operation == CACHE_WRITE)
@@ -143,6 +151,7 @@ namespace Valhalla
             missed.dirtyBit = false;
           }
         missed.tag = tag;
+        //delete last memory entry
         MemoryEntry toDelete = memoryEntries[index].back();
         if(toDelete.validBit && toDelete.dirtyBit)
           {
@@ -152,6 +161,7 @@ namespace Valhalla
             rv += transferPenalty + nextMemoryModule->checkMemoryEntry(CACHE_WRITE, writeBackAddress, blockSize);
           }
         memoryEntries[index].pop_back();
+        //put cache miss at front.
         memoryEntries[index].push_front(missed);
         
         missCount++;
