@@ -14,12 +14,12 @@ int main(int argc, char ** argv)
   //Variables for mem operations
   char op;
   uint64 address;
-  uint32 bytesize;
+  uint32 byteSize;
   uint64 time;
   
   cout << "Creating Main Memory." << endl;
   MemoryModule * mainMemory = new MemoryModule();
-  mainMemory->printMemoryModuleSetup();
+  //mainMemory->printMemoryModuleSetup();
 
   cout << "Creating L2 Cache." << endl;
   MemoryModule * l2Cache = new MemoryModule(L2_BLOCK_SIZE,
@@ -30,7 +30,7 @@ int main(int argc, char ** argv)
                                             MAIN_MEMORY_CHUNK_SEND_TIME,
                                             MAIN_MEMORY_ADDRESS_WIDTH,
                                             mainMemory);
-  l2Cache->printMemoryModuleSetup();
+  //l2Cache->printMemoryModuleSetup();
 
   cout << "Creating L1 Data Cache." << endl;
   MemoryModule * l1DataCache = new MemoryModule(L1_BLOCK_SIZE,
@@ -42,7 +42,7 @@ int main(int argc, char ** argv)
                                                 L2_TRANSFER_WIDTH,
                                                 l2Cache);
 
-  l1DataCache->printMemoryModuleSetup();
+  //l1DataCache->printMemoryModuleSetup();
 
   cout << "Creating L1 Instruction Cache." << endl;
   MemoryModule * l1InstCache = new MemoryModule(L1_BLOCK_SIZE,
@@ -53,20 +53,25 @@ int main(int argc, char ** argv)
                                                 L2_TRANSFER_TIME,
                                                 L2_TRANSFER_WIDTH,
                                                 l2Cache);
+
+  //l1InstCache->printMemorySetup();
  
-  while (scanf("%c %luox %luox",&op,&address,&bytesize) == 3)
+  while (scanf("%c %Lx %d\n",&op,&address,&byteSize) == 3)
     { 
       switch(op)
         {
         case 'I':
           //Intruction fetch
-          time = l1InstCache->checkMemoryEntry(CACHE_READ, address, bytesize);
+          cout << "Instruction Read" << endl;
+          time = l1InstCache->checkMemoryEntry(CACHE_READ, address, byteSize);
           break;
         case 'R':
-          time = l1DataCache->checkMemoryEntry(CACHE_READ, address, bytesize);
+          cout << "Data Read" << endl;
+          time = l1DataCache->checkMemoryEntry(CACHE_READ, address, byteSize);
           break;
         case 'W':
-          time = l1DataCache->checkMemoryEntry(CACHE_WRITE, address, bytesize);
+          cout << "Data Write" << endl;
+          time = l1DataCache->checkMemoryEntry(CACHE_WRITE, address, byteSize);
           break;
         default:
           continue;
@@ -88,9 +93,13 @@ int main(int argc, char ** argv)
     time = l1DataCache->checkMemoryEntry(CACHE_READ, 512, 32);
     cout << "Time for memory lookup 5: " << time << endl;
   
-    l1DataCache->printMemoryEntries();
-    l2Cache->printMemoryEntries();
   */
+  cout << "L1 instruction cache" << endl;
+  l1InstCache->printMemoryEntries();
+  cout << "L1 data cache" << endl;
+  l1DataCache->printMemoryEntries();
+  cout << "L2 cache" << endl;
+  l2Cache->printMemoryEntries();
   
   cout << "Test Complete." << endl;
   return 0;
