@@ -9,6 +9,15 @@ using namespace Valhalla;
 
 int main(int argc, char ** argv)
 {
+
+  //Variables for mem operations
+  char op;
+  uint64 address;
+  uint32 bytesize;
+  uint64 time;
+  CacheOperation operation;
+  
+
   cout << "Creating Main Memory." << endl;
   MemoryModule * mainMemory = new MemoryModule();
   mainMemory->printMemoryModuleSetup();
@@ -47,6 +56,15 @@ int main(int argc, char ** argv)
                                                 L2_TRANSFER_WIDTH,
                                                 l2Cache);
 
+while (scanf(”%c %Lx %dnn”,&op,&address,&bytesize) == 3){ 
+    if(!"I".compare(op)) {
+    operation = CACHE_WRITE;
+    } else operation = CACHE_READ;
+    time = l1DataCache->checkMemoryEntry(operation, address, bytesize);
+    cout << "Time for memory lookup: " << time << endl;
+}
+
+/*
   uint64 time = l1DataCache->checkMemoryEntry(CACHE_WRITE, 65536, 32);
   cout << "Time for memory lookup 1: " << time << endl;
   time = l1DataCache->checkMemoryEntry(CACHE_WRITE, 4096, 32);
@@ -62,7 +80,7 @@ int main(int argc, char ** argv)
   
   l1DataCache->printMemoryEntries();
   l2Cache->printMemoryEntries();
-
+*/
   
   cout << "Test Complete." << endl;
   return 0;
