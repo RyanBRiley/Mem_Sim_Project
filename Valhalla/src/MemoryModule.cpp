@@ -156,7 +156,14 @@ namespace Valhalla
         
         missCount++;
         //DEBUG_MODULE_COUT("      checkMemoryEntry: calling next level of cache");
+        if(operation == CACHE_READ)
+          {
         rv += transferPenalty + nextMemoryModule->checkMemoryEntry(operation, address, blockSize);
+          }
+        else
+          {
+            rv += hitPenalty;
+          }
       }
     return rv;
   }
