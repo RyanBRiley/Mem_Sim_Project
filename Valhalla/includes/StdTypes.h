@@ -22,4 +22,12 @@ typedef int_fast32_t int32;
 typedef uint_fast64_t uint64;
 typedef int_fast64_t int64;
 
+/*! \brief Enum for cache operations */
+enum CacheOperation
+  {
+    CACHE_READ = 0,
+    CACHE_WRITE,
+    CACHE_OPERATION_MAX
+  };
+
  #endif // _STDTYPES_H_

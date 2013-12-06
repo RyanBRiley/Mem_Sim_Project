@@ -28,6 +28,7 @@ namespace Valhalla
     struct MemoryEntry
     {
       bool validBit;
+      bool dirtyBit;
       uint64 tag;
     };
 
@@ -75,11 +76,11 @@ namespace Valhalla
      * This is the main function used to check if an address is contained in memory. If nextMemoryModule
      * is null, module assumes it is main memory and just sends the hit delay. If nextMemoryModule is not
      * null AND the memory address is not contained in the module's memory entries, it calls
-     * nextMemoryModule->checkMemoryEntry(). This function utilizes the printTrace function.
+     * nextMemoryModule->checkMemoryEntry().
      *
      * \return uint64 time for memory lookup
      */
-    uint64 checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize);
+    uint64 checkMemoryEntry(CacheOperation operation, uint64 address, uint32 byteSize);
 
     /** \brief debug print function for setup of memory module */
     void printMemoryModuleSetup(void);
@@ -128,19 +129,15 @@ namespace Valhalla
     /** \brief Tag shift amount */
     uint16 tagShiftAmount;
 
+    /** \brief Tag shift amount */
+    uint16 indexShiftAmount;
+
     /** \brief Intializes memoryEntries based on module's blockSize, memorySize, and associativity.
      *
      * \return boolean value based on success of operation
      */
     bool initalizeMemoryEntries(void);
             
-    /** \brief Checks memoryEntries for an address hit
-     *
-     * \param address: Address to check for
-     * 
-     * \return boolean if address was a hit or not
-     */
-    bool checkForCacheHit(uint64 address);
   };
 }
 

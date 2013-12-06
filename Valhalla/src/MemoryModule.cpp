@@ -39,6 +39,7 @@ namespace Valhalla
     indexBitMask = 0;
     tagBitMask = 0;
     tagShiftAmount = 0;
+    indexShiftAmount = 0;
     memoryEntries = NULL;
   }
 
@@ -60,65 +61,104 @@ namespace Valhalla
         cerr << "MemoryModule: Failed to initialize memory entries." << endl;
       }
     tagShiftAmount = 0;
-    uint64 rowsHold = rows;
-    while(rowsHold != 1)
+    uint64 logHold = rows;
+    while(logHold != 1)
       {
         tagShiftAmount++;
-        rowsHold >>= 1;
+        logHold >>= 1;
       }
-
+    indexShiftAmount = 0;
+    logHold = blockSize;
+    while(logHold != 1)
+      {
+        indexShiftAmount++;
+        logHold >>= 1;
+      }
     indexBitMask = rows - 1;
-    tagBitMask = ~indexBitMask; 
+    tagBitMask = ~indexBitMask;
+    indexBitMask <<= indexShiftAmount;
+    tagBitMask <<= indexShiftAmount;
+    tagShiftAmount += indexShiftAmount;
   }
 
-  uint64 MemoryModule::checkMemoryEntry(uint8 opcode, uint64 address, uint32 byteSize)
+  uint64 MemoryModule::checkMemoryEntry(CacheOperation operation, uint64 address, uint32 byteSize)
   {
-    uint64 rv = 0;
     if(nextMemoryModule == NULL)
       {
         //Main memory, increment hit counter return 0
+        DEBUG_MODULE_COUT("checkMemoryEntry: main memory hit");
         hitCount++;
         return 0;
       }
-    for(uint32 i = 0; i < byteSize; i += blockSize)
+    uint64 rv = 0;
+    uint64 index = 0;
+    uint64 tag = 0;
+    uint64 writeBackAddress = 0;
+    uint64 addressStart = address;
+    bool hitFlag = false;
+    
+    //DEBUG_MODULE_COUT("checkMemoryEntry: Before address loop");
+
+    for(; address < (addressStart + byteSize); address += blockSize)
       {
-        if(checkForCacheHit(address + i))
+        index = (address & indexBitMask) >> indexShiftAmount;
+        tag = (address & tagBitMask) >> tagShiftAmount;
+        //DEBUG_MODULE_COUT("  checkMemoryEntry: before list loop");
+        for(MemoryList::iterator it = memoryEntries[index].begin(); it != memoryEntries[index].end(); it++)
           {
-            hitCount++;
-            rv += hitPenalty;
+            if((it->validBit == true) && (it->tag == tag))
+              {
+                DEBUG_MODULE_COUT("    checkMemoryEntry: cache hit");
+                //cache hit, LRU bump
+                //unsure if this will create a copy...
+                MemoryEntry hit = MemoryEntry((*it));
+                if(operation == CACHE_WRITE)
+                  {
+                    hit.dirtyBit = true;
+                  }
+                memoryEntries[index].push_front(hit);
+                memoryEntries[index].erase(it);
+                hitCount++;
+                rv += hitPenalty;
+                hitFlag = true;
+                break;
+              }
+          }
+        if(hitFlag)
+          {
+            hitFlag = false;
+            continue;
+          }
+        DEBUG_MODULE_COUT("    checkMemoryEntry: cache miss");
+
+        //cache miss write it to cache via LRU
+        MemoryEntry missed = MemoryEntry();
+        missed.validBit = true;
+        if(operation == CACHE_WRITE)
+          {
+            missed.dirtyBit = true;
           }
         else
           {
-            missCount++;
-            rv += transferPenalty + nextMemoryModule->checkMemoryEntry(opcode, address, blockSize);
+            missed.dirtyBit = false;
           }
+        missed.tag = tag;
+        MemoryEntry toDelete = memoryEntries[index].back();
+        if(toDelete.validBit && toDelete.dirtyBit)
+          {
+            //need to write entry, reconstruct address.
+            DEBUG_MODULE_COUT("    checkMemoryEntry: write back needed");
+            writeBackAddress = (toDelete.tag << tagShiftAmount) | (index << indexShiftAmount);
+            rv += transferPenalty + nextMemoryModule->checkMemoryEntry(CACHE_WRITE, writeBackAddress, blockSize);
+          }
+        memoryEntries[index].pop_back();
+        memoryEntries[index].push_front(missed);
+        
+        missCount++;
+        //DEBUG_MODULE_COUT("      checkMemoryEntry: calling next level of cache");
+        rv += transferPenalty + nextMemoryModule->checkMemoryEntry(operation, address, blockSize);
       }
     return rv;
-  }
-
-  bool MemoryModule::checkForCacheHit(uint64 address)
-  {
-    uint64 index = address & indexBitMask;
-    uint64 tag = (address & tagBitMask) >> tagShiftAmount;
-    for(MemoryList::iterator it = memoryEntries[index].begin(); it != memoryEntries[index].end(); it++)
-      {
-        if((it->validBit == true) && (it->tag == tag))
-          {
-            //cache hit, LRU bump
-            //unsure if this will create a copy...
-            MemoryEntry hit = MemoryEntry((*it));
-            memoryEntries[index].push_front(hit);
-            memoryEntries[index].erase(it);
-            return true;
-          }
-      }
-    //cache miss write it to cache via LRU
-    MemoryEntry missed = MemoryEntry();
-    missed.validBit = true;
-    missed.tag = tag;
-    memoryEntries[index].pop_back();
-    memoryEntries[index].push_front(missed);
-    return false;
   }
 
   bool MemoryModule::initalizeMemoryEntries(void)
@@ -142,6 +182,7 @@ namespace Valhalla
           {
             temp = MemoryEntry();
             temp.validBit = false;
+            temp.dirtyBit = false;
             temp.tag = 0;
             memoryEntries[i].push_back(temp);
           }
@@ -161,9 +202,11 @@ namespace Valhalla
     DEBUG_MODULE_COUT("Hit Count: " << hitCount);
     DEBUG_MODULE_COUT("Miss Count: " << missCount);
     DEBUG_MODULE_COUT("Hit Penalty: " << hitPenalty);
+    DEBUG_MODULE_COUT("Rows: " << rows);
     DEBUG_MODULE_COUT("Index Bit Mask: 0x" << hex << indexBitMask);
     DEBUG_MODULE_COUT("Tag Bit Mask: 0x" << hex << tagBitMask << dec);
     DEBUG_MODULE_COUT("Tag Shift Amount: " << tagShiftAmount);
+    DEBUG_MODULE_COUT("Index Shift Amount: " << indexShiftAmount);
     if(nextMemoryModule == NULL)
       {
         DEBUG_MODULE_COUT("Next Memory Module Doesn't Exist");
@@ -193,7 +236,7 @@ namespace Valhalla
         j = 0;
         for(MemoryList::const_iterator it = memoryEntries[i].begin(); it != memoryEntries[i].end(); it++)
           {
-            DEBUG_MODULE_COUT("(" << i << "," << j<< ") Valid: " << it->validBit << ", Tag: " << it->tag);
+            DEBUG_MODULE_COUT("(" << i << "," << j<< ") Valid: " << it->validBit << ", Dirty: " << it->dirtyBit << ", Tag: " << it->tag);
             j++;
           }
       }
