@@ -16,6 +16,7 @@
 #define _MEMORY_MODULE_H_
 
 #include <list>
+#include <string>
 
 #include "StdTypes.h"
 
@@ -52,6 +53,7 @@ namespace Valhalla
      * Builds memory entry table based on parameters, sets all dirty
      * and valid bits.
      *
+     * \param moduleName: Name for memory module
      * \param blockSize: Bytes of data in a memory entry
      * \param memorySize: Number of memory entries in memory module
      * \param associativity: Number of memory entries per block?
@@ -59,14 +61,15 @@ namespace Valhalla
      * \param missPenalty: Time to check memory entry if miss occurs
      * \param transferPenalty: Time to transfer memory entry from next memory module
      * \param nextMemoryModule: Pointer to next memory module
+     * \param nameNextMemoryModule: name of the next memory module
      * \param busWidthToNextMemoryModule: Bus width between current memory module and next memory module
      *
      * \return new fully intialized memory module
      *
      */
-    MemoryModule(uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
+    MemoryModule(std::string newModuleName, uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
                  uint32 newMissPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
-                 MemoryModule * newNextMemoryModule);
+                 MemoryModule * newNextMemoryModule, std::string newNameNextMemoryModule);
 
     /** \brief Checks memory module for memory entry
      *
@@ -90,6 +93,9 @@ namespace Valhalla
 
   private:
 
+    /** \brief Name of Memory Module */
+    std::string moduleName;
+
     /** \brief Bytes of data in a memory entry */
     uint32 blockSize;
 
@@ -102,11 +108,17 @@ namespace Valhalla
     /** \brief Time to access memory entry if hit occurs */
     uint32 hitPenalty;
 
+    /** \brief Time to access memory entry if miss occurs */
+    uint32 missPenalty;
+
     /** \brief Time to transfer memory entry from next memory module */
     uint32 transferPenalty;
 
     /** \brief Pointer to next memory module */
     MemoryModule * nextMemoryModule;
+
+    /** \brief Name of next memory module */
+    std::string nameNextMemoryModule;
 
     /*! \brief array of lists for memory entries */
     MemoryList * memoryEntries;
