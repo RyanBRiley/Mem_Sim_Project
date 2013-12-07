@@ -188,6 +188,7 @@ namespace Valhalla
           }
         else
           {
+			//operation is a cache write, and missed the cache, this code isn't right
             rv += hitPenalty;
           }
       }
