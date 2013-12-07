@@ -68,7 +68,7 @@ namespace Valhalla
      *
      */
     MemoryModule(std::string newModuleName, uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
-                 uint32 newMissPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
+                 uint32 newMissPenalty, uint32 mainMemoryStartupPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
                  MemoryModule * newNextMemoryModule, std::string newNameNextMemoryModule);
 
     /** \brief Checks memory module for memory entry

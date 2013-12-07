@@ -44,17 +44,17 @@ namespace Valhalla
     memoryEntries = NULL;
   }
 
-  MemoryModule::MemoryModule(string newModuleName, uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
-                             uint32 newMissPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
-                             MemoryModule * newNextMemoryModule, string newNameNextMemoryModule)
-  {
+  MemoryModule::MemoryModule(std::string newModuleName, uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
+                 uint32 newMissPenalty, uint32 mainMemoryStartupPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
+                 MemoryModule * newNextMemoryModule, std::string newNameNextMemoryModule)
+    {
     moduleName = newModuleName;
     blockSize = newBlockSize;
     memorySize = newMemorySize;
     associativity = newAssociativity;
     hitPenalty = newHitPenalty;
     missPenalty = newMissPenalty;
-    transferPenalty = newTransferPenalty*(newBlockSize/newBusWidthToNextMemoryModule);
+    transferPenalty = mainMemoryStartupPenalty + newTransferPenalty*(newBlockSize/newBusWidthToNextMemoryModule);
     nextMemoryModule = newNextMemoryModule;
     nameNextMemoryModule = newNameNextMemoryModule;
     hitCount = 0;
@@ -90,10 +90,10 @@ namespace Valhalla
     if(nextMemoryModule == NULL)
       {
         //Main memory, increment hit counter return 0
-	hitCount++;
+        hitCount++;
         return 0;
       }
-    DEBUG_MODULE_COUT("Level " << moduleName << " access addr = " << hex << address << ", reftype = " << dec << operation << endl);
+    
     //take care of address that do not line up with blocks
     uint64 remainder = address % blockSize;
     if(remainder != 0)
@@ -105,15 +105,15 @@ namespace Valhalla
     uint64 index = 0;
     uint64 tag = 0;
     uint64 writeBackAddress = 0;
-    uint64 addressStart = address;
+    uint64 endAddressValue = address + byteSize;
     bool hitFlag = false;
     
-    for(; address < (addressStart + byteSize); address += blockSize)
+    for(; address < endAddressValue; address += blockSize)
       {
+        DEBUG_MODULE_COUT("Level " << moduleName << " access addr = 0x" << hex << address << ", reftype = " << dec << operation << endl);
         index = (address & indexBitMask) >> indexShiftAmount;
         tag = (address & tagBitMask) >> tagShiftAmount;
-	DEBUG_MODULE_COUT("    index = " << hex << index << ", tag = " << tag);
-        //DEBUG_MODULE_COUT("  checkMemoryEntry: before list loop");
+        DEBUG_MODULE_COUT("    index = 0x" << hex << index << ", tag = 0x" << tag);
         for(MemoryList::iterator it = memoryEntries[index].begin(); it != memoryEntries[index].end(); it++)
           {
             if((it->validBit == true) && (it->tag == tag))
@@ -131,7 +131,7 @@ namespace Valhalla
                 memoryEntries[index].erase(it);
                 hitCount++;
 #ifdef MEMORY_MODULE_DEBUG
-		cout << "Add " <<  moduleName << " hit time (+ " << hitPenalty << ")" << endl;
+                cout << "Add " <<  moduleName << " hit time (+ " << dec << hitPenalty << ")" << endl;
 #endif
                 rv += hitPenalty;
                 hitFlag = true;
@@ -144,9 +144,9 @@ namespace Valhalla
             continue;
           }
         DEBUG_MODULE_COUT("  MISS" << endl);
-	rv += missPenalty;
+        rv += missPenalty;
 #ifdef MEMORY_MODULE_DEBUG
-	cout << "Add " << moduleName << "miss time (+ " << missPenalty << ")" << endl;
+        cout << "Add " << moduleName << "miss time (+ " << dec << missPenalty << ")" << endl;
 #endif
 
         //cache miss write it to cache via LRU
@@ -175,15 +175,15 @@ namespace Valhalla
         memoryEntries[index].push_front(missed);
         
         missCount++;
-	if(operation == CACHE_READ)
+        if(operation == CACHE_READ)
           {
-	    rv += nextMemoryModule->checkMemoryEntry(operation, address, blockSize);
-	    DEBUG_MODULE_COUT("Bringing line into " << moduleName << "." << endl);
-	    rv += transferPenalty;
-	    DEBUG_MODULE_COUT("Add " << nameNextMemoryModule << " to " << moduleName << " transfer time (+ " << ")" << endl);
-	    rv += hitPenalty;
+            rv += nextMemoryModule->checkMemoryEntry(operation, address, blockSize);
+            DEBUG_MODULE_COUT("Bringing line into " << moduleName << "." << endl);
+            rv += transferPenalty;
+            DEBUG_MODULE_COUT("Add " << nameNextMemoryModule << " to " << moduleName << " transfer time (+ "  << dec << transferPenalty << ")" << endl);
+            rv += hitPenalty;
 #ifdef MEMORY_MODULE_DEBUG
-	    cout << "Add " << moduleName << "hit replay time (+ " << hitPenalty << ")" << endl;
+            cout << "Add " << moduleName << "hit replay time (+ " << hitPenalty << ")" << endl;
 #endif
           }
         else

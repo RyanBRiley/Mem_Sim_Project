@@ -13,14 +13,14 @@
 #ifndef _STDTYPES_H_
 #define _STDTYPES_H_
 
-typedef uint_fast8_t uint8;
-typedef int_fast8_t int8;
-typedef uint_fast16_t uint16;
-typedef int_fast16_t int16;
-typedef uint_fast32_t uint32;
-typedef int_fast32_t int32;
-typedef uint_fast64_t uint64;
-typedef int_fast64_t int64;
+typedef unsigned char uint8;
+typedef signed char int8;
+typedef unsigned int uint16;
+typedef signed int int16;
+typedef unsigned long int uint32;
+typedef signed long int int32;
+typedef unsigned long long int uint64;
+typedef signed long long int int64;
 
 /*! \brief Enum for cache operations */
 enum CacheOperation
