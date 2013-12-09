@@ -5,6 +5,8 @@
 #include "MemoryModule.h"
 #include "DefaultParameters.h"
 
+#define procBusWidth 4
+
 using namespace std;
 using namespace Valhalla;
 
@@ -70,26 +72,34 @@ int main(int argc, char ** argv)
  
   while (scanf("%c %llx %ld\n",&op,&address,&byteSize) == 3)
     { 
+      int bytesToFetch = byteSize;
       cout << "--------------------------------------------------------------------------------" << endl;
       cout << "Ref " << refNum;
       cout << ": Addr = " << hex << address;
       cout << ", Type = " << op;
       cout << ", BSize = " << byteSize << endl;
-      switch(op)
-        {
-        case 'I':
-          //Intruction fetch
-          time += l1InstCache->checkMemoryEntry(CACHE_READ, address, byteSize);
-          break;
-        case 'R':
-          time += l1DataCache->checkMemoryEntry(CACHE_READ, address, byteSize);
-          break;
-        case 'W':
-          time += l1DataCache->checkMemoryEntry(CACHE_WRITE, address, byteSize);
-          break;
-        default:
-          continue;
-        }
+      while (bytesToFetch > 0)
+	{
+	   int tempByteSize;
+	   if (!(bytesToFetch % procBusWidth)) tempByteSize = procBusWidth;
+	   else tempByteSize = bytesToFetch % procBusWidth;
+	   bytesToFetch = bytesToFetch - tempByteSize;
+     	   switch(op)
+        	{
+        	case 'I':
+          	//Intruction fetch
+          	time += l1InstCache->checkMemoryEntry(CACHE_READ, address, tempByteSize);
+          	break;
+        	case 'R':
+          	time += l1DataCache->checkMemoryEntry(CACHE_READ, address, tempByteSize);
+         	 break;
+        	case 'W':
+          	time += l1DataCache->checkMemoryEntry(CACHE_WRITE, address, tempByteSize);
+          	break;
+        	default:
+          	 continue;
+        	}
+	}
       cout << "Simulated time = " << dec << time << endl;
       refNum++;
     }

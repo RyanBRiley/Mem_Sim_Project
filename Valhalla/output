@@ -1,0 +1,231 @@
+Creating Main Memory.
+After initialization
+--------------------------------------------------------------------------------
+Ref 0: Addr = 7f81ce2206b0, Type = I, BSize = 3
+Level L1Inst access addr = 0x7f81ce2206a0, reftype = 0
+    index = 0x35, tag = 0x3fc0e7110  MISS
+Add L1Instmiss time (+ 1)
+Level L2 access addr = 0x7f81ce220680, reftype = 0
+    index = 0x1a, tag = 0x7f81ce22  MISS
+Add L2miss time (+ 6)
+Bringing line into L2.
+Add Memory to L2 transfer time (+ 140)
+Add L2hit replay time (+ 4)
+Bringing line into L1Inst.
+Add L2 to L1Inst transfer time (+ 12)
+Add L1Insthit replay time (+ 1)
+Simulated time = 164
+--------------------------------------------------------------------------------
+Ref 1: Addr = 7f81ce2206b3, Type = I, BSize = 5
+Level L1Inst access addr = 0x7f81ce2206a0, reftype = 0
+    index = 0x35, tag = 0x3fc0e7110  HIT
+Add L1Inst hit time (+ 1)
+Level L1Inst access addr = 0x7f81ce2206a0, reftype = 0
+    index = 0x35, tag = 0x3fc0e7110  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 166
+--------------------------------------------------------------------------------
+Ref 2: Addr = 7fff5a8487d8, Type = W, BSize = 8
+Level L1Data access addr = 0x7fff5a8487c0, reftype = 1
+    index = 0x3e, tag = 0x3fffad424  MISS
+Add L1Datamiss time (+ 1)
+Level L2 access addr = 0x7fff5a8487c0, reftype = 0
+    index = 0x21f, tag = 0x7fff5a84  MISS
+Add L2miss time (+ 6)
+Bringing line into L2.
+Add Memory to L2 transfer time (+ 140)
+Add L2hit replay time (+ 4)
+Level L1Data access addr = 0x7fff5a8487c0, reftype = 1
+    index = 0x3e, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Simulated time = 331
+--------------------------------------------------------------------------------
+Ref 3: Addr = 7f81ce224010, Type = I, BSize = 1
+Level L1Inst access addr = 0x7f81ce224000, reftype = 0
+    index = 0x0, tag = 0x3fc0e7112  MISS
+Add L1Instmiss time (+ 1)
+Level L2 access addr = 0x7f81ce224000, reftype = 0
+    index = 0x100, tag = 0x7f81ce22  MISS
+Add L2miss time (+ 6)
+Bringing line into L2.
+Add Memory to L2 transfer time (+ 140)
+Add L2hit replay time (+ 4)
+Bringing line into L1Inst.
+Add L2 to L1Inst transfer time (+ 12)
+Add L1Insthit replay time (+ 1)
+Simulated time = 495
+--------------------------------------------------------------------------------
+Ref 4: Addr = 7fff5a8487d0, Type = W, BSize = 8
+Level L1Data access addr = 0x7fff5a8487c0, reftype = 1
+    index = 0x3e, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Level L1Data access addr = 0x7fff5a8487c0, reftype = 1
+    index = 0x3e, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Simulated time = 497
+--------------------------------------------------------------------------------
+Ref 5: Addr = 7f81ce224011, Type = I, BSize = 3
+Level L1Inst access addr = 0x7f81ce224000, reftype = 0
+    index = 0x0, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 498
+--------------------------------------------------------------------------------
+Ref 6: Addr = 7f81ce224014, Type = I, BSize = 2
+Level L1Inst access addr = 0x7f81ce224000, reftype = 0
+    index = 0x0, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 499
+--------------------------------------------------------------------------------
+Ref 7: Addr = 7fff5a8487c8, Type = W, BSize = 8
+Level L1Data access addr = 0x7fff5a8487c0, reftype = 1
+    index = 0x3e, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Level L1Data access addr = 0x7fff5a8487c0, reftype = 1
+    index = 0x3e, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Simulated time = 501
+--------------------------------------------------------------------------------
+Ref 8: Addr = 7f81ce224016, Type = I, BSize = 2
+Level L1Inst access addr = 0x7f81ce224000, reftype = 0
+    index = 0x0, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 502
+--------------------------------------------------------------------------------
+Ref 9: Addr = 7fff5a8487c0, Type = W, BSize = 8
+Level L1Data access addr = 0x7fff5a8487c0, reftype = 1
+    index = 0x3e, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Level L1Data access addr = 0x7fff5a8487c0, reftype = 1
+    index = 0x3e, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Simulated time = 504
+--------------------------------------------------------------------------------
+Ref 10: Addr = 7f81ce224018, Type = I, BSize = 2
+Level L1Inst access addr = 0x7f81ce224000, reftype = 0
+    index = 0x0, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 505
+--------------------------------------------------------------------------------
+Ref 11: Addr = 7fff5a8487b8, Type = W, BSize = 8
+Level L1Data access addr = 0x7fff5a8487a0, reftype = 1
+    index = 0x3d, tag = 0x3fffad424  MISS
+Add L1Datamiss time (+ 1)
+Level L2 access addr = 0x7fff5a848780, reftype = 0
+    index = 0x21e, tag = 0x7fff5a84  MISS
+Add L2miss time (+ 6)
+Bringing line into L2.
+Add Memory to L2 transfer time (+ 140)
+Add L2hit replay time (+ 4)
+Level L1Data access addr = 0x7fff5a8487a0, reftype = 1
+    index = 0x3d, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Simulated time = 670
+--------------------------------------------------------------------------------
+Ref 12: Addr = 7f81ce22401a, Type = I, BSize = 2
+Level L1Inst access addr = 0x7f81ce224000, reftype = 0
+    index = 0x0, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 671
+--------------------------------------------------------------------------------
+Ref 13: Addr = 7fff5a8487b0, Type = W, BSize = 8
+Level L1Data access addr = 0x7fff5a8487a0, reftype = 1
+    index = 0x3d, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Level L1Data access addr = 0x7fff5a8487a0, reftype = 1
+    index = 0x3d, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Simulated time = 673
+--------------------------------------------------------------------------------
+Ref 14: Addr = 7f81ce22401c, Type = I, BSize = 1
+Level L1Inst access addr = 0x7f81ce224000, reftype = 0
+    index = 0x0, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 674
+--------------------------------------------------------------------------------
+Ref 15: Addr = 7fff5a8487a8, Type = W, BSize = 8
+Level L1Data access addr = 0x7fff5a8487a0, reftype = 1
+    index = 0x3d, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Level L1Data access addr = 0x7fff5a8487a0, reftype = 1
+    index = 0x3d, tag = 0x3fffad424  HIT
+Add L1Data hit time (+ 1)
+Simulated time = 676
+--------------------------------------------------------------------------------
+Ref 16: Addr = 7f81ce22401d, Type = I, BSize = 3
+Level L1Inst access addr = 0x7f81ce224000, reftype = 0
+    index = 0x0, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 677
+--------------------------------------------------------------------------------
+Ref 17: Addr = 7f81ce224020, Type = I, BSize = 4
+Level L1Inst access addr = 0x7f81ce224020, reftype = 0
+    index = 0x1, tag = 0x3fc0e7112  MISS
+Add L1Instmiss time (+ 1)
+Level L2 access addr = 0x7f81ce224000, reftype = 0
+    index = 0x100, tag = 0x7f81ce22  HIT
+Add L2 hit time (+ 4)
+Bringing line into L1Inst.
+Add L2 to L1Inst transfer time (+ 12)
+Add L1Insthit replay time (+ 1)
+Simulated time = 695
+--------------------------------------------------------------------------------
+Ref 18: Addr = 7f81ce224024, Type = I, BSize = 2
+Level L1Inst access addr = 0x7f81ce224020, reftype = 0
+    index = 0x1, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 696
+--------------------------------------------------------------------------------
+Ref 19: Addr = 7f81ce224026, Type = I, BSize = 4
+Level L1Inst access addr = 0x7f81ce224020, reftype = 0
+    index = 0x1, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 697
+--------------------------------------------------------------------------------
+Ref 20: Addr = 7f81ce22402a, Type = I, BSize = 2
+Level L1Inst access addr = 0x7f81ce224020, reftype = 0
+    index = 0x1, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 698
+--------------------------------------------------------------------------------
+Ref 21: Addr = 7f81ce22402c, Type = I, BSize = 3
+Level L1Inst access addr = 0x7f81ce224020, reftype = 0
+    index = 0x1, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 699
+--------------------------------------------------------------------------------
+Ref 22: Addr = 7f81ce22402f, Type = I, BSize = 7
+Level L1Inst access addr = 0x7f81ce224020, reftype = 0
+    index = 0x1, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Level L1Inst access addr = 0x7f81ce224020, reftype = 0
+    index = 0x1, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 701
+--------------------------------------------------------------------------------
+Ref 23: Addr = 7f81ce224036, Type = I, BSize = 7
+Level L1Inst access addr = 0x7f81ce224020, reftype = 0
+    index = 0x1, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Level L1Inst access addr = 0x7f81ce224020, reftype = 0
+    index = 0x1, tag = 0x3fc0e7112  HIT
+Add L1Inst hit time (+ 1)
+Simulated time = 703
+--------------------------------------------------------------------------------
+Ref 24: Addr = 7f81ce441b80, Type = R, BSize = 8
+Level L1Data access addr = 0x7f81ce441b80, reftype = 0
+    index = 0xdc, tag = 0x3fc0e7220  MISS
+Add L1Datamiss time (+ 1)
+Level L2 access addr = 0x7f81ce441b80, reftype = 0
+    index = 0x6e, tag = 0x7f81ce44  MISS
+Add L2miss time (+ 6)
+Bringing line into L2.
+Add Memory to L2 transfer time (+ 140)
+Add L2hit replay time (+ 4)
+Bringing line into L1Data.
+Add L2 to L1Data transfer time (+ 12)
+Add L1Datahit replay time (+ 1)
+Level L1Data access addr = 0x7f81ce441b80, reftype = 0
+    index = 0xdc, tag = 0x3fc0e7220  HIT
+Add L1Data hit time (+ 1)
+Simulated time = 868
+Test Complete.
