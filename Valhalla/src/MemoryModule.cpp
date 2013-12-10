@@ -42,6 +42,9 @@ namespace Valhalla
     tagShiftAmount = 0;
     indexShiftAmount = 0;
     memoryEntries = NULL;
+    dirtyKick = 0;
+    kickCount = 0;
+    transferCount = 0;
   }
 
   MemoryModule::MemoryModule(std::string newModuleName, uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
@@ -59,6 +62,9 @@ namespace Valhalla
     nameNextMemoryModule = newNameNextMemoryModule;
     hitCount = 0;
     missCount = 0;
+    dirtyKick = 0;
+    kickCount = 0;
+    transferCount = 0;
         
     if(!initalizeMemoryEntries())
       {
@@ -84,14 +90,32 @@ namespace Valhalla
     tagBitMask <<= indexShiftAmount;
     tagShiftAmount += indexShiftAmount;
   }
+
   uint64 MemoryModule::hits()
   {
      return hitCount;
   } 
+
   uint64 MemoryModule::misses()
   {
      return missCount;
   } 
+
+  uint64 MemoryModule::dirtyKicks()
+  {
+     return dirtyKick;
+  } 
+
+  uint64 MemoryModule::kicks()
+  {
+     return kickCount;
+  } 
+
+  uint64 MemoryModule::transfers()
+  {
+     return transferCount;
+  } 
+
   uint64 MemoryModule::checkMemoryEntry(CacheOperation operation, uint64 address, uint32 byteSize)
   {
     if(nextMemoryModule == NULL)
@@ -100,10 +124,7 @@ namespace Valhalla
         hitCount++;
         return 0;
       }
-    
-    //take care of address that do not line up with blocks
-    
-   
+       
     uint64 rv = 0;
     uint64 index = 0;
     uint64 tag = 0;
@@ -158,7 +179,6 @@ namespace Valhalla
         if(operation == CACHE_WRITE)
           {
             missed.dirtyBit = true;
-	    
           }
         else
           {
@@ -167,13 +187,18 @@ namespace Valhalla
         missed.tag = tag;
         //delete last memory entry
         MemoryEntry toDelete = memoryEntries[index].back();
-        if(toDelete.validBit && toDelete.dirtyBit)
+        transferCount++;
+      if(toDelete.validBit){
+kickCount++;
+         if(toDelete.dirtyBit)
           {
             //need to write entry, reconstruct address.
             DEBUG_MODULE_COUT("    checkMemoryEntry: write back needed");
             writeBackAddress = (toDelete.tag << tagShiftAmount) | (index << indexShiftAmount);
             rv += transferPenalty + nextMemoryModule->checkMemoryEntry(CACHE_WRITE, writeBackAddress, blockSize);
+            dirtyKick++;
           }
+}
         memoryEntries[index].pop_back();
         //put cache miss at front.
         memoryEntries[index].push_front(missed);

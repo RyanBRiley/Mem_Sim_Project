@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------
+	tr6.default	 Simulation Results
+--------------------------------------------------------------------------------
+
+
+	 Memory system: 
+	      Dcache size = 8192 : ways = 1 : block size = 32
+	      Icache size = 8192 : ways = 1 : block size = 32
+	      L2-cache size = 65536 : ways = 1 : block size = 64
+	      Memory ready time = 50 chunksize = 16 : chunktime = 20
+
+
+	 Execute time = 13264;    Total refs = 1000
+	 Inst refs = 776;    Data refs = 62
+
+
+	 Number of reference types: [Percentage]
+	      Reads = 162     [16.20%]
+	      Writes = 62     [6.20%]
+	      Inst = 776     [77.60%]
+	      Total = 1000
+
+
+	 Total cycles for activities: [Percentage]
+	      Reads = 4690     [35.36%]
+	      Writes = 3013     [22.72%]
+	      Inst = 5561     [41.93%]
+	      Total = 13264
+
+
+	 Average cycles per activity: 
+	      Read = 28.95;   Write = 48.60;   Inst. = 17.09
+
+
+	 Memory Level: L1i 
+	      Hit Count = 1283  Miss Count = 43
+	      Total Requests =  1326
+	      Hit Rate = [96.76%]  Miss Rate = [3.24%]
+
+
+	 Memory Level: L1d 
+	      Hit Count = 349  Miss Count = 67
+	      Total Requests =  416
+	      Hit Rate = [83.89%]   Miss Rate = [16.11%]
+
+
+	 Memory Level: L2 
+	      Hit Count = 45  Miss Count = 66
+	      Total Requests =  111
+	      Hit Rate = [40.54%]   Miss Rate = [59.46%]
+
+
+
+	 L1 cache cost (Icache $200) + (Dcache $200) = $400
+	 L2 cache cost = $50;  Memory cost = $75
+	 Total cost = $525
+	 dirty Kicks: 1

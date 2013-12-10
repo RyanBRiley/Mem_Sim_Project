@@ -91,6 +91,14 @@ namespace Valhalla
     /** \brief returns the misscount for the given memory module */
     uint64 misses();
 
+    /** \brief returns the dirty kick count for the given memory module */
+    uint64 dirtyKicks();
+
+    /** \brief returns the  kick count for the given memory module */
+    uint64 kicks();
+
+    /** \brief returns the  kick count for the given memory module */
+    uint64 transfers();
 
     /** \brief debug print function for setup of memory module */
     void printMemoryModuleSetup(void);
@@ -135,6 +143,15 @@ namespace Valhalla
 
     /** \brief Number of misses for memory module */
     uint64 missCount;
+
+    /** \brief Number of dirty kickouts for memory module */
+    uint64 dirtyKick;
+
+    /** \brief Number of kickouts for memory module */
+    uint64 kickCount;
+
+    /** \brief Number of transfers for memory module */
+    uint64 transferCount;
 
     /** \brief Number of rows in memoryEntries */
     uint64 rows;
