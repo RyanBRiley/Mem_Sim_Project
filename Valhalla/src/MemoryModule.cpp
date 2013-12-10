@@ -151,7 +151,7 @@ namespace Valhalla
         if(operation == CACHE_WRITE)
           {
             missed.dirtyBit = true;
-	    rv += transferPenalty + nextMemoryModule->checkMemoryEntry(CACHE_READ, address, blockSize);
+	    
           }
         else
           {
@@ -186,6 +186,7 @@ namespace Valhalla
         else
           {
 			//operation is a cache write, and missed the cache, this code isn't right
+            rv += transferPenalty + nextMemoryModule->checkMemoryEntry(CACHE_READ, address, blockSize);
             rv += hitPenalty;
           }
       }
