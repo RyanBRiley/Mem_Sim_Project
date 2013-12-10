@@ -12,3 +12,10 @@
 
 	 Execute time = 504;    Total refs = 10
 	 Inst refs = 6;    Data refs = 4
+
+
+	 Number of reference types: [Percentage]
+	   Reads = 4     [40.00%]
+	   Writes = 4     [40.00%]
+	   Inst = 6     [60.00%]
+	   Total = 10

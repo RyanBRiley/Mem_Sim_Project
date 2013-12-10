@@ -6,6 +6,7 @@
 #include <vector>
 #include <sstream>
 #include <map>
+#include <iomanip>
 
 #include "StdTypes.h"
 #include "MemoryModule.h"
@@ -151,21 +152,21 @@ int main(int argc, char ** argv)
  
   while (scanf("%c %llx %ld\n",&op,&address,&byteSize) == 3)
     { 
-       switch(op)
-	    {
-	    case 'I':
-	      iCount++;
-	      break;
-	    case 'R':
-	      time += l1DataCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
-              rCount++;
-	      break;
-	    case 'W':
-              wCount++;
-	      break;
-	    default:
-	      continue;
-	    }
+      switch(op)
+	{
+	case 'I':
+	  iCount++;
+	  break;
+	case 'R':
+	  time += l1DataCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
+	  rCount++;
+	  break;
+	case 'W':
+	  wCount++;
+	  break;
+	default:
+	  continue;
+	}
       uint64 remainder = address % blockSize;
       if(remainder != 0) 
 	{
@@ -233,32 +234,36 @@ int main(int argc, char ** argv)
 
 
 
-if(argc == 3){
- std::stringstream str;
+  if(argc == 3){
+    std::stringstream str;
     
-      ofstream outfile;
-std::string s = argv[1];
-cout << s << endl;
-std::string delimiter = "/";
+    ofstream outfile;
+    std::string s = argv[1];
+    cout << s << endl;
+    std::string delimiter = "/";
 
 
-std::string token;
+    std::string token;
     token = s.substr(s.find(delimiter)+1, std::string::npos);
 
-	  str << argv[2] <<"."<< token.c_str();
+    str << argv[2] <<"."<< token.c_str();
 
-     outfile.open(str.str().c_str());
- cout << str.str().c_str() << endl;
- outfile << "--------------------------------------------------------------------------------\n";
-outfile << "\t" << str.str().c_str() << "\t Simulation Results\n";
- outfile << "--------------------------------------------------------------------------------\n\n\n";
-outfile << "\t Memory system: \n"; 
-outfile <<"\t      Dcache size = " <<  L1_MEMORY_SIZE << " : ways = " << L1_ASSOCIATIVITY << " : block size = " << L1_BLOCK_SIZE << endl;
-outfile <<"\t      Icache size = " <<  L1_MEMORY_SIZE << " : ways = " << L1_ASSOCIATIVITY << " : block size = " << L1_BLOCK_SIZE << endl;
-outfile <<"\t      L2-cache size = " <<  L2_MEMORY_SIZE << " : ways = " << L2_ASSOCIATIVITY << " : block size = " << L2_BLOCK_SIZE << endl;
-outfile <<"\t      Memory ready time = " <<  MAIN_MEMORY_READY_TIME << " chunksize = " << MAIN_MEMORY_ADDRESS_WIDTH << " : chunktime = " << MAIN_MEMORY_CHUNK_SEND_TIME << "\n\n" << endl;
-outfile << "\t Execute time = " << dec << time << ";    Total refs = " << refNum << "\n\t Inst refs = " << iCount << ";    Data refs = " <<  wCount << endl; 
-}
+    outfile.open(str.str().c_str());
+    cout << str.str().c_str() << endl;
+    outfile << "--------------------------------------------------------------------------------\n";
+    outfile << "\t" << str.str().c_str() << "\t Simulation Results\n";
+    outfile << "--------------------------------------------------------------------------------\n\n\n";
+    outfile << "\t Memory system: \n"; 
+    outfile <<"\t      Dcache size = " <<  L1_MEMORY_SIZE << " : ways = " << L1_ASSOCIATIVITY << " : block size = " << L1_BLOCK_SIZE << endl;
+    outfile <<"\t      Icache size = " <<  L1_MEMORY_SIZE << " : ways = " << L1_ASSOCIATIVITY << " : block size = " << L1_BLOCK_SIZE << endl;
+    outfile <<"\t      L2-cache size = " <<  L2_MEMORY_SIZE << " : ways = " << L2_ASSOCIATIVITY << " : block size = " << L2_BLOCK_SIZE << endl;
+    outfile <<"\t      Memory ready time = " <<  MAIN_MEMORY_READY_TIME << " chunksize = " << MAIN_MEMORY_ADDRESS_WIDTH << " : chunktime = " << MAIN_MEMORY_CHUNK_SEND_TIME << "\n\n" << endl;
+    outfile << "\t Execute time = " << dec << time << ";    Total refs = " << refNum << "\n\t Inst refs = " << iCount << ";    Data refs = " <<  wCount << "\n\n" << endl; 
+    outfile << "\t Number of reference types: [Percentage]\n\t   Reads = " << wCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) wCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
+    outfile << "\t   Writes = " << wCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) wCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
+    outfile << "\t   Inst = " << iCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) iCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
+    outfile << "\t   Total = " << wCount + iCount + rCount << endl;
+  }
   return 0;
 
 }
