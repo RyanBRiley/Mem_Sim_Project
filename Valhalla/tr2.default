@@ -1,0 +1,50 @@
+--------------------------------------------------------------------------------
+	tr2.default	 Simulation Results
+--------------------------------------------------------------------------------
+
+
+	 Memory system: 
+	      Dcache size = 8192 : ways = 1 : block size = 32
+	      Icache size = 8192 : ways = 1 : block size = 32
+	      L2-cache size = 65536 : ways = 1 : block size = 64
+	      Memory ready time = 50 chunksize = 16 : chunktime = 20
+
+
+	 Execute time = 8180;    Total refs = 500
+	 Inst refs = 379;    Data refs = 43
+
+
+	 Number of reference types: [Percentage]
+	   Reads = 78     [15.60%]
+	   Writes = 43     [8.60%]
+	   Inst = 379     [75.80%]
+	   Total = 500
+
+
+	 Total cycles for activities: [Percentage]
+	   Reads = 2079     [25.42%]
+	   Writes = 2453     [29.99%]
+	   Inst = 3648     [44.60%]
+	   Total = 8180
+
+
+	 Average cycles per activity: 
+	   Read = 26.65;   Write = 57.05;   Inst. = 9.63
+
+
+	 Memory Level: L1i 
+	      Hit Count = 644  Miss Count = 29
+	      Total Requests =  673
+	      Hit Rate = [95.69%]  Miss Rate = [4.31%]
+
+
+	 Memory Level: L1d 
+	      Hit Count = 198  Miss Count = 38
+	      Total Requests =  236
+	      Hit Rate = [83.90%]   Miss Rate = [16.10%]
+
+
+	 Memory Level: L2 
+	      Hit Count = 25  Miss Count = 42
+	      Total Requests =  67
+	      Hit Rate = [37.31%]   Miss Rate = [62.69%]

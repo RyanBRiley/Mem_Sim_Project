@@ -85,6 +85,13 @@ namespace Valhalla
      */
     uint64 checkMemoryEntry(CacheOperation operation, uint64 address, uint32 byteSize);
 
+    /** \brief returns the hitcount for the given memory module */
+    uint64 hits();
+
+    /** \brief returns the misscount for the given memory module */
+    uint64 misses();
+
+
     /** \brief debug print function for setup of memory module */
     void printMemoryModuleSetup(void);
 

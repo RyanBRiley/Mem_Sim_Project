@@ -1,0 +1,50 @@
+--------------------------------------------------------------------------------
+	sjeng_1_M.All-2way	 Simulation Results
+--------------------------------------------------------------------------------
+
+
+	 Memory system: 
+	      Dcache size = 8192 : ways = 2 : block size = 32
+	      Icache size = 8192 : ways = 2 : block size = 32
+	      L2-cache size = 65536 : ways = 2 : block size = 64
+	      Memory ready time = 50 chunksize = 16 : chunktime = 20
+
+
+	 Execute time = 2676353;    Total refs = 1000000
+	 Inst refs = 725772;    Data refs = 99856
+
+
+	 Number of reference types: [Percentage]
+	   Reads = 174372     [17.44%]
+	   Writes = 99856     [9.99%]
+	   Inst = 725772     [72.58%]
+	   Total = 1000000
+
+
+	 Total cycles for activities: [Percentage]
+	   Reads = 469376     [17.54%]
+	   Writes = 842771     [31.49%]
+	   Inst = 1364206     [50.97%]
+	   Total = 2676353
+
+
+	 Average cycles per activity: 
+	   Read = 2.69;   Write = 8.44;   Inst. = 1.88
+
+
+	 Memory Level: L1i 
+	      Hit Count = 1212624  Miss Count = 1475
+	      Total Requests =  1214099
+	      Hit Rate = [99.88%]  Miss Rate = [0.12%]
+
+
+	 Memory Level: L1d 
+	      Hit Count = 290283  Miss Count = 7499
+	      Total Requests =  297782
+	      Hit Rate = [97.48%]   Miss Rate = [2.52%]
+
+
+	 Memory Level: L2 
+	      Hit Count = 9172  Miss Count = 4743
+	      Total Requests =  13915
+	      Hit Rate = [65.91%]   Miss Rate = [34.09%]
