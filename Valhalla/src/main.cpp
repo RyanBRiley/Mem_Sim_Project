@@ -65,7 +65,7 @@ int main(int argc, char ** argv)
 
   if(argc == 2){
 
-    //open and read config file
+    //open and read config file and create a report file
     ifstream config(argv[1]);
     string line;
     if (config.is_open())
@@ -88,12 +88,16 @@ int main(int argc, char ** argv)
     if ( L1_ASSOCIATIVITY == -1) L1_ASSOCIATIVITY = L1_MEMORY_SIZE / L1_BLOCK_SIZE;
     if ( L2_ASSOCIATIVITY == -1) L2_ASSOCIATIVITY = L2_MEMORY_SIZE / L2_BLOCK_SIZE;
   }
+
   //Variables for mem operations
   char op;
   uint64 address;
   uint32 byteSize;
   uint64 time = 0;
   uint64 refNum = 0;
+  uint64 iCount = 0;
+  uint64 wCount = 0;
+  uint64 rCount = 0;
   uint32 blockSize = 4;
   cout << "Creating Main Memory." << endl;
   MemoryModule * mainMemory = new MemoryModule();
@@ -147,6 +151,21 @@ int main(int argc, char ** argv)
  
   while (scanf("%c %llx %ld\n",&op,&address,&byteSize) == 3)
     { 
+       switch(op)
+	    {
+	    case 'I':
+	      iCount++;
+	      break;
+	    case 'R':
+	      time += l1DataCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
+              rCount++;
+	      break;
+	    case 'W':
+              wCount++;
+	      break;
+	    default:
+	      continue;
+	    }
       uint64 remainder = address % blockSize;
       if(remainder != 0) 
 	{
@@ -211,5 +230,35 @@ int main(int argc, char ** argv)
   */
   
   cout << "Test Complete." << endl;
+
+
+
+if(argc == 3){
+ std::stringstream str;
+    
+      ofstream outfile;
+std::string s = argv[1];
+cout << s << endl;
+std::string delimiter = "/";
+
+
+std::string token;
+    token = s.substr(s.find(delimiter)+1, std::string::npos);
+
+	  str << argv[2] <<"."<< token.c_str();
+
+     outfile.open(str.str().c_str());
+ cout << str.str().c_str() << endl;
+ outfile << "--------------------------------------------------------------------------------\n";
+outfile << "\t" << str.str().c_str() << "\t Simulation Results\n";
+ outfile << "--------------------------------------------------------------------------------\n\n\n";
+outfile << "\t Memory system: \n"; 
+outfile <<"\t      Dcache size = " <<  L1_MEMORY_SIZE << " : ways = " << L1_ASSOCIATIVITY << " : block size = " << L1_BLOCK_SIZE << endl;
+outfile <<"\t      Icache size = " <<  L1_MEMORY_SIZE << " : ways = " << L1_ASSOCIATIVITY << " : block size = " << L1_BLOCK_SIZE << endl;
+outfile <<"\t      L2-cache size = " <<  L2_MEMORY_SIZE << " : ways = " << L2_ASSOCIATIVITY << " : block size = " << L2_BLOCK_SIZE << endl;
+outfile <<"\t      Memory ready time = " <<  MAIN_MEMORY_READY_TIME << " chunksize = " << MAIN_MEMORY_ADDRESS_WIDTH << " : chunktime = " << MAIN_MEMORY_CHUNK_SEND_TIME << "\n\n" << endl;
+outfile << "\t Execute time = " << dec << time << ";    Total refs = " << refNum << "\n\t Inst refs = " << iCount << ";    Data refs = " <<  wCount << endl; 
+}
   return 0;
+
 }

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+	tr1.2-4-way	 Simulation Results
+--------------------------------------------------------------------------------
+
+
+	 Memory system: 
+	      Dcache size = 8192 : ways = 1 : block size = 32
+	      Icache size = 8192 : ways = 1 : block size = 32
+	      L2-cache size = 65536 : ways = 1 : block size = 64
+	      Memory ready time = 50 chunksize = 16 : chunktime = 20
+
+
+	 Execute time = 504;    Total refs = 10
+	 Inst refs = 6;    Data refs = 4
