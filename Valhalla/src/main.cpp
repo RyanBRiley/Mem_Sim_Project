@@ -20,75 +20,74 @@ int main(int argc, char ** argv)
 {
 
   //creating a map to store the addresses of the params
-std::map <string, int*> params;
+  std::map <string, int*> params;
   //setting default values
 
-/** \brief These are the default values for the L1 Cache */
-int L1_BLOCK_SIZE = 32;
-int L1_MEMORY_SIZE = 8192;
-int L1_ASSOCIATIVITY = 1;
-int L1_HIT_PENALTY = 1;
-int L1_MISS_PENALTY = 1;
+  /** \brief These are the default values for the L1 Cache */
+  int L1_BLOCK_SIZE = 32;
+  int L1_MEMORY_SIZE = 8192;
+  int L1_ASSOCIATIVITY = 1;
+  int L1_HIT_PENALTY = 1;
+  int L1_MISS_PENALTY = 1;
+  
+  /** \brief These are the default values for the L2 Cache */
+  int L2_BLOCK_SIZE = 64;
+  int L2_MEMORY_SIZE = 65536;
+  int L2_ASSOCIATIVITY = 1;
+  int L2_HIT_PENALTY = 4;
+  int L2_MISS_PENALTY = 6;
+  int L2_TRANSFER_TIME = 6;
+  int L2_TRANSFER_WIDTH = 16;
+  
+  /** \brief These are the default values for Main Memory */
+  int MAIN_MEMORY_SEND_ADDRESS_TIME = 10;
+  int MAIN_MEMORY_READY_TIME = 50;
+  int MAIN_MEMORY_CHUNK_SEND_TIME = 20;
+  int MAIN_MEMORY_ADDRESS_WIDTH = 16;
+  
+  //initializing params map
+  params["L1_BLOCK_SIZE"] = &L1_BLOCK_SIZE;
+  params["L1_MEMORY_SIZE"] = &L1_MEMORY_SIZE;
+  params["L1_ASSOCIATIVITY"] = &L1_ASSOCIATIVITY;
+  params["L1_HIT_PENALTY"] = &L1_HIT_PENALTY;
+  params["L1_MISS_PENALTY"] = &L1_MISS_PENALTY;
+  params["L2_BLOCK_SIZE"] = &L2_BLOCK_SIZE;
+  params["L2_MEMORY_SIZE"] = &L2_MEMORY_SIZE;
+  params["L2_ASSOCIATIVITY"] = &L2_ASSOCIATIVITY;
+  params["L2_HIT_PENALTY"] = &L2_HIT_PENALTY;
+  params["L2_MISS_PENALTY"] = &L2_MISS_PENALTY;
+  params["L2_TRANSFER_TIME"] = &L2_TRANSFER_TIME;
+  params["L2_TRANSFER_WIDTH"] = &L2_TRANSFER_WIDTH;
+  params["MAIN_MEMORY_SEND_ADDRESS_TIME"] = &MAIN_MEMORY_SEND_ADDRESS_TIME;
+  params["MAIN_MEMORY_READY_TIME"] = &MAIN_MEMORY_READY_TIME;
+  params["MAIN_MEMORY_CHUNK_SEND_TIME"] = &MAIN_MEMORY_CHUNK_SEND_TIME;
+  params["MAIN_MEMORY_ADDRESS_WIDTH"] = &MAIN_MEMORY_ADDRESS_WIDTH;
 
-/** \brief These are the default values for the L2 Cache */
-int L2_BLOCK_SIZE = 64;
-int L2_MEMORY_SIZE = 65536;
-int L2_ASSOCIATIVITY = 1;
-int L2_HIT_PENALTY = 4;
-int L2_MISS_PENALTY = 6;
-int L2_TRANSFER_TIME = 6;
-int L2_TRANSFER_WIDTH = 16;
+  if(argc == 2){
 
-/** \brief These are the default values for Main Memory */
-int MAIN_MEMORY_SEND_ADDRESS_TIME = 10;
-int MAIN_MEMORY_READY_TIME = 50;
-int MAIN_MEMORY_CHUNK_SEND_TIME = 20;
-int MAIN_MEMORY_ADDRESS_WIDTH = 16;
-
-//initializing params map
-params["L1_BLOCK_SIZE"] = &L1_BLOCK_SIZE;
-params["L1_MEMORY_SIZE"] = &L1_MEMORY_SIZE;
-params["L1_ASSOCIATIVITY"] = &L1_ASSOCIATIVITY;
-params["L1_HIT_PENALTY"] = &L1_HIT_PENALTY;
-params["L1_MISS_PENALTY"] = &L1_MISS_PENALTY;
-params["L2_BLOCK_SIZE"] = &L2_BLOCK_SIZE;
-params["L2_MEMORY_SIZE"] = &L2_MEMORY_SIZE;
-params["L2_ASSOCIATIVITY"] = &L2_ASSOCIATIVITY;
-params["L2_HIT_PENALTY"] = &L2_HIT_PENALTY;
-params["L2_MISS_PENALTY"] = &L2_MISS_PENALTY;
-params["L2_TRANSFER_TIME"] = &L2_TRANSFER_TIME;
-params["L2_TRANSFER_WIDTH"] = &L2_TRANSFER_WIDTH;
-params["MAIN_MEMORY_SEND_ADDRESS_TIME"] = &MAIN_MEMORY_SEND_ADDRESS_TIME;
-params["MAIN_MEMORY_READY_TIME"] = &MAIN_MEMORY_READY_TIME;
-params["MAIN_MEMORY_CHUNK_SEND_TIME"] = &MAIN_MEMORY_CHUNK_SEND_TIME;
-params["MAIN_MEMORY_ADDRESS_WIDTH"] = &MAIN_MEMORY_ADDRESS_WIDTH;
-
-
-
-  //open and read config file
-  ifstream config(argv[1]);
-  string line;
-  if (config.is_open())
-  {
-    cout << "Config filename: " << argv[1] << endl;
-    int param_count = 0;
-    while (getline(config,line) )
-    {
-       string buffer;
-       stringstream ss(line);
-       vector<string> tokens;
-       while (ss >> buffer) tokens.push_back(buffer);
-       
-       *params[tokens[0]] = atoi(tokens[1].c_str());
-       cout << "Set parameter " << tokens[0] << " to " << tokens[1] << endl;
-       param_count++;
-    }
-  config.close();
-cout << "Set " << param_count << " parameter(s) from config file " << endl;
+    //open and read config file
+    ifstream config(argv[1]);
+    string line;
+    if (config.is_open())
+      {
+	cout << "Config filename: " << argv[1] << endl;
+	int param_count = 0;
+	while (getline(config,line) )
+	  {
+	    string buffer;
+	    stringstream ss(line);
+	    vector<string> tokens;
+	    while (ss >> buffer) tokens.push_back(buffer);
+	    *params[tokens[0]] = atoi(tokens[1].c_str());
+	    cout << "Set parameter " << tokens[0] << " to " << tokens[1] << endl;
+	    param_count++;
+	  }
+	config.close();
+	cout << "Set " << param_count << " parameter(s) from config file " << endl;
+      }
+    if ( L1_ASSOCIATIVITY == -1) L1_ASSOCIATIVITY = L1_MEMORY_SIZE / L1_BLOCK_SIZE;
+    if ( L2_ASSOCIATIVITY == -1) L2_ASSOCIATIVITY = L2_MEMORY_SIZE / L2_BLOCK_SIZE;
   }
-   if ( L1_ASSOCIATIVITY == -1) L1_ASSOCIATIVITY = L1_MEMORY_SIZE / L1_BLOCK_SIZE;
-   if ( L2_ASSOCIATIVITY == -1) L2_ASSOCIATIVITY = L2_MEMORY_SIZE / L2_BLOCK_SIZE;
-
   //Variables for mem operations
   char op;
   uint64 address;
@@ -148,12 +147,12 @@ cout << "Set " << param_count << " parameter(s) from config file " << endl;
  
   while (scanf("%c %llx %ld\n",&op,&address,&byteSize) == 3)
     { 
-     uint64 remainder = address % blockSize;
-     if(remainder != 0) 
-      {
-        address -= remainder;
-        byteSize += remainder;
-      }
+      uint64 remainder = address % blockSize;
+      if(remainder != 0) 
+	{
+	  address -= remainder;
+	  byteSize += remainder;
+	}
       int bytesToFetch = byteSize;
       cout << "--------------------------------------------------------------------------------" << endl;
       cout << "Ref " << refNum;
@@ -162,26 +161,26 @@ cout << "Set " << param_count << " parameter(s) from config file " << endl;
       cout << ", BSize = " << byteSize << endl;
       while (bytesToFetch > 0)
 	{
-	   bytesToFetch -= procBusWidth;
+	  bytesToFetch -= procBusWidth;
           
  	  
-     	   switch(op)
-        	{
-        	case 'I':
-          	//Intruction fetch
-          	time += l1InstCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
-          	break;
-        	case 'R':
-          	time += l1DataCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
-         	 break;
-        	case 'W':
-          	time += l1DataCache->checkMemoryEntry(CACHE_WRITE, address, procBusWidth);
-          	break;
-        	default:
-          	 continue;
-        	}
+	  switch(op)
+	    {
+	    case 'I':
+	      //Intruction fetch
+	      time += l1InstCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
+	      break;
+	    case 'R':
+	      time += l1DataCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
+	      break;
+	    case 'W':
+	      time += l1DataCache->checkMemoryEntry(CACHE_WRITE, address, procBusWidth);
+	      break;
+	    default:
+	      continue;
+	    }
 
-        address += procBusWidth;
+	  address += procBusWidth;
 
 	}
       cout << "Simulated time = " << dec << time << endl;

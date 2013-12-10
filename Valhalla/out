@@ -1,3 +1,6 @@
+Config filename: config/L2-2way
+Set parameter L2_ASSOCIATIVITY to 2
+Set 1 parameter(s) from config file 
 Creating Main Memory.
 After initialization
 --------------------------------------------------------------------------------
@@ -6,7 +9,7 @@ Level L1Inst access addr = 0x7f81ce2206b0, reftype = 0
     index = 0x35, tag = 0x3fc0e7110  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2206b0, reftype = 0
-    index = 0x1a, tag = 0x7f81ce22  MISS
+    index = 0x1a, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -30,7 +33,7 @@ Level L1Data access addr = 0x7fff5a8487d8, reftype = 1
     index = 0x3e, tag = 0x3fffad424  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7fff5a8487d8, reftype = 0
-    index = 0x21f, tag = 0x7fff5a84  MISS
+    index = 0x1f, tag = 0xfffeb509  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -45,7 +48,7 @@ Level L1Inst access addr = 0x7f81ce224010, reftype = 0
     index = 0x0, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224010, reftype = 0
-    index = 0x100, tag = 0x7f81ce22  MISS
+    index = 0x100, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -111,7 +114,7 @@ Level L1Data access addr = 0x7fff5a8487b8, reftype = 1
     index = 0x3d, tag = 0x3fffad424  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7fff5a8487b8, reftype = 0
-    index = 0x21e, tag = 0x7fff5a84  MISS
+    index = 0x1e, tag = 0xfffeb509  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -162,7 +165,7 @@ Level L1Inst access addr = 0x7f81ce224020, reftype = 0
     index = 0x1, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224020, reftype = 0
-    index = 0x100, tag = 0x7f81ce22  HIT
+    index = 0x100, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -225,7 +228,7 @@ Level L1Data access addr = 0x7f81ce441b80, reftype = 0
     index = 0xdc, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441b80, reftype = 0
-    index = 0x6e, tag = 0x7f81ce44  MISS
+    index = 0x6e, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -246,7 +249,7 @@ Level L1Inst access addr = 0x7f81ce224040, reftype = 0
     index = 0x2, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224040, reftype = 0
-    index = 0x101, tag = 0x7f81ce22  MISS
+    index = 0x101, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -261,7 +264,7 @@ Level L1Data access addr = 0x7f81ce441cd8, reftype = 1
     index = 0xe6, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441cd8, reftype = 0
-    index = 0x73, tag = 0x7f81ce44  MISS
+    index = 0x73, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -294,7 +297,7 @@ Level L1Data access addr = 0x7f81ce441fb8, reftype = 0
     index = 0xfd, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441fb8, reftype = 0
-    index = 0x7e, tag = 0x7f81ce44  MISS
+    index = 0x7e, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -324,7 +327,7 @@ Level L1Data access addr = 0x7f81ce4429d8, reftype = 1
     index = 0x4e, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce4429d8, reftype = 0
-    index = 0xa7, tag = 0x7f81ce44  MISS
+    index = 0xa7, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -345,7 +348,7 @@ Level L1Data access addr = 0x7f81ce441e28, reftype = 0
     index = 0xf1, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441e28, reftype = 0
-    index = 0x78, tag = 0x7f81ce44  MISS
+    index = 0x78, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -372,7 +375,7 @@ Level L1Data access addr = 0x7f81ce4429e8, reftype = 1
     index = 0x4f, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce4429e8, reftype = 0
-    index = 0xa7, tag = 0x7f81ce44  HIT
+    index = 0xa7, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Level L1Data access addr = 0x7f81ce4429ec, reftype = 1
     index = 0x4f, tag = 0x3fc0e7221  HIT
@@ -387,7 +390,7 @@ Level L1Inst access addr = 0x7f81ce224060, reftype = 0
     index = 0x3, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224060, reftype = 0
-    index = 0x101, tag = 0x7f81ce22  HIT
+    index = 0x101, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -447,7 +450,7 @@ Level L1Inst access addr = 0x7f81ce224080, reftype = 0
     index = 0x4, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224080, reftype = 0
-    index = 0x102, tag = 0x7f81ce22  MISS
+    index = 0x102, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -483,7 +486,7 @@ Level L1Inst access addr = 0x7f81ce2240ac, reftype = 0
     index = 0x5, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2240ac, reftype = 0
-    index = 0x102, tag = 0x7f81ce22  HIT
+    index = 0x102, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -525,7 +528,7 @@ Level L1Data access addr = 0x7f81ce442a88, reftype = 1
     index = 0x54, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442a88, reftype = 0
-    index = 0xaa, tag = 0x7f81ce44  MISS
+    index = 0xaa, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -618,7 +621,7 @@ Level L1Data access addr = 0x7f81ce442ae0, reftype = 1
     index = 0x57, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442ae0, reftype = 0
-    index = 0xab, tag = 0x7f81ce44  MISS
+    index = 0xab, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -651,7 +654,7 @@ Level L1Data access addr = 0x7f81ce441e48, reftype = 0
     index = 0xf2, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441e48, reftype = 0
-    index = 0x79, tag = 0x7f81ce44  MISS
+    index = 0x79, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -807,7 +810,7 @@ Level L1Data access addr = 0x7f81ce442a38, reftype = 1
     index = 0x51, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442a38, reftype = 0
-    index = 0xa8, tag = 0x7f81ce44  MISS
+    index = 0xa8, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -840,7 +843,7 @@ Level L1Data access addr = 0x7f81ce441e68, reftype = 0
     index = 0xf3, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441e68, reftype = 0
-    index = 0x79, tag = 0x7f81ce44  HIT
+    index = 0x79, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -915,7 +918,7 @@ Level L1Inst access addr = 0x7f81ce2240c0, reftype = 0
     index = 0x6, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2240c0, reftype = 0
-    index = 0x103, tag = 0x7f81ce22  MISS
+    index = 0x103, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -930,7 +933,7 @@ Level L1Inst access addr = 0x7f81ce2243a0, reftype = 0
     index = 0x1d, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2243a0, reftype = 0
-    index = 0x10e, tag = 0x7f81ce22  MISS
+    index = 0x10e, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -966,7 +969,7 @@ Level L1Inst access addr = 0x7f81ce2243c8, reftype = 0
     index = 0x1e, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2243c8, reftype = 0
-    index = 0x10f, tag = 0x7f81ce22  MISS
+    index = 0x10f, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -1008,7 +1011,7 @@ Level L1Inst access addr = 0x7f81ce224538, reftype = 0
     index = 0x29, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224538, reftype = 0
-    index = 0x114, tag = 0x7f81ce22  MISS
+    index = 0x114, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -1035,7 +1038,7 @@ Level L1Inst access addr = 0x7f81ce224540, reftype = 0
     index = 0x2a, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224540, reftype = 0
-    index = 0x115, tag = 0x7f81ce22  MISS
+    index = 0x115, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -1086,7 +1089,7 @@ Level L1Data access addr = 0x7f81ce442c70, reftype = 1
     index = 0x63, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442c70, reftype = 0
-    index = 0xb1, tag = 0x7f81ce44  MISS
+    index = 0xb1, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -1188,7 +1191,7 @@ Level L1Data access addr = 0x7f81ce442a40, reftype = 1
     index = 0x52, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442a40, reftype = 0
-    index = 0xa9, tag = 0x7f81ce44  MISS
+    index = 0xa9, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -1221,7 +1224,7 @@ Level L1Data access addr = 0x7f81ce441e88, reftype = 0
     index = 0xf4, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441e88, reftype = 0
-    index = 0x7a, tag = 0x7f81ce44  MISS
+    index = 0x7a, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -1377,7 +1380,7 @@ Level L1Data access addr = 0x7f81ce442a68, reftype = 1
     index = 0x53, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442a68, reftype = 0
-    index = 0xa9, tag = 0x7f81ce44  HIT
+    index = 0xa9, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Level L1Data access addr = 0x7f81ce442a6c, reftype = 1
     index = 0x53, tag = 0x3fc0e7221  HIT
@@ -1407,7 +1410,7 @@ Level L1Data access addr = 0x7f81ce441ea8, reftype = 0
     index = 0xf5, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441ea8, reftype = 0
-    index = 0x7a, tag = 0x7f81ce44  HIT
+    index = 0x7a, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -1587,7 +1590,7 @@ Level L1Data access addr = 0x7f81ce441ec8, reftype = 0
     index = 0xf6, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441ec8, reftype = 0
-    index = 0x7b, tag = 0x7f81ce44  MISS
+    index = 0x7b, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -1743,7 +1746,7 @@ Level L1Data access addr = 0x7f81ce442ab8, reftype = 1
     index = 0x55, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442ab8, reftype = 0
-    index = 0xaa, tag = 0x7f81ce44  HIT
+    index = 0xaa, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Level L1Data access addr = 0x7f81ce442abc, reftype = 1
     index = 0x55, tag = 0x3fc0e7221  HIT
@@ -1773,7 +1776,7 @@ Level L1Data access addr = 0x7f81ce441ee8, reftype = 0
     index = 0xf7, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441ee8, reftype = 0
-    index = 0x7b, tag = 0x7f81ce44  HIT
+    index = 0x7b, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -1839,7 +1842,7 @@ Level L1Data access addr = 0x7f81ce442ad0, reftype = 1
     index = 0x56, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442ad0, reftype = 0
-    index = 0xab, tag = 0x7f81ce44  HIT
+    index = 0xab, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Level L1Data access addr = 0x7f81ce442ad4, reftype = 1
     index = 0x56, tag = 0x3fc0e7221  HIT
@@ -1956,7 +1959,7 @@ Level L1Data access addr = 0x7f81ce441f08, reftype = 0
     index = 0xf8, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441f08, reftype = 0
-    index = 0x7c, tag = 0x7f81ce44  MISS
+    index = 0x7c, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -2139,7 +2142,7 @@ Level L1Data access addr = 0x7f81ce441f28, reftype = 0
     index = 0xf9, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441f28, reftype = 0
-    index = 0x7c, tag = 0x7f81ce44  HIT
+    index = 0x7c, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -2256,7 +2259,7 @@ Level L1Data access addr = 0x7f81ce442b40, reftype = 1
     index = 0x5a, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442b40, reftype = 0
-    index = 0xad, tag = 0x7f81ce44  MISS
+    index = 0xad, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -2280,7 +2283,7 @@ Level L1Inst access addr = 0x7f81ce2240e0, reftype = 0
     index = 0x7, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2240e0, reftype = 0
-    index = 0x103, tag = 0x7f81ce22  HIT
+    index = 0x103, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -2400,7 +2403,7 @@ Level L1Data access addr = 0x7f81ce442b38, reftype = 1
     index = 0x59, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442b38, reftype = 0
-    index = 0xac, tag = 0x7f81ce44  MISS
+    index = 0xac, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -2430,7 +2433,7 @@ Level L1Data access addr = 0x7f81ce441f48, reftype = 0
     index = 0xfa, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441f48, reftype = 0
-    index = 0x7d, tag = 0x7f81ce44  MISS
+    index = 0x7d, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -2547,7 +2550,7 @@ Level L1Data access addr = 0x7f81ce442ba0, reftype = 1
     index = 0x5d, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442ba0, reftype = 0
-    index = 0xae, tag = 0x7f81ce44  MISS
+    index = 0xae, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -2709,7 +2712,7 @@ Level L1Data access addr = 0x7f81ce441f68, reftype = 0
     index = 0xfb, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441f68, reftype = 0
-    index = 0x7d, tag = 0x7f81ce44  HIT
+    index = 0x7d, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -2799,7 +2802,7 @@ Level L1Inst access addr = 0x7f81ce224100, reftype = 0
     index = 0x8, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224100, reftype = 0
-    index = 0x104, tag = 0x7f81ce22  MISS
+    index = 0x104, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -2928,7 +2931,7 @@ Level L1Inst access addr = 0x7f81ce224120, reftype = 0
     index = 0x9, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224120, reftype = 0
-    index = 0x104, tag = 0x7f81ce22  HIT
+    index = 0x104, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -3054,7 +3057,7 @@ Level L1Inst access addr = 0x7f81ce224140, reftype = 0
     index = 0xa, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224140, reftype = 0
-    index = 0x105, tag = 0x7f81ce22  MISS
+    index = 0x105, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -3183,7 +3186,7 @@ Level L1Inst access addr = 0x7f81ce224160, reftype = 0
     index = 0xb, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224160, reftype = 0
-    index = 0x105, tag = 0x7f81ce22  HIT
+    index = 0x105, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -3309,7 +3312,7 @@ Level L1Inst access addr = 0x7f81ce224180, reftype = 0
     index = 0xc, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224180, reftype = 0
-    index = 0x106, tag = 0x7f81ce22  MISS
+    index = 0x106, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -3405,7 +3408,7 @@ Level L1Inst access addr = 0x7f81ce2241a0, reftype = 0
     index = 0xd, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2241a0, reftype = 0
-    index = 0x106, tag = 0x7f81ce22  HIT
+    index = 0x106, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -3474,7 +3477,7 @@ Level L1Inst access addr = 0x7f81ce2241c4, reftype = 0
     index = 0xe, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2241c4, reftype = 0
-    index = 0x107, tag = 0x7f81ce22  MISS
+    index = 0x107, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -3492,7 +3495,7 @@ Level L1Data access addr = 0x7f81ce442b08, reftype = 0
     index = 0x58, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442b08, reftype = 0
-    index = 0xac, tag = 0x7f81ce44  HIT
+    index = 0xac, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -3525,7 +3528,7 @@ Level L1Inst access addr = 0x7f81ce2241e0, reftype = 0
     index = 0xf, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2241e0, reftype = 0
-    index = 0x107, tag = 0x7f81ce22  HIT
+    index = 0x107, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -3597,7 +3600,7 @@ Level L1Inst access addr = 0x7f81ce224200, reftype = 0
     index = 0x10, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224200, reftype = 0
-    index = 0x108, tag = 0x7f81ce22  MISS
+    index = 0x108, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -3639,7 +3642,7 @@ Level L1Inst access addr = 0x7f81ce2243f0, reftype = 0
     index = 0x1f, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2243f0, reftype = 0
-    index = 0x10f, tag = 0x7f81ce22  HIT
+    index = 0x10f, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -3681,7 +3684,7 @@ Level L1Inst access addr = 0x7f81ce224400, reftype = 0
     index = 0x20, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224400, reftype = 0
-    index = 0x110, tag = 0x7f81ce22  MISS
+    index = 0x110, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -3771,7 +3774,7 @@ Level L1Inst access addr = 0x7f81ce224420, reftype = 0
     index = 0x21, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224420, reftype = 0
-    index = 0x110, tag = 0x7f81ce22  HIT
+    index = 0x110, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -3849,7 +3852,7 @@ Level L1Inst access addr = 0x7f81ce224440, reftype = 0
     index = 0x22, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224440, reftype = 0
-    index = 0x111, tag = 0x7f81ce22  MISS
+    index = 0x111, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -3945,7 +3948,7 @@ Level L1Inst access addr = 0x7f81ce224460, reftype = 0
     index = 0x23, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224460, reftype = 0
-    index = 0x111, tag = 0x7f81ce22  HIT
+    index = 0x111, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -4026,7 +4029,7 @@ Level L1Data access addr = 0x7f81ce21f870, reftype = 0
     index = 0xc3, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f870, reftype = 0
-    index = 0x3e1, tag = 0x7f81ce21  MISS
+    index = 0x1e1, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -4059,7 +4062,7 @@ Level L1Inst access addr = 0x7f81ce224480, reftype = 0
     index = 0x24, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224480, reftype = 0
-    index = 0x112, tag = 0x7f81ce22  MISS
+    index = 0x112, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -4098,7 +4101,7 @@ Level L1Inst access addr = 0x7f81ce2244a0, reftype = 0
     index = 0x25, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2244a0, reftype = 0
-    index = 0x112, tag = 0x7f81ce22  HIT
+    index = 0x112, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -4152,7 +4155,7 @@ Level L1Data access addr = 0x7f81ce441b70, reftype = 1
     index = 0xdb, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441b70, reftype = 0
-    index = 0x6d, tag = 0x7f81ce44  MISS
+    index = 0x6d, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -4191,7 +4194,7 @@ Level L1Data access addr = 0x7f81ce21f880, reftype = 0
     index = 0xc4, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f880, reftype = 0
-    index = 0x3e2, tag = 0x7f81ce21  MISS
+    index = 0x1e2, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -4326,7 +4329,7 @@ Level L1Data access addr = 0x7f81ce21f8a0, reftype = 0
     index = 0xc5, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f8a0, reftype = 0
-    index = 0x3e2, tag = 0x7f81ce21  HIT
+    index = 0x1e2, tag = 0xff039c43  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -4395,7 +4398,7 @@ Level L1Data access addr = 0x7f81ce441c58, reftype = 1
     index = 0xe2, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441c58, reftype = 0
-    index = 0x71, tag = 0x7f81ce44  MISS
+    index = 0x71, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -4482,7 +4485,7 @@ Level L1Data access addr = 0x7f81ce21f8c0, reftype = 0
     index = 0xc6, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f8c0, reftype = 0
-    index = 0x3e3, tag = 0x7f81ce21  MISS
+    index = 0x1e3, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -4521,7 +4524,7 @@ Level L1Data access addr = 0x7f81ce441c60, reftype = 1
     index = 0xe3, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441c60, reftype = 0
-    index = 0x71, tag = 0x7f81ce44  HIT
+    index = 0x71, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Level L1Data access addr = 0x7f81ce441c64, reftype = 1
     index = 0xe3, tag = 0x3fc0e7220  HIT
@@ -4668,7 +4671,7 @@ Level L1Data access addr = 0x7f81ce21f8e0, reftype = 0
     index = 0xc7, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f8e0, reftype = 0
-    index = 0x3e3, tag = 0x7f81ce21  HIT
+    index = 0x1e3, tag = 0xff039c43  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -4800,7 +4803,7 @@ Level L1Data access addr = 0x7f81ce21f900, reftype = 0
     index = 0xc8, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f900, reftype = 0
-    index = 0x3e4, tag = 0x7f81ce21  MISS
+    index = 0x1e4, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -4953,7 +4956,7 @@ Level L1Data access addr = 0x7f81ce21f920, reftype = 0
     index = 0xc9, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f920, reftype = 0
-    index = 0x3e4, tag = 0x7f81ce21  HIT
+    index = 0x1e4, tag = 0xff039c43  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -4989,7 +4992,7 @@ Level L1Data access addr = 0x7f81ce441c80, reftype = 1
     index = 0xe4, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441c80, reftype = 0
-    index = 0x72, tag = 0x7f81ce44  MISS
+    index = 0x72, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -5139,7 +5142,7 @@ Level L1Data access addr = 0x7f81ce21f940, reftype = 0
     index = 0xca, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f940, reftype = 0
-    index = 0x3e5, tag = 0x7f81ce21  MISS
+    index = 0x1e5, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -5274,7 +5277,7 @@ Level L1Data access addr = 0x7f81ce21f960, reftype = 0
     index = 0xcb, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f960, reftype = 0
-    index = 0x3e5, tag = 0x7f81ce21  HIT
+    index = 0x1e5, tag = 0xff039c43  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -5424,7 +5427,7 @@ Level L1Data access addr = 0x7f81ce21f980, reftype = 0
     index = 0xcc, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f980, reftype = 0
-    index = 0x3e6, tag = 0x7f81ce21  MISS
+    index = 0x1e6, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -5463,7 +5466,7 @@ Level L1Data access addr = 0x7f81ce441ca0, reftype = 1
     index = 0xe5, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441ca0, reftype = 0
-    index = 0x72, tag = 0x7f81ce44  HIT
+    index = 0x72, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Level L1Data access addr = 0x7f81ce441ca4, reftype = 1
     index = 0xe5, tag = 0x3fc0e7220  HIT
@@ -5610,7 +5613,7 @@ Level L1Data access addr = 0x7f81ce21f9a0, reftype = 0
     index = 0xcd, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f9a0, reftype = 0
-    index = 0x3e6, tag = 0x7f81ce21  HIT
+    index = 0x1e6, tag = 0xff039c43  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -5694,7 +5697,7 @@ Level L1Data access addr = 0x7f81ce441fc0, reftype = 1
     index = 0xfe, tag = 0x3fc0e7220  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce441fc0, reftype = 0
-    index = 0x7f, tag = 0x7f81ce44  MISS
+    index = 0x7f, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -5742,7 +5745,7 @@ Level L1Inst access addr = 0x7f81ce2244c0, reftype = 0
     index = 0x26, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2244c0, reftype = 0
-    index = 0x113, tag = 0x7f81ce22  MISS
+    index = 0x113, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -5802,7 +5805,7 @@ Level L1Data access addr = 0x7f81ce21f9c0, reftype = 0
     index = 0xce, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f9c0, reftype = 0
-    index = 0x3e7, tag = 0x7f81ce21  MISS
+    index = 0x1e7, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -5835,7 +5838,7 @@ Level L1Inst access addr = 0x7f81ce2244e0, reftype = 0
     index = 0x27, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2244e0, reftype = 0
-    index = 0x113, tag = 0x7f81ce22  HIT
+    index = 0x113, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -5916,7 +5919,7 @@ Level L1Inst access addr = 0x7f81ce224500, reftype = 0
     index = 0x28, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224500, reftype = 0
-    index = 0x114, tag = 0x7f81ce22  HIT
+    index = 0x114, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -5931,7 +5934,7 @@ Level L1Data access addr = 0x7f81ce21f45c, reftype = 0
     index = 0xa2, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f45c, reftype = 0
-    index = 0x3d1, tag = 0x7f81ce21  MISS
+    index = 0x1d1, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -5955,7 +5958,7 @@ Level L1Data access addr = 0x7f81ce21f460, reftype = 0
     index = 0xa3, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f460, reftype = 0
-    index = 0x3d1, tag = 0x7f81ce21  HIT
+    index = 0x1d1, tag = 0xff039c43  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -6051,10 +6054,10 @@ Level L1Data access addr = 0x7f81ce239f1c, reftype = 0
     index = 0xf8, tag = 0x3fc0e711c  MISS
 Add L1Datamiss time (+ 1)
     checkMemoryEntry: write back neededLevel L2 access addr = 0x7f81ce441f00, reftype = 1
-    index = 0x7c, tag = 0x7f81ce44  HIT
+    index = 0x7c, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Level L2 access addr = 0x7f81ce239f1c, reftype = 0
-    index = 0x27c, tag = 0x7f81ce23  MISS
+    index = 0x7c, tag = 0xff039c47  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -6081,7 +6084,7 @@ Level L1Inst access addr = 0x7f81ce224598, reftype = 0
     index = 0x2c, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224598, reftype = 0
-    index = 0x116, tag = 0x7f81ce22  MISS
+    index = 0x116, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -6111,7 +6114,7 @@ Level L1Inst access addr = 0x7f81ce2245a0, reftype = 0
     index = 0x2d, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2245a0, reftype = 0
-    index = 0x116, tag = 0x7f81ce22  HIT
+    index = 0x116, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -6273,7 +6276,7 @@ Level L1Data access addr = 0x7f81ce21f414, reftype = 0
     index = 0xa0, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f414, reftype = 0
-    index = 0x3d0, tag = 0x7f81ce21  MISS
+    index = 0x1d0, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -6414,7 +6417,7 @@ Level L1Data access addr = 0x7f81ce21f9e0, reftype = 0
     index = 0xcf, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f9e0, reftype = 0
-    index = 0x3e7, tag = 0x7f81ce21  HIT
+    index = 0x1e7, tag = 0xff039c43  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -6588,7 +6591,7 @@ Level L1Data access addr = 0x7f81ce21f48c, reftype = 0
     index = 0xa4, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f48c, reftype = 0
-    index = 0x3d2, tag = 0x7f81ce21  MISS
+    index = 0x1d2, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -6702,7 +6705,7 @@ Level L1Data access addr = 0x7f81ce239f20, reftype = 0
     index = 0xf9, tag = 0x3fc0e711c  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce239f20, reftype = 0
-    index = 0x27c, tag = 0x7f81ce23  HIT
+    index = 0x7c, tag = 0xff039c47  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -6771,7 +6774,7 @@ Level L1Data access addr = 0x7f81ce442000, reftype = 1
     index = 0x0, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442000, reftype = 0
-    index = 0x80, tag = 0x7f81ce44  MISS
+    index = 0x80, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -6801,7 +6804,7 @@ Level L1Data access addr = 0x7f81ce21fa08, reftype = 0
     index = 0xd0, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21fa08, reftype = 0
-    index = 0x3e8, tag = 0x7f81ce21  MISS
+    index = 0x1e8, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -6918,7 +6921,7 @@ Level L1Data access addr = 0x7f81ce21f594, reftype = 0
     index = 0xac, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f594, reftype = 0
-    index = 0x3d6, tag = 0x7f81ce21  MISS
+    index = 0x1d6, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -7119,7 +7122,7 @@ Level L1Data access addr = 0x7f81ce21fa20, reftype = 0
     index = 0xd1, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21fa20, reftype = 0
-    index = 0x3e8, tag = 0x7f81ce21  HIT
+    index = 0x1e8, tag = 0xff039c43  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -7233,7 +7236,7 @@ Level L1Data access addr = 0x7f81ce21f564, reftype = 0
     index = 0xab, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f564, reftype = 0
-    index = 0x3d5, tag = 0x7f81ce21  MISS
+    index = 0x1d5, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -7542,7 +7545,7 @@ Level L1Data access addr = 0x7f81ce21f4bc, reftype = 0
     index = 0xa5, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f4bc, reftype = 0
-    index = 0x3d2, tag = 0x7f81ce21  HIT
+    index = 0x1d2, tag = 0xff039c43  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -7563,7 +7566,7 @@ Level L1Data access addr = 0x7f81ce21f4c0, reftype = 0
     index = 0xa6, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f4c0, reftype = 0
-    index = 0x3d3, tag = 0x7f81ce21  MISS
+    index = 0x1d3, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -7689,7 +7692,7 @@ Level L1Data access addr = 0x7f81ce21fa40, reftype = 0
     index = 0xd2, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21fa40, reftype = 0
-    index = 0x3e9, tag = 0x7f81ce21  MISS
+    index = 0x1e9, tag = 0xff039c43  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -7866,7 +7869,7 @@ Level L1Data access addr = 0x7f81ce21f42c, reftype = 0
     index = 0xa1, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21f42c, reftype = 0
-    index = 0x3d0, tag = 0x7f81ce21  HIT
+    index = 0x1d0, tag = 0xff039c43  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -8040,7 +8043,7 @@ Level L1Data access addr = 0x7f81ce442020, reftype = 1
     index = 0x1, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442020, reftype = 0
-    index = 0x80, tag = 0x7f81ce44  HIT
+    index = 0x80, tag = 0xff039c88  HIT
 Add L2 hit time (+ 4)
 Level L1Data access addr = 0x7f81ce442024, reftype = 1
     index = 0x1, tag = 0x3fc0e7221  HIT
@@ -8067,7 +8070,7 @@ Level L1Data access addr = 0x7f81ce21fa68, reftype = 0
     index = 0xd3, tag = 0x3fc0e710f  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce21fa68, reftype = 0
-    index = 0x3e9, tag = 0x7f81ce21  HIT
+    index = 0x1e9, tag = 0xff039c43  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Data.
 Add L2 to L1Data transfer time (+ 12)
@@ -8385,7 +8388,7 @@ Level L1Data access addr = 0x7f81ce442cec, reftype = 0
     index = 0x67, tag = 0x3fc0e7221  MISS
 Add L1Datamiss time (+ 1)
 Level L2 access addr = 0x7f81ce442cec, reftype = 0
-    index = 0xb3, tag = 0x7f81ce44  MISS
+    index = 0xb3, tag = 0xff039c88  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -8406,7 +8409,7 @@ Level L1Inst access addr = 0x7f81ce224220, reftype = 0
     index = 0x11, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224220, reftype = 0
-    index = 0x108, tag = 0x7f81ce22  HIT
+    index = 0x108, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -8490,7 +8493,7 @@ Level L1Inst access addr = 0x7f81ce224240, reftype = 0
     index = 0x12, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224240, reftype = 0
-    index = 0x109, tag = 0x7f81ce22  MISS
+    index = 0x109, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -8580,7 +8583,7 @@ Level L1Inst access addr = 0x7f81ce224260, reftype = 0
     index = 0x13, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224260, reftype = 0
-    index = 0x109, tag = 0x7f81ce22  HIT
+    index = 0x109, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -8631,7 +8634,7 @@ Level L1Inst access addr = 0x7f81ce2245f0, reftype = 0
     index = 0x2f, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2245f0, reftype = 0
-    index = 0x117, tag = 0x7f81ce22  MISS
+    index = 0x117, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -8679,7 +8682,7 @@ Level L1Inst access addr = 0x7f81ce224280, reftype = 0
     index = 0x14, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224280, reftype = 0
-    index = 0x10a, tag = 0x7f81ce22  MISS
+    index = 0x10a, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -8760,7 +8763,7 @@ Level L1Inst access addr = 0x7f81ce2242a0, reftype = 0
     index = 0x15, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2242a0, reftype = 0
-    index = 0x10a, tag = 0x7f81ce22  HIT
+    index = 0x10a, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -8844,7 +8847,7 @@ Level L1Inst access addr = 0x7f81ce2242c0, reftype = 0
     index = 0x16, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2242c0, reftype = 0
-    index = 0x10b, tag = 0x7f81ce22  MISS
+    index = 0x10b, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
@@ -8922,7 +8925,7 @@ Level L1Inst access addr = 0x7f81ce2242e0, reftype = 0
     index = 0x17, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce2242e0, reftype = 0
-    index = 0x10b, tag = 0x7f81ce22  HIT
+    index = 0x10b, tag = 0xff039c44  HIT
 Add L2 hit time (+ 4)
 Bringing line into L1Inst.
 Add L2 to L1Inst transfer time (+ 12)
@@ -9003,7 +9006,7 @@ Level L1Inst access addr = 0x7f81ce224300, reftype = 0
     index = 0x18, tag = 0x3fc0e7112  MISS
 Add L1Instmiss time (+ 1)
 Level L2 access addr = 0x7f81ce224300, reftype = 0
-    index = 0x10c, tag = 0x7f81ce22  MISS
+    index = 0x10c, tag = 0xff039c44  MISS
 Add L2miss time (+ 6)
 Bringing line into L2.
 Add Memory to L2 transfer time (+ 140)
