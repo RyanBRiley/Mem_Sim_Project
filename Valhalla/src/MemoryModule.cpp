@@ -95,12 +95,8 @@ namespace Valhalla
       }
     
     //take care of address that do not line up with blocks
-    uint64 remainder = address % blockSize;
-    if(remainder != 0)
-      {
-        address -= remainder;
-        byteSize += remainder;
-      }
+    
+   
     uint64 rv = 0;
     uint64 index = 0;
     uint64 tag = 0;

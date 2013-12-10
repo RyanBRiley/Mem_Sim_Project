@@ -19,7 +19,7 @@ int main(int argc, char ** argv)
   uint32 byteSize;
   uint64 time = 0;
   uint64 refNum = 0;
-  
+  uint32 blockSize = 4;
   cout << "Creating Main Memory." << endl;
   MemoryModule * mainMemory = new MemoryModule();
   //mainMemory->printMemoryModuleSetup();
@@ -28,7 +28,7 @@ int main(int argc, char ** argv)
   MemoryModule * l2Cache = new MemoryModule("L2",
                                             L2_BLOCK_SIZE,
                                             L2_MEMORY_SIZE,
-                                            L2_ASSOCIATIVITY,
+                                            2,
                                             L2_HIT_PENALTY,
                                             L2_MISS_PENALTY,
                                             MAIN_MEMORY_SEND_ADDRESS_TIME + MAIN_MEMORY_READY_TIME,
@@ -72,6 +72,12 @@ int main(int argc, char ** argv)
  
   while (scanf("%c %llx %ld\n",&op,&address,&byteSize) == 3)
     { 
+uint64 remainder = address % blockSize;
+     if(remainder != 0) 
+      {
+        address -= remainder;
+        byteSize += remainder;
+      }
       int bytesToFetch = byteSize;
       cout << "--------------------------------------------------------------------------------" << endl;
       cout << "Ref " << refNum;
@@ -80,25 +86,27 @@ int main(int argc, char ** argv)
       cout << ", BSize = " << byteSize << endl;
       while (bytesToFetch > 0)
 	{
-	   int tempByteSize;
-	   if (!(bytesToFetch % procBusWidth)) tempByteSize = procBusWidth;
-	   else tempByteSize = bytesToFetch % procBusWidth;
-	   bytesToFetch = bytesToFetch - tempByteSize;
+	   bytesToFetch -= procBusWidth;
+          
+ 	  
      	   switch(op)
         	{
         	case 'I':
           	//Intruction fetch
-          	time += l1InstCache->checkMemoryEntry(CACHE_READ, address, tempByteSize);
+          	time += l1InstCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
           	break;
         	case 'R':
-          	time += l1DataCache->checkMemoryEntry(CACHE_READ, address, tempByteSize);
+          	time += l1DataCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
          	 break;
         	case 'W':
-          	time += l1DataCache->checkMemoryEntry(CACHE_WRITE, address, tempByteSize);
+          	time += l1DataCache->checkMemoryEntry(CACHE_WRITE, address, procBusWidth);
           	break;
         	default:
           	 continue;
         	}
+
+        address += procBusWidth;
+
 	}
       cout << "Simulated time = " << dec << time << endl;
       refNum++;
