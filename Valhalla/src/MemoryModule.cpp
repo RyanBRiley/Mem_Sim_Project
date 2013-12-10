@@ -13,7 +13,7 @@
 #include <string>
 
 #include "StdTypes.h"
-#include "DefaultParameters.h"
+
 #include "MemoryModule.h"
 
 using namespace std;
