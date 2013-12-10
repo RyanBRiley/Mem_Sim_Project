@@ -276,6 +276,7 @@ int main(int argc, char ** argv)
     outfile << "\t   Inst = " << iTime << "     " << "[" << fixed << setprecision(2) << (float) (((float) iTime/(float) (wTime + rTime + iTime)) * 100) << "%]" << endl;
     outfile << "\t   Total = " << wTime + iTime + rTime << "\n\n" << endl;
     outfile << "\t Average cycles per activity: \n\t   Read = " << fixed << setprecision(2) << (float) ((float) rTime/(float) (rCount)) << ";   Write = " << fixed << setprecision(2) << (float) ((float) wTime/(float) (wCount))<< ";   Inst. = " << fixed << setprecision(2) << (float) ((float) iTime/(float) (iCount))<< endl;
+outfile << "\n\n l1 hitcount: " << l1DataCache->hits();
 
   }
   return 0;

@@ -30,3 +30,6 @@
 
 	 Average cycles per activity: 
 	   Read = -nan;   Write = 42.75;   Inst. = 55.50
+
+
+ l1 hitcount: 7
