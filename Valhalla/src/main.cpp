@@ -202,7 +202,7 @@ int main(int argc, char ** argv)
 	    case 'W':
 	      tempTime = l1DataCache->checkMemoryEntry(CACHE_WRITE, address, procBusWidth);
 	      time += tempTime;
-              rTime += tempTime;
+              wTime += tempTime;
 	      break;
 	    default:
 	      continue;
@@ -267,10 +267,16 @@ int main(int argc, char ** argv)
     outfile <<"\t      L2-cache size = " <<  L2_MEMORY_SIZE << " : ways = " << L2_ASSOCIATIVITY << " : block size = " << L2_BLOCK_SIZE << endl;
     outfile <<"\t      Memory ready time = " <<  MAIN_MEMORY_READY_TIME << " chunksize = " << MAIN_MEMORY_ADDRESS_WIDTH << " : chunktime = " << MAIN_MEMORY_CHUNK_SEND_TIME << "\n\n" << endl;
     outfile << "\t Execute time = " << dec << time << ";    Total refs = " << refNum << "\n\t Inst refs = " << iCount << ";    Data refs = " <<  wCount << "\n\n" << endl; 
-    outfile << "\t Number of reference types: [Percentage]\n\t   Reads = " << wCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) wCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
+    outfile << "\t Number of reference types: [Percentage]\n\t   Reads = " << rCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) wCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
     outfile << "\t   Writes = " << wCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) wCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
     outfile << "\t   Inst = " << iCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) iCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
-    outfile << "\t   Total = " << wCount + iCount + rCount << endl;
+    outfile << "\t   Total = " << wCount + iCount + rCount << "\n\n" << endl;
+ outfile << "\t Total cycles for activities: [Percentage]\n\t   Reads = " << rTime << "     " << "[" << fixed << setprecision(2) << (float) (((float) rTime/(float) (wTime + rTime + iTime)) * 100) << "%]" << endl;
+    outfile << "\t   Writes = " << wTime << "     " << "[" << fixed << setprecision(2) << (float) (((float) wTime/(float) (wTime + rTime + iTime)) * 100) << "%]" << endl;
+    outfile << "\t   Inst = " << iTime << "     " << "[" << fixed << setprecision(2) << (float) (((float) iTime/(float) (wTime + rTime + iTime)) * 100) << "%]" << endl;
+    outfile << "\t   Total = " << wTime + iTime + rTime << "\n\n" << endl;
+    outfile << "\t Average cycles per activity: \n\t   Read = " << fixed << setprecision(2) << (float) ((float) rTime/(float) (rCount)) << ";   Write = " << fixed << setprecision(2) << (float) ((float) wTime/(float) (wCount))<< ";   Inst. = " << fixed << setprecision(2) << (float) ((float) iTime/(float) (iCount))<< endl;
+
   }
   return 0;
 
