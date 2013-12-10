@@ -32,4 +32,19 @@
 	   Read = -nan;   Write = 42.75;   Inst. = 55.50
 
 
- l1 hitcount: 7
+	 Memory Level: L1i 
+	      Hit Count = 5  Miss Count = 2
+	      Total Requests =  7
+	     Hit Rate = [71.43%]  Miss Rate = [28.57%]
+
+
+	 Memory Level: L1d 
+	      Hit Count = 7  Miss Count = 1
+	      Total Requests =  8
+	      Hit Rate = [87.50%]   Miss Rate = [12.50%]
+
+
+	 Memory Level: L2 
+	      Hit Count = 0  Miss Count = 3
+	      Total Requests =  3
+	      Hit Rate = [0.00%]   Miss Rate = [100.00%]

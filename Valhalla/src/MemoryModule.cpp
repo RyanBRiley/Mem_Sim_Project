@@ -88,6 +88,10 @@ namespace Valhalla
   {
      return hitCount;
   } 
+  uint64 MemoryModule::misses()
+  {
+     return missCount;
+  } 
   uint64 MemoryModule::checkMemoryEntry(CacheOperation operation, uint64 address, uint32 byteSize)
   {
     if(nextMemoryModule == NULL)

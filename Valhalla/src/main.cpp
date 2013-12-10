@@ -7,7 +7,7 @@
 #include <sstream>
 #include <map>
 #include <iomanip>
-
+#include <cmath>
 #include "StdTypes.h"
 #include "MemoryModule.h"
 
@@ -243,7 +243,15 @@ int main(int argc, char ** argv)
 
 
   if(argc == 3){
-    std::stringstream str;
+    int L1SizeCost = ((L1_MEMORY_SIZE)/4096)*100;
+    int L2SizeCost = ((L2_MEMORY_SIZE)/65536)*50;
+    int L1AssociativityCost = log2(L1_ASSOCIATIVITY) * 100;
+    int L2AssociativityCost = log2(L1_ASSOCIATIVITY) * 50;
+    int MemReadyCost = (50 / MAIN_MEMORY_READY_TIME) * 2;
+    int MemChunkSizeCost = 0;
+    int baseMemCost = 75;
+    
+   std::stringstream str;
     
     ofstream outfile;
     std::string s = argv[1];
@@ -276,9 +284,20 @@ int main(int argc, char ** argv)
     outfile << "\t   Inst = " << iTime << "     " << "[" << fixed << setprecision(2) << (float) (((float) iTime/(float) (wTime + rTime + iTime)) * 100) << "%]" << endl;
     outfile << "\t   Total = " << wTime + iTime + rTime << "\n\n" << endl;
     outfile << "\t Average cycles per activity: \n\t   Read = " << fixed << setprecision(2) << (float) ((float) rTime/(float) (rCount)) << ";   Write = " << fixed << setprecision(2) << (float) ((float) wTime/(float) (wCount))<< ";   Inst. = " << fixed << setprecision(2) << (float) ((float) iTime/(float) (iCount))<< endl;
-outfile << "\n\n l1 hitcount: " << l1DataCache->hits();
-
+outfile << "\n\n\t Memory Level: L1i \n"; 
+outfile <<"\t      Hit Count = " <<  l1InstCache->hits() << "  " << "Miss Count = " <<  l1InstCache->misses() <<endl;
+outfile <<"\t      Total Requests =  " <<  l1InstCache->hits() + l1InstCache->misses() <<endl;
+outfile <<"\t      Hit Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l1InstCache->hits()/ (float) ( l1InstCache->hits() + l1InstCache->misses())) * 100) << "%]" << "  Miss Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l1InstCache->misses()/ (float) ( l1InstCache->hits() + l1InstCache->misses())) * 100) << "%]" << endl;
+outfile << "\n\n\t Memory Level: L1d \n"; 
+outfile <<"\t      Hit Count = " <<  l1DataCache->hits() << "  " << "Miss Count = " <<  l1DataCache->misses() <<endl;
+outfile <<"\t      Total Requests =  " <<  l1DataCache->hits() + l1DataCache->misses() <<endl;
+outfile <<"\t      Hit Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l1DataCache->hits()/ (float) ( l1DataCache->hits() + l1DataCache->misses())) * 100) << "%]" << "   Miss Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l1DataCache->misses()/ (float) ( l1DataCache->hits() + l1DataCache->misses())) * 100) << "%]" << endl;
+outfile << "\n\n\t Memory Level: L2 \n"; 
+outfile <<"\t      Hit Count = " <<  l2Cache->hits() << "  " << "Miss Count = " <<  l2Cache->misses() <<endl;
+outfile <<"\t      Total Requests =  " <<  l2Cache->hits() + l2Cache->misses() <<endl;
+outfile <<"\t      Hit Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l2Cache->hits()/ (float) ( l2Cache->hits() + l2Cache->misses())) * 100) << "%]" << "   Miss Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l2Cache->misses()/ (float) ( l2Cache->hits() + l2Cache->misses())) * 100) << "%]" << endl;
   }
+
   return 0;
 
 }
