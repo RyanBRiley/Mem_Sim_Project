@@ -48,9 +48,9 @@ namespace Valhalla
   }
 
   MemoryModule::MemoryModule(std::string newModuleName, uint32 newBlockSize, uint64 newMemorySize, uint64 newAssociativity, uint32 newHitPenalty,
-                 uint32 newMissPenalty, uint32 mainMemoryStartupPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
-                 MemoryModule * newNextMemoryModule, std::string newNameNextMemoryModule)
-    {
+			     uint32 newMissPenalty, uint32 mainMemoryStartupPenalty, uint32 newTransferPenalty, uint32 newBusWidthToNextMemoryModule,
+			     MemoryModule * newNextMemoryModule, std::string newNameNextMemoryModule)
+  {
     moduleName = newModuleName;
     blockSize = newBlockSize;
     memorySize = newMemorySize;
@@ -93,27 +93,27 @@ namespace Valhalla
 
   uint64 MemoryModule::hits()
   {
-     return hitCount;
+    return hitCount;
   } 
 
   uint64 MemoryModule::misses()
   {
-     return missCount;
+    return missCount;
   } 
 
   uint64 MemoryModule::dirtyKicks()
   {
-     return dirtyKick;
+    return dirtyKick;
   } 
 
   uint64 MemoryModule::kicks()
   {
-     return kickCount;
+    return kickCount;
   } 
 
   uint64 MemoryModule::transfers()
   {
-     return transferCount;
+    return transferCount;
   } 
 
   uint64 MemoryModule::checkMemoryEntry(CacheOperation operation, uint64 address, uint32 byteSize)
@@ -188,17 +188,17 @@ namespace Valhalla
         //delete last memory entry
         MemoryEntry toDelete = memoryEntries[index].back();
         transferCount++;
-      if(toDelete.validBit){
-kickCount++;
-         if(toDelete.dirtyBit)
-          {
-            //need to write entry, reconstruct address.
-            DEBUG_MODULE_COUT("    checkMemoryEntry: write back needed");
-            writeBackAddress = (toDelete.tag << tagShiftAmount) | (index << indexShiftAmount);
-            rv += transferPenalty + nextMemoryModule->checkMemoryEntry(CACHE_WRITE, writeBackAddress, blockSize);
-            dirtyKick++;
-          }
-}
+	if(toDelete.validBit){
+	  kickCount++;
+	  if(toDelete.dirtyBit)
+	    {
+	      //need to write entry, reconstruct address.
+	      DEBUG_MODULE_COUT("    checkMemoryEntry: write back needed");
+	      writeBackAddress = (toDelete.tag << tagShiftAmount) | (index << indexShiftAmount);
+	      rv += transferPenalty + nextMemoryModule->checkMemoryEntry(CACHE_WRITE, writeBackAddress, blockSize);
+	      dirtyKick++;
+	    }
+	}
         memoryEntries[index].pop_back();
         //put cache miss at front.
         memoryEntries[index].push_front(missed);
@@ -217,7 +217,7 @@ kickCount++;
           }
         else
           {
-			//operation is a cache write, and missed the cache, this code isn't right
+	    //operation is a cache write, and missed the cache, this code isn't right
             rv += transferPenalty + nextMemoryModule->checkMemoryEntry(CACHE_READ, address, blockSize);
             rv += hitPenalty;
           }

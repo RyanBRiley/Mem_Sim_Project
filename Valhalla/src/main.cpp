@@ -308,13 +308,13 @@ int main(int argc, char ** argv)
     outfile <<"\t      Hit Count = " <<  l1DataCache->hits() << "  " << "Miss Count = " <<  l1DataCache->misses() <<endl;
     outfile <<"\t      Total Requests =  " <<  l1DataCache->hits() + l1DataCache->misses() <<endl;
     outfile <<"\t      Hit Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l1DataCache->hits()/ (float) ( l1DataCache->hits() + l1DataCache->misses())) * 100) << "%]" << "   Miss Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l1DataCache->misses()/ (float) ( l1DataCache->hits() + l1DataCache->misses())) * 100) << "%]" << endl;
- outfile <<"\t      Kickouts = " << l1DataCache->kicks()  << ";  Dirty kickouts = " << l1DataCache->dirtyKicks() <<";  Transfers = " << l1DataCache->transfers() << endl;
+    outfile <<"\t      Kickouts = " << l1DataCache->kicks()  << ";  Dirty kickouts = " << l1DataCache->dirtyKicks() <<";  Transfers = " << l1DataCache->transfers() << endl;
 
     outfile << "\n\n\t Memory Level: L2 \n"; 
     outfile <<"\t      Hit Count = " <<  l2Cache->hits() << "  " << "Miss Count = " <<  l2Cache->misses() <<endl;
     outfile <<"\t      Total Requests =  " <<  l2Cache->hits() + l2Cache->misses() <<endl;
     outfile <<"\t      Hit Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l2Cache->hits()/ (float) ( l2Cache->hits() + l2Cache->misses())) * 100) << "%]" << "   Miss Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l2Cache->misses()/ (float) ( l2Cache->hits() + l2Cache->misses())) * 100) << "%]" << endl;
- outfile <<"\t      Kickouts = " << l2Cache->kicks()  << ";  Dirty kickouts = " << l2Cache->dirtyKicks() <<";  Transfers = " << l2Cache->transfers() << endl;
+    outfile <<"\t      Kickouts = " << l2Cache->kicks()  << ";  Dirty kickouts = " << l2Cache->dirtyKicks() <<";  Transfers = " << l2Cache->transfers() << endl;
 
     outfile << "\n\n\n\t L1 cache cost (Icache $" << l1iCost << ") + (Dcache $" << l1dCost << ") = $" << l1iCost + l1dCost<< "\n"; 
     outfile << "\t L2 cache cost = $" << l2Cost << ";  Memory cost = $" << memCost << "\n"; 
