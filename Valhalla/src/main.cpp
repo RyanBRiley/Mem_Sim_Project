@@ -100,6 +100,9 @@ int main(int argc, char ** argv)
   uint64 wCount = 0;
   uint64 rCount = 0;
   uint32 blockSize = 4;
+  uint64 rTime = 0;
+  uint64 iTime = 0;
+  uint64 wTime = 0;
   cout << "Creating Main Memory." << endl;
   MemoryModule * mainMemory = new MemoryModule();
   //mainMemory->printMemoryModuleSetup();
@@ -158,7 +161,6 @@ int main(int argc, char ** argv)
 	  iCount++;
 	  break;
 	case 'R':
-	  time += l1DataCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
 	  rCount++;
 	  break;
 	case 'W':
@@ -183,18 +185,24 @@ int main(int argc, char ** argv)
 	{
 	  bytesToFetch -= procBusWidth;
           
- 	  
+ 	  int tempTime;
 	  switch(op)
 	    {
 	    case 'I':
 	      //Intruction fetch
-	      time += l1InstCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
+	      tempTime = l1InstCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
+	      time += tempTime;
+              iTime += tempTime;
 	      break;
 	    case 'R':
-	      time += l1DataCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
+	      tempTime = l1InstCache->checkMemoryEntry(CACHE_READ, address, procBusWidth);
+	      time += tempTime;
+              rTime += tempTime;
 	      break;
 	    case 'W':
-	      time += l1DataCache->checkMemoryEntry(CACHE_WRITE, address, procBusWidth);
+	      tempTime = l1DataCache->checkMemoryEntry(CACHE_WRITE, address, procBusWidth);
+	      time += tempTime;
+              rTime += tempTime;
 	      break;
 	    default:
 	      continue;
