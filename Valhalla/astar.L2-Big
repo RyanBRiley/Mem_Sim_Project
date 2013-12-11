@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+	astar.L2-Big	 Simulation Results
+--------------------------------------------------------------------------------
+
+
+	 Memory system: 
+	      Dcache size = 8192 : ways = 2 : block size = 32
+	      Icache size = 8192 : ways = 2 : block size = 32
+	      L2-cache size = 131072 : ways = 1 : block size = 64
+	      Memory ready time = 50 chunksize = 16 : chunktime = 20
+
+
+	 Execute time = 18111728604;    Total refs = 5000000000
+	 Inst refs = 3418797090;    Data refs = 308039522
+
+
+	 Number of reference types: [Percentage]
+	      Reads = 1273163388     [25.46%]
+	      Writes = 308039522     [6.16%]
+	      Inst = 3418797090     [68.38%]
+	      Total = 5000000000
+
+
+	 Total cycles for activities: [Percentage]
+	      Reads = 8383937081     [46.29%]
+	      Writes = 3990685271     [22.03%]
+	      Inst = 5737106252     [31.68%]
+	      Total = 18111728604
+
+
+	 Average cycles per activity: 
+	      Read = 6.59;   Write = 12.96;   Inst. = 5.30
+
+
+	 Memory Level: L1i 
+	      Hit Count = 5720505286  Miss Count = 227995
+	      Total Requests =  5720733281
+	      Hit Rate = [100.00%]  Miss Rate = [0.00%]
+	      Kickouts = 227739;  Dirty kickouts = 0;  Transfers = 227995
+
+
+	 Memory Level: L1d 
+	      Hit Count = 2111096166  Miss Count = 95725984
+	      Total Requests =  2206822150
+	      Hit Rate = [95.66%]   Miss Rate = [4.34%]
+	      Kickouts = 95725728;  Dirty kickouts = 39157323;  Transfers = 95725984
+
+
+	 Memory Level: L2 
+	      Hit Count = 100249135  Miss Count = 34862167
+	      Total Requests =  135111302
+	      Hit Rate = [74.20%]   Miss Rate = [25.80%]
+	      Kickouts = 34860119;  Dirty kickouts = 20261157;  Transfers = 34862167
+
+
+
+	 L1 cache cost (Icache $400) + (Dcache $400) = $800
+	 L2 cache cost = $100;  Memory cost = $75
+	 Total cost = $975
