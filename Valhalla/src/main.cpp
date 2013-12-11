@@ -283,7 +283,7 @@ int main(int argc, char ** argv)
     outfile <<"\t      L2-cache size = " <<  L2_MEMORY_SIZE << " : ways = " << L2_ASSOCIATIVITY << " : block size = " << L2_BLOCK_SIZE << endl;
     outfile <<"\t      Memory ready time = " <<  MAIN_MEMORY_READY_TIME << " chunksize = " << MAIN_MEMORY_ADDRESS_WIDTH << " : chunktime = " << MAIN_MEMORY_CHUNK_SEND_TIME << "\n\n" << endl;
 
-    outfile << "\t Execute time = " << dec << time << ";    Total refs = " << refNum << "\n\t Inst refs = " << iCount << ";    Data refs = " <<  wCount << "\n\n" << endl; 
+    outfile << "\t Execute time = " << dec << time << ";    Total refs = " << refNum << "\n\t Inst refs = " << iCount << ";    Data refs = " <<  wCount + rCount << "\n\n" << endl; 
     outfile << "\t Number of reference types: [Percentage]\n\t      Reads = " << rCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) rCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
     outfile << "\t      Writes = " << wCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) wCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
     outfile << "\t      Inst = " << iCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) iCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
