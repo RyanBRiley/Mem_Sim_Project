@@ -16,7 +16,7 @@ fileList = dir('*.All-FA');
 fileNames = extractfield(fileList, 'name');
 [totalCPI(3), hitRate(3,1), hitRate(3,2), hitRate(3,3)] = cache_graphs('Fully_Associative', fileNames);
 
-fileList = dir('*.default');
+fileList = dir('*.default')
 fileNames = extractfield(fileList, 'name');
 [totalCPI(4), hitRate(4,1), hitRate(4,2), hitRate(4,3)] = cache_graphs('Direct_Mapped', fileNames);
 
