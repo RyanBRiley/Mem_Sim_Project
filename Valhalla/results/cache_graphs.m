@@ -1,4 +1,4 @@
-function cache_graphs(cacheName, fileList)
+function [totalCPI, l1InstHitRate, l1dataHitRate, l2dataHitRate] = cache_graphs(cacheName, fileList)
 [numberReads, numberWrites, numberInst, numberCycleReads, numberCycleWrites, numberCycleInst] = deal(0,0,0,0,0,0);
 [L1iHit, L1dHit, L2dHit, L1iReq, L1dReq, L2dReq] = deal(0,0,0,0,0,0);
 
@@ -24,7 +24,8 @@ cpi(1) = (numberCycleReads)/(numberReads);
 cpi(2) = (numberCycleWrites)/(numberWrites);
 cpi(3) = (numberCycleInst)/(numberInst);
 cpi(4) = (numberCycleReads+numberCycleWrites+numberCycleInst)/(numberReads+numberWrites+numberInst);
-cpiGraph = figure();
+totalCPI = cpi(4);
+cpiGraph = figure('units','normalized','outerposition',[0 0 1 1]);
 hold on;
 h = bar(1,cpi(1));
 set(h, 'FaceColor', 'r');
@@ -37,16 +38,19 @@ set(h, 'FaceColor', 'k');
 title(strcat(cacheNameSpace,' CPI'));
 set(gca,'XTick',[]);
 ylabel('CPI');
-legend('Read CPI', 'Write CPI', 'Instruction CPI', 'Total CPI');
+legend('Read CPI', 'Write CPI', 'Instruction CPI', 'Total CPI', 'Location', 'NorthEastOutside');
 hold off;
 
 saveas(cpiGraph, strcat(cacheName,'_CPI_Graph'), 'png');
 
 hitRate(1) = (L1iHit/L1iReq)*100;
+l1InstHitRate = hitRate(1);
 hitRate(2) = (L1dHit/L1dReq)*100;
+l1dataHitRate = hitRate(2);
 hitRate(3) = (L2dHit/L2dReq)*100;
+l2dataHitRate = hitRate(3);
 
-hitRateGraph = figure();
+hitRateGraph = figure('units','normalized','outerposition',[0 0 1 1]);
 hold on;
 h = bar(1,hitRate(1));
 set(h, 'FaceColor', 'r');
