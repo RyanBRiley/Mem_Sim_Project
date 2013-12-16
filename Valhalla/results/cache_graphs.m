@@ -1,9 +1,11 @@
-function cache_graphs(cacheName, varargin)
+function cache_graphs(cacheName, fileList)
 [numberReads, numberWrites, numberInst, numberCycleReads, numberCycleWrites, numberCycleInst] = deal(0,0,0,0,0,0);
 [L1iHit, L1dHit, L2dHit, L1iReq, L1dReq, L2dReq] = deal(0,0,0,0,0,0);
 
-for i = 1:(length(varargin))
-    A = importdata(varargin{i});
+cacheNameSpace = strrep(cacheName, '_', ' ');
+
+for i = 1:(length(fileList))
+    A = importdata(fileList{i});
     numberReads = numberReads + str2double(A.textdata(14,3));
     numberWrites = numberWrites + str2double(A.textdata(15,3));
     numberInst = numberInst + str2double(A.textdata(16,3));
@@ -17,8 +19,6 @@ for i = 1:(length(varargin))
     L2dHit = L2dHit + str2double(A.textdata(36,4));
     L2dReq = L2dReq + str2double(A.textdata(37,4));
 end
-
-close all;
 
 cpi(1) = (numberCycleReads)/(numberReads);
 cpi(2) = (numberCycleWrites)/(numberWrites);
@@ -34,7 +34,7 @@ h = bar(3,cpi(3));
 set(h, 'FaceColor', 'g');
 h = bar(4,cpi(4));
 set(h, 'FaceColor', 'k');
-title(strcat(cacheName,' CPI'));
+title(strcat(cacheNameSpace,' CPI'));
 set(gca,'XTick',[]);
 ylabel('CPI');
 legend('Read CPI', 'Write CPI', 'Instruction CPI', 'Total CPI');
@@ -54,7 +54,7 @@ h = bar(2,hitRate(2));
 set(h, 'FaceColor', 'b');
 h = bar(3,hitRate(3));
 set(h, 'FaceColor', 'g');
-title(strcat(cacheName,' Hit Rates'));
+title(strcat(cacheNameSpace,' Hit Rates'));
 set(gca,'XTick',[]);
 ylabel('Hit Rate');
 legend('Level 1 Instruction Cache Hit Rate', 'Level 1 Data Cache Hit Rate', 'Level 1 Data Cache Hit Rate', 'Location', 'NorthEastOutside');
