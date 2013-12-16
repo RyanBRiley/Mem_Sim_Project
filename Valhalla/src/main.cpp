@@ -176,11 +176,12 @@ int main(int argc, char ** argv)
 	  byteSize += remainder;
 	}
       int bytesToFetch = byteSize;
+/*
       cout << "--------------------------------------------------------------------------------" << endl;
       cout << "Ref " << refNum;
       cout << ": Addr = " << hex << address;
       cout << ", Type = " << op;
-      cout << ", BSize = " << byteSize << endl;
+      cout << ", BSize = " << byteSize << endl; */
       while (bytesToFetch > 0)
 	{
 	  bytesToFetch -= procBusWidth;
@@ -212,7 +213,7 @@ int main(int argc, char ** argv)
 	  address += procBusWidth;
 
 	}
-      cout << "Simulated time = " << dec << time << endl;
+     // cout << "Simulated time = " << dec << time << endl;
       refNum++;
     }
   /*

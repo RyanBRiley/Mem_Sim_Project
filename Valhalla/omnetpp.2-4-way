@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+	omnetpp.2-4-way	 Simulation Results
+--------------------------------------------------------------------------------
+
+
+	 Memory system: 
+	      Dcache size = 8192 : ways = 2 : block size = 32
+	      Icache size = 8192 : ways = 2 : block size = 32
+	      L2-cache size = 65536 : ways = 4 : block size = 64
+	      Memory ready time = 50 chunksize = 16 : chunktime = 20
+
+
+	 Execute time = 24624143952;    Total refs = 5000000000
+	 Inst refs = 3378592184;    Data refs = 1621407816
+
+
+	 Number of reference types: [Percentage]
+	      Reads = 1003285503     [20.07%]
+	      Writes = 618122313     [12.36%]
+	      Inst = 3378592184     [67.57%]
+	      Total = 5000000000
+
+
+	 Total cycles for activities: [Percentage]
+	      Reads = 10812702131     [43.91%]
+	      Writes = 2884530741     [11.71%]
+	      Inst = 10926911080     [44.37%]
+	      Total = 24624143952
+
+
+	 Average cycles per activity: 
+	      Read = 10.78;   Write = 4.67;   Inst. = 7.29
+
+
+	 Memory Level: L1i 
+	      Hit Count = 5562290006  Miss Count = 169506523
+	      Total Requests =  5731796529
+	      Hit Rate = [97.04%]  Miss Rate = [2.96%]
+	      Kickouts = 169506267;  Dirty kickouts = 0;  Transfers = 169506523
+
+
+	 Memory Level: L1d 
+	      Hit Count = 2831035564  Miss Count = 128933838
+	      Total Requests =  2959969402
+	      Hit Rate = [95.64%]   Miss Rate = [4.36%]
+	      Kickouts = 128933582;  Dirty kickouts = 52662659;  Transfers = 128933838
+
+
+	 Memory Level: L2 
+	      Hit Count = 297846930  Miss Count = 53256090
+	      Total Requests =  351103020
+	      Hit Rate = [84.83%]   Miss Rate = [15.17%]
+	      Kickouts = 53255066;  Dirty kickouts = 16006430;  Transfers = 53256090
+
+
+
+	 L1 cache cost (Icache $400) + (Dcache $400) = $800
+	 L2 cache cost = $150;  Memory cost = $75
+	 Total cost = $1025

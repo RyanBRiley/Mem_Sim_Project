@@ -18,7 +18,7 @@
 
 using namespace std;
 
-#define MEMORY_MODULE_DEBUG 1
+//#define MEMORY_MODULE_DEBUG 0
 #ifdef MEMORY_MODULE_DEBUG
 #define DEBUG_MODULE_COUT(m) cout << m
 #else

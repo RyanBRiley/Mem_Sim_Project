@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+	hmmer.All-FA	 Simulation Results
+--------------------------------------------------------------------------------
+
+
+	 Memory system: 
+	      Dcache size = 8192 : ways = 256 : block size = 32
+	      Icache size = 8192 : ways = 256 : block size = 32
+	      L2-cache size = 65536 : ways = 1024 : block size = 64
+	      Memory ready time = 50 chunksize = 16 : chunktime = 20
+
+
+	 Execute time = 0;    Total refs = 0
+	 Inst refs = 0;    Data refs = 0
+
+
+	 Number of reference types: [Percentage]
+	      Reads = 0     [-nan%]
+	      Writes = 0     [-nan%]
+	      Inst = 0     [-nan%]
+	      Total = 0
+
+
+	 Total cycles for activities: [Percentage]
+	      Reads = 0     [-nan%]
+	      Writes = 0     [-nan%]
+	      Inst = 0     [-nan%]
+	      Total = 0
+
+
+	 Average cycles per activity: 
+	      Read = -nan;   Write = -nan;   Inst. = -nan
+
+
+	 Memory Level: L1i 
+	      Hit Count = 0  Miss Count = 0
+	      Total Requests =  0
+	      Hit Rate = [-nan%]  Miss Rate = [-nan%]
+	      Kickouts = 0;  Dirty kickouts = 0;  Transfers = 0
+
+
+	 Memory Level: L1d 
+	      Hit Count = 0  Miss Count = 0
+	      Total Requests =  0
+	      Hit Rate = [-nan%]   Miss Rate = [-nan%]
+	      Kickouts = 0;  Dirty kickouts = 0;  Transfers = 0
+
+
+	 Memory Level: L2 
+	      Hit Count = 0  Miss Count = 0
+	      Total Requests =  0
+	      Hit Rate = [-nan%]   Miss Rate = [-nan%]
+	      Kickouts = 0;  Dirty kickouts = 0;  Transfers = 0
+
+
+
+	 L1 cache cost (Icache $1800) + (Dcache $1800) = $3600
+	 L2 cache cost = $550;  Memory cost = $75
+	 Total cost = $4225
