@@ -3,5 +3,6 @@
 *Contributors:*
 
 
-Brian Campuzano <br>
-Ryan Riley
+[Brian Campuzano](https://github.com/Brian-Campuzano) <br>
+[Ryan Riley](https://github.com/RyanBRiley)
+
