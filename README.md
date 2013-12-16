@@ -2,7 +2,7 @@
 ##<center>ECEN 4593</center>
 ###<center>12/16/2013</center>
 <br><br><center>
-[![](/home/fatalexception/Documents/valhalla_logo3.jpg)](https://github.com/Brian-Campuzano/Memory_Simulation_Project)</center><br><br>
+[![](/includes/valhalla_logo3.jpg)](https://github.com/Brian-Campuzano/Memory_Simulation_Project)</center><br><br>
 ##<center>[Brian Campuzano](https://github.com/Brian-Campuzano) </center>
 ##<center>[Ryan Riley](https://github.com/RyanBRiley)</center>
 <!--BREAK-->
