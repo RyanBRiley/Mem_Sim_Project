@@ -18,6 +18,7 @@
 \pagebreak
 
 #Summary
+
 ##Main Conclusion
 In this project, we simulated various cache configurations using several test, each containing roughly 5 billion memory references. Results were generated to observe the counts of the different reference types and the associated hit/miss rates. 
 The different types of configurations were:\newline
@@ -38,6 +39,7 @@ fied 64KB four-way set associative Level-2 cache.
 
 The Folowing are the plots of our results
 \pagebreak
+
 ##Results Plots
 \pagebreak
 
@@ -60,6 +62,7 @@ The Folowing are the plots of our results
 ![](/home/fatalexception/Memory_Simulation_Project/Valhalla/results/L2_Big_Hit_Rate_Graph.png)
 
 \pagebreak
+
 ##Affect of chunksize on cost
 We also simulated the affect on cost of the variance in chunksize and found that increases the width, while decreasing execution time, also increased cost. The cost/benefit ratio was likely best in the 32 byte width. 
 
