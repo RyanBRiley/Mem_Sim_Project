@@ -40,7 +40,7 @@ for i = 1:length(totalCPI)
     h = bar(i, totalCPI(i));
     set(h, 'FaceColor', faceColors(i));
 end
-title('CPI for All Memory Configurations');
+title('Total CPI for All Memory Configurations');
 set(gca,'XTick',[]);
 ylabel('CPI');
 legend('L1 2 way L2 4 way', 'All 2 way', 'Fully Associative', 'Direct Mapped', 'L1 2 way', 'L2 2 way', 'L2 Big', 'Location', 'NorthEastOutside');
@@ -57,10 +57,11 @@ hold on;
 bar(hitRate,'grouped');
 
 title('Hit Rate for All Memory Configurations');
-set(gca,'XTick',[]);
+set(gca,'XTick',1:7)
+set(gca,'XTickLabel',{'L1 2 way L2 4 way', 'All 2 way', 'Fully Associative', 'Direct Mapped', 'L1 2 way', 'L2 2 way', 'L2 Big'})
 ylabel('Hit Rate');
-%legend('L1 2 way L2 4 way', 'All 2 way', 'Fully Associative', 'Direct Mapped', 'L1 2 way', 'L2 2 way', 'L2 Big', 'Location', 'NorthEastOutside');
+legend('L1 InstructionCache Hit Rate', 'L1 Data Cache Hit Rate', 'L2 Cache Hit Rate', 'Location', 'NorthEastOutside');
 ylim([60 100]);
 hold off;
 
-saveas(totalHitRateGraph, 'CPI_Graph_All_Configurations', 'png');
+saveas(totalHitRateGraph, 'Hit_Rate_Graph_All_Configurations', 'png');

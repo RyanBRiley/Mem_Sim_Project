@@ -61,7 +61,8 @@ set(h, 'FaceColor', 'g');
 title(strcat(cacheNameSpace,' Hit Rates'));
 set(gca,'XTick',[]);
 ylabel('Hit Rate');
-legend('Level 1 Instruction Cache Hit Rate', 'Level 1 Data Cache Hit Rate', 'Level 1 Data Cache Hit Rate', 'Location', 'NorthEastOutside');
+ylim([min(hitRate)-10,100]);
+legend('Level 1 Instruction Cache Hit Rate', 'Level 1 Data Cache Hit Rate', 'Level 2 Cache Hit Rate', 'Location', 'NorthEastOutside');
 hold off;
 
 saveas(hitRateGraph, strcat(cacheName,'_Hit_Rate_Graph'), 'png');
