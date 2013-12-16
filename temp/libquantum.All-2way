@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+	libquantum.All-2way	 Simulation Results
+--------------------------------------------------------------------------------
+
+
+	 Memory system: 
+	      Dcache size = 8192 : ways = 2 : block size = 32
+	      Icache size = 8192 : ways = 2 : block size = 32
+	      L2-cache size = 65536 : ways = 2 : block size = 64
+	      Memory ready time = 50 chunksize = 16 : chunktime = 20
+
+
+	 Execute time = 29971322557;    Total refs = 5000000001
+	 Inst refs = 3767555829;    Data refs = 1232444172
+
+
+	 Number of reference types: [Percentage]
+	      Reads = 1083175795     [21.66%]
+	      Writes = 149268377     [2.99%]
+	      Inst = 3767555829     [75.35%]
+	      Total = 5000000001
+
+
+	 Total cycles for activities: [Percentage]
+	      Reads = 24610432296     [82.11%]
+	      Writes = 353399652     [1.18%]
+	      Inst = 5007490609     [16.71%]
+	      Total = 29971322557
+
+
+	 Average cycles per activity: 
+	      Read = 22.72;   Write = 2.37;   Inst. = 7.96
+
+
+	 Memory Level: L1i 
+	      Hit Count = 5006736635  Miss Count = 5134
+	      Total Requests =  5006741769
+	      Hit Rate = [100.00%]  Miss Rate = [0.00%]
+	      Kickouts = 4878;  Dirty kickouts = 0;  Transfers = 5134
+
+
+	 Memory Level: L1d 
+	      Hit Count = 1922666906  Miss Count = 177349393
+	      Total Requests =  2100016299
+	      Hit Rate = [91.55%]   Miss Rate = [8.45%]
+	      Kickouts = 177349137;  Dirty kickouts = 72829157;  Transfers = 177349393
+
+
+	 Memory Level: L2 
+	      Hit Count = 161432721  Miss Count = 88750963
+	      Total Requests =  250183684
+	      Hit Rate = [64.53%]   Miss Rate = [35.47%]
+	      Kickouts = 88749939;  Dirty kickouts = 40904503;  Transfers = 88750963
+
+
+
+	 L1 cache cost (Icache $400) + (Dcache $400) = $800
+	 L2 cache cost = $100;  Memory cost = $75
+	 Total cost = $975

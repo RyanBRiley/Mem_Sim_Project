@@ -44,7 +44,7 @@ int main(int argc, char ** argv)
   int MAIN_MEMORY_SEND_ADDRESS_TIME = 10;
   int MAIN_MEMORY_READY_TIME = 50;
   int MAIN_MEMORY_CHUNK_SEND_TIME = 20;
-  int MAIN_MEMORY_ADDRESS_WIDTH = 16;
+  int MAIN_MEMORY_ADDRESS_WIDTH = 32;
   
   //initializing params map
   params["L1_BLOCK_SIZE"] = &L1_BLOCK_SIZE;

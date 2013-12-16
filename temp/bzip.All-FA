@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+	bzip.All-FA	 Simulation Results
+--------------------------------------------------------------------------------
+
+
+	 Memory system: 
+	      Dcache size = 8192 : ways = 256 : block size = 32
+	      Icache size = 8192 : ways = 256 : block size = 32
+	      L2-cache size = 65536 : ways = 1024 : block size = 64
+	      Memory ready time = 50 chunksize = 16 : chunktime = 20
+
+
+	 Execute time = 24281500400;    Total refs = 5000000000
+	 Inst refs = 3812526036;    Data refs = 261704626
+
+
+	 Number of reference types: [Percentage]
+	      Reads = 925769338     [18.52%]
+	      Writes = 261704626     [5.23%]
+	      Inst = 3812526036     [76.25%]
+	      Total = 5000000000
+
+
+	 Total cycles for activities: [Percentage]
+	      Reads = 9655104585     [39.76%]
+	      Writes = 8524382059     [35.11%]
+	      Inst = 6102013756     [25.13%]
+	      Total = 24281500400
+
+
+	 Average cycles per activity: 
+	      Read = 10.43;   Write = 32.57;   Inst. = 6.37
+
+
+	 Memory Level: L1i 
+	      Hit Count = 6101574764  Miss Count = 3665
+	      Total Requests =  6101578429
+	      Hit Rate = [100.00%]  Miss Rate = [0.00%]
+	      Kickouts = 3409;  Dirty kickouts = 0;  Transfers = 3665
+
+
+	 Memory Level: L1d 
+	      Hit Count = 1144167534  Miss Count = 92821117
+	      Total Requests =  1236988651
+	      Hit Rate = [92.50%]   Miss Rate = [7.50%]
+	      Kickouts = 92820861;  Dirty kickouts = 35943014;  Transfers = 92821117
+
+
+	 Memory Level: L2 
+	      Hit Count = 57133189  Miss Count = 71634607
+	      Total Requests =  128767796
+	      Hit Rate = [44.37%]   Miss Rate = [55.63%]
+	      Kickouts = 71633583;  Dirty kickouts = 30936937;  Transfers = 71634607
+
+
+
+	 L1 cache cost (Icache $1800) + (Dcache $1800) = $3600
+	 L2 cache cost = $550;  Memory cost = $75
+	 Total cost = $4225

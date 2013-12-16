@@ -1,20 +1,23 @@
+
 <center>
 
 #Cache Simulation
 
-##<center>ECEN 4593</center>
+##ECEN 4593
 
-###<center>12/16/2013</center>
+###12/16/2013\newline
+<br><br><br><br>
+\null
 
-<br><br><center><p align="center">
-[![](/home/fatalexception/Memory_Simulation_Project/Valhalla/includes/valhalla_logo3.jpg)](https://github.com/Brian-Campuzano/Memory_Simulation_Project)</p></center><br><br>
 
-##<center>[Brian Campuzano](https://github.com/Brian-Campuzano) </center>
+[![](/home/fatalexception/Memory_Simulation_Project/Valhalla/includes/valhalla_logo3.jpg)](https://github.com/Brian-Campuzano/Memory_Simulation_Project)\newline
 
-##<center>[Ryan Riley](https://github.com/RyanBRiley)</center>
-<!--BREAK-->
+##[Brian Campuzano](https://github.com/Brian-Campuzano) 
 
-#<center>Source Code</center>
+##[Ryan Riley](https://github.com/RyanBRiley)
+\pagebreak
+
+#Source Code
 
 
 ~~~~~~~~~
@@ -197,7 +200,7 @@ int main(int argc, char ** argv)
 	}
       int bytesToFetch = byteSize;
 
-      cout << "--------------------------------------------------------------------------------" << endl;
+      cout << "-----------------------------------------------------------" << endl;
       cout << "Ref " << refNum;
       cout << ": Addr = " << hex << address;
       cout << ", Type = " << op;
@@ -294,50 +297,104 @@ int main(int argc, char ** argv)
     outfile.open(str.str().c_str());
 
 
-    outfile << "--------------------------------------------------------------------------------\n";
-    outfile << "\t" << str.str().c_str() << "\t Simulation Results\n";
-    outfile << "--------------------------------------------------------------------------------\n\n\n";
+     outfile << "---------------------------------------------------------------------\n";
+     outfile << "\t" << str.str().c_str() << "\t Simulation Results\n";
+     outfile << "---------------------------------------------------------------------\n\n\n";
 
-    outfile << "\t Memory system: \n"; 
-    outfile <<"\t      Dcache size = " <<  L1_MEMORY_SIZE << " : ways = " << L1_ASSOCIATIVITY << " : block size = " << L1_BLOCK_SIZE << endl;
-    outfile <<"\t      Icache size = " <<  L1_MEMORY_SIZE << " : ways = " << L1_ASSOCIATIVITY << " : block size = " << L1_BLOCK_SIZE << endl;
-    outfile <<"\t      L2-cache size = " <<  L2_MEMORY_SIZE << " : ways = " << L2_ASSOCIATIVITY << " : block size = " << L2_BLOCK_SIZE << endl;
-    outfile <<"\t      Memory ready time = " <<  MAIN_MEMORY_READY_TIME << " chunksize = " << MAIN_MEMORY_ADDRESS_WIDTH << " : chunktime = " << MAIN_MEMORY_CHUNK_SEND_TIME << "\n\n" << endl;
+     outfile << "\t Memory system: \n"; 
+     outfile <<"\t      Dcache size = " <<  L1_MEMORY_SIZE << " : ways = " << L1_ASSOCIATIVITY <<
+     " : block size = " << L1_BLOCK_SIZE << endl;
+     outfile <<"\t      Icache size = " <<  L1_MEMORY_SIZE << " : ways = " << L1_ASSOCIATIVITY <<
+     " : block size = " << L1_BLOCK_SIZE << endl;
+     outfile <<"\t      L2-cache size = " <<  L2_MEMORY_SIZE << " : ways = " << L2_ASSOCIATIVITY << 
+     " : block size = " << L2_BLOCK_SIZE << endl;
+     outfile <<"\t      Memory ready time = " <<  MAIN_MEMORY_READY_TIME << " chunksize = " <<
+     MAIN_MEMORY_ADDRESS_WIDTH << " : chunktime = " << MAIN_MEMORY_CHUNK_SEND_TIME << 
+     "\n\n" << endl;
 
-    outfile << "\t Execute time = " << dec << time << ";    Total refs = " << refNum << "\n\t Inst refs = " << iCount << ";    Data refs = " <<  wCount + rCount << "\n\n" << endl; 
-    outfile << "\t Number of reference types: [Percentage]\n\t      Reads = " << rCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) rCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
-    outfile << "\t      Writes = " << wCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) wCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
-    outfile << "\t      Inst = " << iCount << "     " << "[" << fixed << setprecision(2) << (float) (((float) iCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
-    outfile << "\t      Total = " << wCount + iCount + rCount << "\n\n" << endl;
+     outfile << "\t Execute time = " << dec << time << ";    Total refs = " << refNum << 
+     "\n\t Inst refs = " << iCount << ";    Data refs = " <<  wCount + rCount << "\n\n" << endl; 
+     outfile << "\t Number of reference types: [Percentage]\n\t      Reads = " << rCount <<
+     "     " << "[" << fixed << setprecision(2) <<
+     (float) (((float) rCount/(float) (wCount + rCount + iCount)) * 100) << "%]" << endl;
+     outfile << "\t      Writes = " << wCount << "     " <<
+     "[" << fixed << setprecision(2) <<
+     (float) (((float) wCount/(float) (wCount + rCount + iCount)) * 100) << "%]" <<
+     endl;
+     outfile << "\t      Inst = " << iCount << "     " << 
+     "[" << fixed << setprecision(2) <<
+     (float) (((float) iCount/(float) (wCount + rCount + iCount)) * 100) << "%]" <<
+     endl;
+     outfile << "\t      Total = " << wCount + iCount + rCount << "\n\n" << endl;
 
-    outfile << "\t Total cycles for activities: [Percentage]\n\t      Reads = " << rTime << "     " << "[" << fixed << setprecision(2) << (float) (((float) rTime/(float) (wTime + rTime + iTime)) * 100) << "%]" << endl;
-    outfile << "\t      Writes = " << wTime << "     " << "[" << fixed << setprecision(2) << (float) (((float) wTime/(float) (wTime + rTime + iTime)) * 100) << "%]" << endl;
-    outfile << "\t      Inst = " << iTime << "     " << "[" << fixed << setprecision(2) << (float) (((float) iTime/(float) (wTime + rTime + iTime)) * 100) << "%]" << endl;
-    outfile << "\t      Total = " << wTime + iTime + rTime << "\n\n" << endl;
+     outfile << "\t Total cycles for activities: [Percentage]\n\t      Reads = " <<
+     rTime << "     " << "[" << fixed << setprecision(2) <<
+     (float) (((float) rTime/(float) (wTime + rTime + iTime)) * 100) << "%]" << endl;
+     outfile << "\t      Writes = " << wTime << "     " <<
+     "[" << fixed << setprecision(2) << 
+     (float) (((float) wTime/(float) (wTime + rTime + iTime)) * 100) << "%]" <<
+     endl;
+     outfile << "\t      Inst = " << iTime << "     " << 
+     "[" << fixed << setprecision(2) <<
+     (float) (((float) iTime/(float) (wTime + rTime + iTime)) * 100) << "%]" <<
+     endl;
+     outfile << "\t      Total = " << wTime + iTime + rTime << "\n\n" << endl;
 
-    outfile << "\t Average cycles per activity: \n\t      Read = " << fixed << setprecision(2) << (float) ((float) rTime/(float) (rCount)) << ";   Write = " << fixed << setprecision(2) << (float) ((float) wTime/(float) (wCount))<< ";   Inst. = " << fixed << setprecision(2) << (float) ((float) time/(float) (iCount))<< endl;
+     outfile << "\t Average cycles per activity: \n\t      Read = " << fixed << setprecision(2) <<
+     (float) ((float) rTime/(float) (rCount)) << ";   Write = " << fixed << setprecision(2) <<
+     (float) ((float) wTime/(float) (wCount))<< ";   Inst. = " << fixed << setprecision(2) << 
+     float) ((float) time/(float) (iCount))<< endl;
 
-    outfile << "\n\n\t Memory Level: L1i \n"; 
-    outfile <<"\t      Hit Count = " <<  l1InstCache->hits() << "  " << "Miss Count = " <<  l1InstCache->misses() <<endl;
-    outfile <<"\t      Total Requests =  " <<  l1InstCache->hits() + l1InstCache->misses() <<endl;
-    outfile <<"\t      Hit Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l1InstCache->hits()/ (float) ( l1InstCache->hits() + l1InstCache->misses())) * 100) << "%]" << "  Miss Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l1InstCache->misses()/ (float) ( l1InstCache->hits() + l1InstCache->misses())) * 100) << "%]" << endl;
-    outfile <<"\t      Kickouts = " << l1InstCache->kicks()  << ";  Dirty kickouts = " << l1InstCache->dirtyKicks() <<";  Transfers = " << l1InstCache->transfers() << endl;
+     outfile << "\n\n\t Memory Level: L1i \n";  
+     outfile <<"\t      Hit Count = " <<  l1InstCache->hits() << "  " << "Miss Count = " <<
+     l1InstCache->misses() <<endl;
+     outfile <<"\t      Total Requests =  " <<  l1InstCache->hits() + l1InstCache->misses() <<endl;
+     outfile <<"\t      Hit Rate = " << 
+     "[" << fixed << setprecision(2) <<
+     (float) (((float) l1InstCache->hits()/ (float) ( l1InstCache->hits() + 
+     l1InstCache->misses())) * 100) << 
+     "%]" << "  Miss Rate = " << 
+     "[" << fixed << setprecision(2) <<
+     (float) (((float) l1InstCache->misses()/ (float) ( l1InstCache->hits() +
+     l1InstCache->misses())) * 100) <<
+     "%]" << endl;
+     outfile <<"\t      Kickouts = " << l1InstCache->kicks()  <<
+     ";  Dirty kickouts = " << l1InstCache->dirtyKicks() <<";  Transfers = " << 
+     l1InstCache->transfers() << endl;
    
     
 
     outfile << "\n\n\t Memory Level: L1d \n"; 
-    outfile <<"\t      Hit Count = " <<  l1DataCache->hits() << "  " << "Miss Count = " <<  l1DataCache->misses() <<endl;
-    outfile <<"\t      Total Requests =  " <<  l1DataCache->hits() + l1DataCache->misses() <<endl;
-    outfile <<"\t      Hit Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l1DataCache->hits()/ (float) ( l1DataCache->hits() + l1DataCache->misses())) * 100) << "%]" << "   Miss Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l1DataCache->misses()/ (float) ( l1DataCache->hits() + l1DataCache->misses())) * 100) << "%]" << endl;
-    outfile <<"\t      Kickouts = " << l1DataCache->kicks()  << ";  Dirty kickouts = " << l1DataCache->dirtyKicks() <<";  Transfers = " << l1DataCache->transfers() << endl;
+    outfile <<"\t      Hit Count = " <<  l1DataCache->hits() << "  " << "Miss Count = " <<
+    l1DataCache->misses() <<endl;
+    outfile <<"\t      Total Requests =  " <<  l1DataCache->hits() + 
+    l1DataCache->misses() <<endl;
+    outfile <<"\t      Hit Rate = " << 
+    "[" << fixed << setprecision(2) <<
+    (float) (((float) l1DataCache->hits()/ (float) ( l1DataCache->hits() + 
+    l1DataCache->misses())) * 100) <<
+    "%]" << "   Miss Rate = " <<  "[" << fixed << setprecision(2) <<
+    (float) (((float) l1DataCache->misses()/ (float) ( l1DataCache->hits() + 
+    l1DataCache->misses())) * 100) << 
+    "%]" << endl;
+    outfile <<"\t      Kickouts = " << l1DataCache->kicks()  << ";  Dirty kickouts = " <<
+    l1DataCache->dirtyKicks() <<";  Transfers = " << l1DataCache->transfers() << endl;
 
     outfile << "\n\n\t Memory Level: L2 \n"; 
-    outfile <<"\t      Hit Count = " <<  l2Cache->hits() << "  " << "Miss Count = " <<  l2Cache->misses() <<endl;
+    outfile <<"\t      Hit Count = " <<  l2Cache->hits() << "  " << "Miss Count = " <<
+    l2Cache->misses() <<endl;
     outfile <<"\t      Total Requests =  " <<  l2Cache->hits() + l2Cache->misses() <<endl;
-    outfile <<"\t      Hit Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l2Cache->hits()/ (float) ( l2Cache->hits() + l2Cache->misses())) * 100) << "%]" << "   Miss Rate = " <<  "[" << fixed << setprecision(2) << (float) (((float) l2Cache->misses()/ (float) ( l2Cache->hits() + l2Cache->misses())) * 100) << "%]" << endl;
-    outfile <<"\t      Kickouts = " << l2Cache->kicks()  << ";  Dirty kickouts = " << l2Cache->dirtyKicks() <<";  Transfers = " << l2Cache->transfers() << endl;
+    outfile <<"\t      Hit Rate = " <<  "[" << fixed << setprecision(2) <<
+    (float) (((float) l2Cache->hits()/ (float) ( l2Cache->hits() + l2Cache->misses())) * 100) << 
+    "%]" << "   Miss Rate = " <<
+    "[" << fixed << setprecision(2) <<
+    (float) (((float) l2Cache->misses()/ (float) ( l2Cache->hits() + l2Cache->misses())) * 100) << "%]" <<
+    endl;
+    outfile <<"\t      Kickouts = " << l2Cache->kicks()  << ";  Dirty kickouts = " << 
+    l2Cache->dirtyKicks() <<";  Transfers = " << l2Cache->transfers() << endl;
 
-    outfile << "\n\n\n\t L1 cache cost (Icache $" << l1iCost << ") + (Dcache $" << l1dCost << ") = $" << l1iCost + l1dCost<< "\n"; 
+    outfile << "\n\n\n\t L1 cache cost (Icache $" << l1iCost << ") + (Dcache $" << 
+    l1dCost << ") = $" << l1iCost + l1dCost<< "\n"; 
     outfile << "\t L2 cache cost = $" << l2Cost << ";  Memory cost = $" << memCost << "\n"; 
     outfile << "\t Total cost = $" << totalCost << endl;
 
@@ -349,3 +406,4 @@ int main(int argc, char ** argv)
 
 }
 ~~~~~~~~~~~
+

@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+	h264ref.All-FA	 Simulation Results
+--------------------------------------------------------------------------------
+
+
+	 Memory system: 
+	      Dcache size = 8192 : ways = 256 : block size = 32
+	      Icache size = 8192 : ways = 256 : block size = 32
+	      L2-cache size = 65536 : ways = 1024 : block size = 64
+	      Memory ready time = 50 chunksize = 16 : chunktime = 20
+
+
+	 Execute time = 10572006670;    Total refs = 5000000000
+	 Inst refs = 3369821573;    Data refs = 1630178427
+
+
+	 Number of reference types: [Percentage]
+	      Reads = 1318509106     [26.37%]
+	      Writes = 311669321     [6.23%]
+	      Inst = 3369821573     [67.40%]
+	      Total = 5000000000
+
+
+	 Total cycles for activities: [Percentage]
+	      Reads = 3019057149     [28.56%]
+	      Writes = 1055253181     [9.98%]
+	      Inst = 6497696340     [61.46%]
+	      Total = 10572006670
+
+
+	 Average cycles per activity: 
+	      Read = 2.29;   Write = 3.39;   Inst. = 3.14
+
+
+	 Memory Level: L1i 
+	      Hit Count = 5606534084  Miss Count = 38745054
+	      Total Requests =  5645279138
+	      Hit Rate = [99.31%]  Miss Rate = [0.69%]
+	      Kickouts = 38744798;  Dirty kickouts = 0;  Transfers = 38745054
+
+
+	 Memory Level: L1d 
+	      Hit Count = 2015018762  Miss Count = 25225572
+	      Total Requests =  2040244334
+	      Hit Rate = [98.76%]   Miss Rate = [1.24%]
+	      Kickouts = 25225316;  Dirty kickouts = 6950799;  Transfers = 25225572
+
+
+	 Memory Level: L2 
+	      Hit Count = 61706943  Miss Count = 9214482
+	      Total Requests =  70921425
+	      Hit Rate = [87.01%]   Miss Rate = [12.99%]
+	      Kickouts = 9213458;  Dirty kickouts = 2446110;  Transfers = 9214482
+
+
+
+	 L1 cache cost (Icache $1800) + (Dcache $1800) = $3600
+	 L2 cache cost = $550;  Memory cost = $75
+	 Total cost = $4225
